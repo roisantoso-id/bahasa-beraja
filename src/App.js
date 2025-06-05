@@ -7,6 +7,7 @@ import Vocabulary from './pages/Vocabulary';
 import Grammar from './pages/Grammar';
 import Quiz from './pages/Quiz';
 import Login from './pages/Login';
+import ProficiencyTest from './pages/ProficiencyTest';
 import UserManager from './utils/userManager';
 
 // 全局样式容器
@@ -100,6 +101,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Quiz />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/proficiency-test" 
+              element={
+                <ProtectedRoute>
+                  <ProficiencyTest />
                 </ProtectedRoute>
               } 
             />

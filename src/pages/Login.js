@@ -238,13 +238,19 @@ function Login() {
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('');
   const [recentUsers, setRecentUsers] = useState([]);
+  const [isFirstLogin, setIsFirstLogin] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     // 检查是否已登录
     if (UserManager.isLoggedIn()) {
-      navigate('/');
+      const currentUser = UserManager.getCurrentUser();
+      if (!UserManager.hasCompletedProficiencyTest()) {
+        navigate('/proficiency-test');
+      } else {
+        navigate('/');
+      }
       return;
     }
 
@@ -276,6 +282,7 @@ function Login() {
       const result = UserManager.login(username.trim(), displayName.trim());
       
       if (result.success) {
+        setIsFirstLogin(true);
         showMessage(
           result.user.loginCount === 1 
             ? `欢迎加入 Bahasa Beraja，${result.user.displayName}！` 
@@ -283,9 +290,11 @@ function Login() {
           'success'
         );
         
-        setTimeout(() => {
+        if (result.user.loginCount === 1) {
+          navigate('/proficiency-test');
+        } else {
           navigate('/');
-        }, 1500);
+        }
       } else {
         showMessage(result.message);
       }

@@ -196,6 +196,44 @@ class UserManager {
     if (!username) return 'U';
     return username.charAt(0).toUpperCase();
   }
+
+  // 获取用户的语言水平
+  static getProficiencyLevel() {
+    const currentUser = this.getCurrentUser();
+    return currentUser?.proficiencyLevel || null;
+  }
+
+  // 获取用户的测试分数
+  static getProficiencyScore() {
+    const currentUser = this.getCurrentUser();
+    return currentUser?.proficiencyScore || null;
+  }
+
+  // 检查用户是否已完成能力测试
+  static hasCompletedProficiencyTest() {
+    const currentUser = this.getCurrentUser();
+    return currentUser?.proficiencyLevel !== undefined;
+  }
+
+  // 获取用户的学习进度
+  static getLearningProgress() {
+    const currentUser = this.getCurrentUser();
+    return {
+      proficiencyLevel: currentUser?.proficiencyLevel || null,
+      proficiencyScore: currentUser?.proficiencyScore || null,
+      testCompletedAt: currentUser?.testCompletedAt || null,
+      lastLoginAt: currentUser?.lastLoginAt || null,
+      loginCount: currentUser?.loginCount || 0
+    };
+  }
+
+  // 更新用户的学习进度
+  static updateLearningProgress(progress) {
+    return this.updateUser({
+      ...progress,
+      updatedAt: new Date().toISOString()
+    });
+  }
 }
 
 export default UserManager; 
