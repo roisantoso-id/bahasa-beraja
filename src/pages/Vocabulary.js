@@ -262,6 +262,35 @@ const WordCount = styled.div`
   margin-bottom: 20px;
 `;
 
+const SmartModeToggle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
+const SmartModeButton = styled.button`
+  padding: 8px 16px;
+  border: 2px solid ${props => props.$active ? '#667eea' : '#ddd'};
+  border-radius: 20px;
+  background: ${props => props.$active ? '#667eea' : 'white'};
+  color: ${props => props.$active ? 'white' : '#666'};
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #667eea;
+    background: ${props => props.$active ? '#667eea' : 'rgba(102, 126, 234, 0.1)'};
+  }
+`;
+
+const SmartModeDescription = styled.div`
+  font-size: 14px;
+  color: #666;
+`;
+
 function Vocabulary() {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -269,9 +298,33 @@ function Vocabulary() {
   const [vocabularyMastery, setVocabularyMastery] = useState({});
   const [learningStats, setLearningStats] = useState({});
   const [studyStartTime, setStudyStartTime] = useState(Date.now());
+  const [smartMode, setSmartMode] = useState(true); // 智能学习模式
 
   const currentCategory = vocabularyData[selectedCategory];
-  const currentWord = currentCategory.words[currentWordIndex];
+  
+  // 智能学习模式：过滤已掌握的词汇
+  const getFilteredWords = () => {
+    if (!smartMode) {
+      return currentCategory.words;
+    }
+    
+    return currentCategory.words.filter((word, index) => {
+      const masteryLevel = vocabularyMastery[selectedCategory]?.[index]?.level || 0;
+      return masteryLevel < 3; // 只显示未掌握的词汇（掌握程度 < 3）
+    });
+  };
+  
+  const filteredWords = getFilteredWords();
+  const currentWord = filteredWords[currentWordIndex] || currentCategory.words[0];
+  
+  // 获取当前词汇在原数组中的索引
+  const getCurrentWordOriginalIndex = () => {
+    if (!smartMode) {
+      return currentWordIndex;
+    }
+    return currentCategory.words.findIndex(word => word === currentWord);
+  };
+
   const progress = ((currentWordIndex + 1) / currentCategory.words.length) * 100;
 
   // 加载数据
@@ -308,8 +361,8 @@ function Vocabulary() {
 
   // 获取当前词汇的掌握程度
   const getCurrentWordMastery = () => {
-    const categoryMastery = vocabularyMastery[selectedCategory] || {};
-    return categoryMastery[currentWordIndex]?.level || 0;
+    const originalIndex = getCurrentWordOriginalIndex();
+    return vocabularyMastery[selectedCategory]?.[originalIndex]?.level || 0;
   };
 
   // 计算分类完成度
@@ -334,9 +387,12 @@ function Vocabulary() {
   };
 
   const handleNextWord = () => {
-    if (currentWordIndex < currentCategory.words.length - 1) {
+    if (currentWordIndex < filteredWords.length - 1) {
       setCurrentWordIndex(currentWordIndex + 1);
       setIsFlipped(false);
+    } else if (smartMode && filteredWords.length === 0) {
+      // 如果智能模式下没有需要学习的词汇，提示用户
+      alert('恭喜！您已掌握该分类的所有词汇！');
     }
   };
 
@@ -360,16 +416,17 @@ function Vocabulary() {
   };
 
   const handleMasteryChange = (level) => {
-    LocalDatabase.updateWordMastery(selectedCategory, currentWordIndex, level);
+    const originalIndex = getCurrentWordOriginalIndex();
+    LocalDatabase.updateWordMastery(selectedCategory, originalIndex, level);
     
     // 更新本地状态
     const newMastery = { ...vocabularyMastery };
     if (!newMastery[selectedCategory]) {
       newMastery[selectedCategory] = {};
     }
-    newMastery[selectedCategory][currentWordIndex] = {
+    newMastery[selectedCategory][originalIndex] = {
       level,
-      reviewCount: (newMastery[selectedCategory][currentWordIndex]?.reviewCount || 0) + 1,
+      reviewCount: (newMastery[selectedCategory][originalIndex]?.reviewCount || 0) + 1,
       lastReviewed: new Date().toISOString()
     };
     setVocabularyMastery(newMastery);
@@ -382,6 +439,18 @@ function Vocabulary() {
     LocalDatabase.updateLearningStats({
       wordsLearned: newWordsLearned
     });
+    
+    // 如果在智能模式下标记为已掌握，自动跳到下一个词汇
+    if (smartMode && level >= 3) {
+      setTimeout(() => {
+        const newFilteredWords = getFilteredWords();
+        if (currentWordIndex >= newFilteredWords.length && newFilteredWords.length > 0) {
+          setCurrentWordIndex(newFilteredWords.length - 1);
+        } else if (newFilteredWords.length === 0) {
+          alert('恭喜！您已掌握该分类的所有词汇！');
+        }
+      }, 500);
+    }
   };
 
   const handleReset = () => {
@@ -513,8 +582,29 @@ function Vocabulary() {
       </CategoryTabs>
 
       <WordCount>
-        第 {currentWordIndex + 1} 个，共 {currentCategory.words.length} 个词汇
+        第 {currentWordIndex + 1} 个，共 {smartMode ? filteredWords.length : currentCategory.words.length} 个词汇
+        {smartMode && filteredWords.length < currentCategory.words.length && (
+          <span style={{ fontSize: '14px', color: '#666', marginLeft: '10px' }}>
+            (智能模式：已过滤 {currentCategory.words.length - filteredWords.length} 个已掌握词汇)
+          </span>
+        )}
       </WordCount>
+
+      <SmartModeToggle>
+        <SmartModeButton 
+          $active={smartMode} 
+          onClick={() => {
+            setSmartMode(!smartMode);
+            setCurrentWordIndex(0);
+            setIsFlipped(false);
+          }}
+        >
+          {smartMode ? '智能模式：开启' : '智能模式：关闭'}
+        </SmartModeButton>
+        <SmartModeDescription>
+          {smartMode ? '自动跳过已掌握的词汇' : '显示所有词汇'}
+        </SmartModeDescription>
+      </SmartModeToggle>
 
       <Progress>
         <ProgressBar $width={progress} />
@@ -590,7 +680,7 @@ function Vocabulary() {
         
         <ControlButton
           onClick={handleNextWord}
-          disabled={currentWordIndex === currentCategory.words.length - 1}
+          disabled={currentWordIndex === (smartMode ? filteredWords.length : currentCategory.words.length) - 1}
         >
           <ChevronRight size={24} />
         </ControlButton>
