@@ -218,29 +218,42 @@ const Controls = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
+  position: sticky;
+  bottom: 20px;
+  z-index: 10;
+  padding: 20px 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  margin-top: 20px;
 `;
 
 const ControlButton = styled.button`
-  padding: 12px;
+  padding: 16px 32px;
   border: none;
-  border-radius: 50%;
-  background: #667eea;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 120px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 
   &:hover {
-    background: #5a67d8;
-    transform: scale(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
+    background: #ccc;
   }
 `;
 
