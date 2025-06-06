@@ -574,7 +574,7 @@ function Home() {
         <CommunityImageContainer>
           <CommunityImage src="/whatsapp-group.jpg" alt="WhatsApp Indonesian Learning Community" />
         </CommunityImageContainer>
-        <JoinButton as="a" href="https://chat.whatsapp.com/invite/indonesian-learning" target="_blank" rel="noopener noreferrer">
+        <JoinButton as="a" href="https://chat.whatsapp.com/DhyJ8M3sopvHsk02vDOzU1" target="_blank" rel="noopener noreferrer">
           <WhatsAppIcon>📱</WhatsAppIcon>
           加入WhatsApp社群 | Gabung Grup WhatsApp
         </JoinButton>
