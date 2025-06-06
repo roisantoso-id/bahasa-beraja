@@ -9,11 +9,27 @@ const HomeContainer = styled.div`
   padding: 40px 20px;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 20px 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px 10px;
+  }
 `;
 
 const Hero = styled.div`
   text-align: center;
   margin-bottom: 60px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 30px;
+  }
 `;
 
 const HeroLogo = styled(motion.div)`
@@ -22,6 +38,17 @@ const HeroLogo = styled(motion.div)`
   justify-content: center;
   gap: 20px;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
 `;
 
 const LogoIcon = styled.div`
@@ -35,6 +62,19 @@ const LogoIcon = styled.div`
   border: 3px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
   background: white;
+
+  @media (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 480px) {
+    width: 70px;
+    height: 70px;
+    border-radius: 14px;
+  }
 `;
 
 const LogoImage = styled.img`
@@ -42,11 +82,23 @@ const LogoImage = styled.img`
   height: 100%;
   object-fit: contain;
   border-radius: 17px;
+
+  @media (max-width: 768px) {
+    border-radius: 14px;
+  }
+
+  @media (max-width: 480px) {
+    border-radius: 12px;
+  }
 `;
 
 const LogoText = styled.div`
   color: white;
   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+
+  @media (max-width: 480px) {
+    text-align: center;
+  }
 `;
 
 const LogoTitle = styled.h1`
@@ -54,6 +106,15 @@ const LogoTitle = styled.h1`
   font-weight: 700;
   margin: 0;
   margin-bottom: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+    margin-bottom: 3px;
+  }
 `;
 
 const LogoSubtitle = styled.div`
@@ -61,6 +122,15 @@ const LogoSubtitle = styled.div`
   opacity: 0.9;
   font-weight: 500;
   letter-spacing: 1px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
 `;
 
 const Title = styled.h1`
@@ -69,6 +139,16 @@ const Title = styled.h1`
   color: white;
   margin-bottom: 20px;
   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -76,6 +156,17 @@ const Subtitle = styled.p`
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 40px;
   text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+    margin-bottom: 25px;
+    padding: 0 10px;
+  }
 `;
 
 const StatsGrid = styled.div`
@@ -83,6 +174,18 @@ const StatsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   margin-bottom: 60px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
 `;
 
 const StatCard = styled(motion.div)`
@@ -93,6 +196,16 @@ const StatCard = styled(motion.div)`
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+  @media (max-width: 768px) {
+    padding: 25px 20px;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px 15px;
+    border-radius: 14px;
+  }
 `;
 
 const StatIcon = styled.div`
@@ -100,6 +213,14 @@ const StatIcon = styled.div`
   justify-content: center;
   margin-bottom: 20px;
   color: #667eea;
+
+  @media (max-width: 768px) {
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 12px;
+  }
 `;
 
 const StatValue = styled.div`
@@ -107,12 +228,30 @@ const StatValue = styled.div`
   font-weight: 700;
   color: #667eea;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
 `;
 
 const StatLabel = styled.div`
   font-size: 16px;
   color: #666;
   font-weight: 500;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 const FeaturesGrid = styled.div`
@@ -120,6 +259,18 @@ const FeaturesGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 30px;
   margin-bottom: 60px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
 `;
 
 const FeatureCard = styled(motion.div)`
@@ -134,6 +285,26 @@ const FeatureCard = styled(motion.div)`
     transform: translateY(-10px);
     box-shadow: 0 30px 60px rgba(0,0,0,0.15);
   }
+
+  @media (max-width: 768px) {
+    padding: 30px 25px;
+    border-radius: 16px;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 25px 20px;
+    border-radius: 14px;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+  }
 `;
 
 const FeatureIcon = styled.div`
@@ -146,6 +317,20 @@ const FeatureIcon = styled.div`
   justify-content: center;
   margin-bottom: 20px;
   color: white;
+
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
 `;
 
 const FeatureTitle = styled.h3`
@@ -153,6 +338,16 @@ const FeatureTitle = styled.h3`
   font-weight: 600;
   color: #333;
   margin-bottom: 15px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 `;
 
 const FeatureDescription = styled.p`
@@ -160,6 +355,16 @@ const FeatureDescription = styled.p`
   color: #666;
   line-height: 1.6;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
 `;
 
 const FeatureButton = styled(Link)`
@@ -177,6 +382,20 @@ const FeatureButton = styled(Link)`
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
   }
+
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 18px;
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 const ProgressSection = styled.div`
@@ -185,6 +404,18 @@ const ProgressSection = styled.div`
   padding: 40px;
   margin-bottom: 60px;
   backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    padding: 30px 25px;
+    margin-bottom: 40px;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 25px 20px;
+    margin-bottom: 30px;
+    border-radius: 14px;
+  }
 `;
 
 const ProgressTitle = styled.h2`
@@ -193,12 +424,32 @@ const ProgressTitle = styled.h2`
   color: #333;
   margin-bottom: 30px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 const ProgressGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
 `;
 
 const ProgressItem = styled.div`
@@ -222,16 +473,68 @@ const ProgressFill = styled.div`
   width: ${props => props.$width}%;
 `;
 
-const ProgressLabel = styled.div`
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 5px;
+const ProgressCard = styled.div`
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #e9ecef;
+
+  @media (max-width: 768px) {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px;
+    border-radius: 10px;
+  }
+`;
+
+const ProgressLabel = styled.h4`
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
 `;
 
 const ProgressValue = styled.div`
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 700;
   color: #667eea;
+  margin-bottom: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
+`;
+
+const ProgressDescription = styled.p`
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 `;
 
 const QuickActions = styled.div`
@@ -263,73 +566,205 @@ const QuickActionButton = styled(Link)`
   }
 `;
 
-const CommunitySection = styled(motion.div)`
+const CommunitySection = styled.div`
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   padding: 40px;
-  margin: 60px auto 40px;
-  max-width: 800px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   text-align: center;
+  backdrop-filter: blur(10px);
+  border: 2px solid #25D366;
+
+  @media (max-width: 768px) {
+    padding: 30px 25px;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 25px 20px;
+    border-radius: 14px;
+  }
 `;
 
-const CommunityTitle = styled.h2`
-  font-size: 32px;
-  font-weight: 700;
-  color: #333;
+const CommunityContent = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+`;
+
+const CommunityImage = styled.img`
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
   margin-bottom: 20px;
-`;
+  object-fit: cover;
+  border: 3px solid #25D366;
 
-const CommunitySubtitle = styled.p`
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 30px;
-  line-height: 1.6;
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin-bottom: 12px;
+  }
 `;
 
 const CommunityImageContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
-`;
+  margin-bottom: 20px;
 
-const CommunityImage = styled.img`
-  max-width: 100%;
-  max-height: 300px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
+  @media (max-width: 768px) {
+    margin-bottom: 15px;
+  }
 
-  &:hover {
-    transform: scale(1.02);
+  @media (max-width: 480px) {
+    margin-bottom: 12px;
   }
 `;
 
-const JoinButton = styled.button`
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-  color: white;
-  border: none;
-  border-radius: 25px;
-  padding: 16px 40px;
+const CommunityTitle = styled.h2`
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+`;
+
+const CommunitySubtitle = styled.p`
   font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    margin-bottom: 12px;
+    padding: 0 10px;
+  }
+`;
+
+const JoinButton = styled.a`
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  padding: 16px 32px;
+  background: #25D366;
+  color: white;
   text-decoration: none;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  gap: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
 
   &:hover {
+    background: #128C7E;
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    padding: 14px 28px;
+    font-size: 16px;
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 24px;
+    font-size: 14px;
+    gap: 8px;
+    width: 100%;
+    max-width: 280px;
   }
 `;
 
 const WhatsAppIcon = styled.span`
-  font-size: 24px;
+  font-size: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
+`;
+
+const BenefitsList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 25px 0;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 15px 0;
+  }
+`;
+
+const BenefitItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #333;
+  font-size: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    gap: 6px;
+    justify-content: center;
+  }
+
+  &::before {
+    content: '✓';
+    color: #25D366;
+    font-weight: bold;
+    font-size: 18px;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
+  }
 `;
 
 function Home() {
@@ -391,7 +826,7 @@ function Home() {
         learned: (learnedWords / totalWords) * 100,
         mastered: (masteredWords / totalWords) * 100
       };
-    });
+    }).filter(category => category.learned < 100); // 过滤掉已完全掌握的类别
 
     setCategoryProgress(progress);
   }, []);
@@ -557,27 +992,25 @@ function Home() {
         </QuickActionButton>
       </QuickActions>
 
-      <CommunitySection
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <CommunityTitle>
-          🌐 印尼语学习交流社群 | Komunitas Belajar Bahasa Indonesia
-        </CommunityTitle>
-        <CommunitySubtitle>
-          与全球印尼语学习者交流经验，分享学习资源，获取最新学习动态<br/>
-          <em style={{ color: '#667eea', fontSize: '16px' }}>
-            Bergabunglah dengan pelajar bahasa Indonesia dari seluruh dunia, berbagi pengalaman dan sumber belajar
-          </em>
-        </CommunitySubtitle>
-        <CommunityImageContainer>
-          <CommunityImage src="/whatsapp-group.jpg" alt="WhatsApp Indonesian Learning Community" />
-        </CommunityImageContainer>
-        <JoinButton as="a" href="https://chat.whatsapp.com/DhyJ8M3sopvHsk02vDOzU1" target="_blank" rel="noopener noreferrer">
-          <WhatsAppIcon>📱</WhatsAppIcon>
-          加入WhatsApp社群 | Gabung Grup WhatsApp
-        </JoinButton>
+      <CommunitySection>
+        <CommunityContent>
+          <CommunityTitle>
+            🌐 印尼语学习交流社群 | Komunitas Belajar Bahasa Indonesia
+          </CommunityTitle>
+          <CommunitySubtitle>
+            与全球印尼语学习者交流经验，分享学习资源，获取最新学习动态<br/>
+            <em style={{ color: '#667eea', fontSize: '16px' }}>
+              Bergabunglah dengan pelajar bahasa Indonesia dari seluruh dunia, berbagi pengalaman dan sumber belajar
+            </em>
+          </CommunitySubtitle>
+          <CommunityImageContainer>
+            <CommunityImage src="/whatsapp-group.jpg" alt="WhatsApp Indonesian Learning Community" />
+          </CommunityImageContainer>
+          <JoinButton as="a" href="https://chat.whatsapp.com/DhyJ8M3sopvHsk02vDOzU1" target="_blank" rel="noopener noreferrer">
+            <WhatsAppIcon>📱</WhatsAppIcon>
+            加入WhatsApp社群 | Gabung Grup WhatsApp
+          </JoinButton>
+        </CommunityContent>
       </CommunitySection>
     </HomeContainer>
   );

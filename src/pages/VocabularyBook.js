@@ -9,11 +9,27 @@ const VocabularyBookContainer = styled.div`
   padding: 40px 20px;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 20px 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px 10px;
+  }
 `;
 
 const Header = styled.div`
   text-align: center;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 25px;
+  }
 `;
 
 const Title = styled.h1`
@@ -22,12 +38,31 @@ const Title = styled.h1`
   color: white;
   margin-bottom: 10px;
   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
 `;
 
 const Subtitle = styled.p`
   font-size: 18px;
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    padding: 0 10px;
+  }
 `;
 
 const StatsGrid = styled.div`
@@ -35,6 +70,18 @@ const StatsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 25px;
+  }
 `;
 
 const StatCard = styled(motion.div)`
@@ -45,6 +92,16 @@ const StatCard = styled(motion.div)`
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 14px 12px;
+    border-radius: 10px;
+  }
 `;
 
 const StatIcon = styled.div`
@@ -52,6 +109,14 @@ const StatIcon = styled.div`
   justify-content: center;
   margin-bottom: 15px;
   color: #667eea;
+
+  @media (max-width: 768px) {
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 10px;
+  }
 `;
 
 const StatValue = styled.div`
@@ -59,12 +124,28 @@ const StatValue = styled.div`
   font-weight: 700;
   color: #667eea;
   margin-bottom: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 `;
 
 const StatLabel = styled.div`
   font-size: 14px;
   color: #666;
   font-weight: 500;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 `;
 
 const TabContainer = styled.div`
@@ -72,6 +153,17 @@ const TabContainer = styled.div`
   gap: 10px;
   margin-bottom: 30px;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 6px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
 `;
 
 const Tab = styled.button`
@@ -89,6 +181,20 @@ const Tab = styled.button`
     color: white;
     transform: translateY(-2px);
   }
+
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 18px;
+    flex: 1;
+    min-width: 80px;
+  }
 `;
 
 const WordGrid = styled.div`
@@ -96,6 +202,18 @@ const WordGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 25px;
+  }
 `;
 
 const WordCard = styled(motion.div)`
@@ -106,6 +224,16 @@ const WordCard = styled(motion.div)`
   border: 1px solid rgba(102, 126, 234, 0.1);
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 14px;
+    border-radius: 10px;
+  }
 `;
 
 const WordHeader = styled.div`
@@ -113,10 +241,24 @@ const WordHeader = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 15px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 10px;
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 const WordInfo = styled.div`
   flex: 1;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 const WordIndonesian = styled.h3`
@@ -124,12 +266,31 @@ const WordIndonesian = styled.h3`
   font-weight: 700;
   color: #333;
   margin-bottom: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
 `;
 
 const WordChinese = styled.p`
   font-size: 16px;
   color: #666;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
 `;
 
 const WordCategory = styled.span`
@@ -139,6 +300,18 @@ const WordCategory = styled.span`
   padding: 4px 8px;
   border-radius: 10px;
   font-weight: 500;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+    padding: 3px 6px;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 6px;
+  }
 `;
 
 const WordStats = styled.div`
@@ -147,6 +320,18 @@ const WordStats = styled.div`
   margin-top: 15px;
   padding-top: 15px;
   border-top: 1px solid #f0f0f0;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
 `;
 
 const WordStat = styled.div`
@@ -159,11 +344,27 @@ const WordStatValue = styled.div`
   font-weight: 700;
   color: ${props => props.$color || '#667eea'};
   margin-bottom: 2px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 const WordStatLabel = styled.div`
   font-size: 12px;
   color: #666;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+  }
 `;
 
 const ActionButton = styled.button`
@@ -183,6 +384,19 @@ const ActionButton = styled.button`
     transform: translateY(-2px);
     box-shadow: 0 5px 15px ${props => props.$danger ? 'rgba(255, 71, 87, 0.3)' : 'rgba(102, 126, 234, 0.3)'};
   }
+
+  @media (max-width: 768px) {
+    padding: 6px 10px;
+    font-size: 11px;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 5px 8px;
+    font-size: 10px;
+    border-radius: 6px;
+    align-self: flex-start;
+  }
 `;
 
 const EmptyState = styled.div`
@@ -191,24 +405,65 @@ const EmptyState = styled.div`
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    padding: 40px 16px;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 30px 12px;
+    border-radius: 14px;
+  }
 `;
 
 const EmptyIcon = styled.div`
   font-size: 64px;
   margin-bottom: 20px;
   opacity: 0.5;
+
+  @media (max-width: 768px) {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
 `;
 
 const EmptyTitle = styled.h3`
   font-size: 24px;
   color: #333;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
 `;
 
 const EmptyDescription = styled.p`
   font-size: 16px;
   color: #666;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
 `;
 
 const StartButton = styled.button`
@@ -226,6 +481,20 @@ const StartButton = styled.button`
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
   }
+
+  @media (max-width: 768px) {
+    padding: 14px 28px;
+    font-size: 15px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 24px;
+    font-size: 14px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 200px;
+  }
 `;
 
 const ReviewModal = styled(motion.div)`
@@ -240,6 +509,10 @@ const ReviewModal = styled(motion.div)`
   justify-content: center;
   z-index: 1000;
   padding: 20px;
+
+  @media (max-width: 480px) {
+    padding: 10px;
+  }
 `;
 
 const ModalContent = styled(motion.div)`
@@ -250,6 +523,17 @@ const ModalContent = styled(motion.div)`
   width: 100%;
   text-align: center;
   position: relative;
+
+  @media (max-width: 768px) {
+    padding: 30px 25px;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 25px 20px;
+    border-radius: 14px;
+    margin: 10px;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -268,6 +552,13 @@ const CloseButton = styled.button`
   &:hover {
     background: #f0f0f0;
     color: #333;
+  }
+
+  @media (max-width: 480px) {
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+    padding: 4px;
   }
 `;
 

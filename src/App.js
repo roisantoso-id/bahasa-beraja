@@ -8,6 +8,7 @@ import VocabularyBook from './pages/VocabularyBook';
 import Grammar from './pages/Grammar';
 import Quiz from './pages/Quiz';
 import Login from './pages/Login';
+import BusinessIndonesian from './pages/BusinessIndonesian';
 import UpdateModal from './components/UpdateModal';
 import UserManager from './utils/userManager';
 import UpdateManager from './utils/updateManager';
@@ -21,6 +22,10 @@ const AppContainer = styled.div`
 
 const MainContent = styled.main`
   padding-top: 70px; /* Header height */
+
+  @media (max-width: 768px) {
+    padding-top: 60px; /* Mobile header height */
+  }
 `;
 
 // 路由保护组件
@@ -125,6 +130,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Quiz />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/business" 
+              element={
+                <ProtectedRoute>
+                  <BusinessIndonesian />
                 </ProtectedRoute>
               } 
             />
