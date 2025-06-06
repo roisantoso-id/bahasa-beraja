@@ -16,6 +16,46 @@ const Hero = styled.div`
   margin-bottom: 60px;
 `;
 
+const HeroLogo = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+`;
+
+const LogoIcon = styled.div`
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+`;
+
+const LogoText = styled.div`
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+`;
+
+const LogoTitle = styled.h1`
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 5px;
+`;
+
+const LogoSubtitle = styled.div`
+  font-size: 16px;
+  opacity: 0.9;
+  font-weight: 500;
+  letter-spacing: 1px;
+`;
+
 const Title = styled.h1`
   font-size: 48px;
   font-weight: 700;
@@ -288,8 +328,21 @@ function Home() {
   return (
     <HomeContainer>
       <Hero>
-        <Title>Belajar Bahasa</Title>
-        <Subtitle>智能印尼语学习平台</Subtitle>
+        <HeroLogo
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <LogoIcon>
+            <BookOpen size={40} />
+          </LogoIcon>
+          <LogoText>
+            <LogoTitle>Belajar Bahasa</LogoTitle>
+            <LogoSubtitle>INDONESIAN LEARNING</LogoSubtitle>
+          </LogoText>
+        </HeroLogo>
+        <Title>智能印尼语学习平台</Title>
+        <Subtitle>掌握印尼语，开启东南亚之旅</Subtitle>
       </Hero>
 
       <StatsGrid>
