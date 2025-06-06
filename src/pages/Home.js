@@ -263,6 +263,75 @@ const QuickActionButton = styled(Link)`
   }
 `;
 
+const CommunitySection = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 60px auto 40px;
+  max-width: 800px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  text-align: center;
+`;
+
+const CommunityTitle = styled.h2`
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+`;
+
+const CommunitySubtitle = styled.p`
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+`;
+
+const CommunityImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+`;
+
+const CommunityImage = styled.img`
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+`;
+
+const JoinButton = styled.button`
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 16px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+  }
+`;
+
+const WhatsAppIcon = styled.span`
+  font-size: 24px;
+`;
+
 function Home() {
   const [stats, setStats] = useState({
     wordsLearned: 0,
@@ -487,6 +556,29 @@ function Home() {
           学习语法知识
         </QuickActionButton>
       </QuickActions>
+
+      <CommunitySection
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <CommunityTitle>
+          🌐 印尼语学习交流社群 | Komunitas Belajar Bahasa Indonesia
+        </CommunityTitle>
+        <CommunitySubtitle>
+          与全球印尼语学习者交流经验，分享学习资源，获取最新学习动态<br/>
+          <em style={{ color: '#667eea', fontSize: '16px' }}>
+            Bergabunglah dengan pelajar bahasa Indonesia dari seluruh dunia, berbagi pengalaman dan sumber belajar
+          </em>
+        </CommunitySubtitle>
+        <CommunityImageContainer>
+          <CommunityImage src="/whatsapp-group.jpg" alt="WhatsApp Indonesian Learning Community" />
+        </CommunityImageContainer>
+        <JoinButton as="a" href="https://chat.whatsapp.com/invite/indonesian-learning" target="_blank" rel="noopener noreferrer">
+          <WhatsAppIcon>📱</WhatsAppIcon>
+          加入WhatsApp社群 | Gabung Grup WhatsApp
+        </JoinButton>
+      </CommunitySection>
     </HomeContainer>
   );
 }
