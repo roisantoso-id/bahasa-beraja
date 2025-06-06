@@ -291,6 +291,33 @@ const SmartModeDescription = styled.div`
   color: #666;
 `;
 
+const WordImage = styled.div`
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+  border-radius: 15px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  border: 2px solid rgba(255,255,255,0.3);
+`;
+
+const WordImageBack = styled.div`
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: white;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+`;
+
 function Vocabulary() {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -547,6 +574,46 @@ function Vocabulary() {
 
   const currentStreak = LocalDatabase.calculateStreak();
 
+  // 获取词汇对应的emoji图标
+  const getWordEmoji = (word, categoryId) => {
+    const emojiMap = {
+      // 问候语
+      'Halo': '👋', 'Selamat pagi': '🌅', 'Selamat siang': '☀️', 'Selamat malam': '🌙',
+      'Terima kasih': '🙏', 'Sama-sama': '😊', 'Maaf': '😔', 'Permisi': '🙋',
+      'Selamat tinggal': '👋', 'Sampai jumpa': '👋',
+      
+      // 家庭
+      'Keluarga': '👨‍👩‍👧‍👦', 'Ayah': '👨', 'Ibu': '👩', 'Kakak': '👦', 'Adik': '👧',
+      'Kakek': '👴', 'Nenek': '👵', 'Paman': '👨‍🦳', 'Bibi': '👩‍🦳', 'Sepupu': '👫',
+      
+      // 数字
+      'Satu': '1️⃣', 'Dua': '2️⃣', 'Tiga': '3️⃣', 'Empat': '4️⃣', 'Lima': '5️⃣',
+      'Enam': '6️⃣', 'Tujuh': '7️⃣', 'Delapan': '8️⃣', 'Sembilan': '9️⃣', 'Sepuluh': '🔟',
+      
+      // 食物
+      'Nasi': '🍚', 'Air': '💧', 'Roti': '🍞', 'Buah': '🍎', 'Sayur': '🥬',
+      'Daging': '🥩', 'Ikan': '🐟', 'Ayam': '🍗', 'Telur': '🥚', 'Susu': '🥛',
+      
+      // 颜色
+      'Merah': '🔴', 'Biru': '🔵', 'Hijau': '🟢', 'Kuning': '🟡', 'Putih': '⚪',
+      'Hitam': '⚫', 'Abu-abu': '🔘', 'Coklat': '🟤', 'Pink': '🩷', 'Ungu': '🟣',
+      
+      // 动物
+      'Kucing': '🐱', 'Anjing': '🐶', 'Burung': '🐦', 'Gajah': '🐘', 'Harimau': '🐅',
+      'Singa': '🦁', 'Monyet': '🐵', 'Kuda': '🐴', 'Sapi': '🐄', 'Kambing': '🐐',
+      
+      // 身体部位
+      'Kepala': '👤', 'Mata': '👁️', 'Hidung': '👃', 'Mulut': '👄', 'Telinga': '👂',
+      'Tangan': '✋', 'Kaki': '🦶', 'Jari': '👆', 'Rambut': '💇', 'Gigi': '🦷',
+      
+      // 时间
+      'Hari': '📅', 'Minggu': '📆', 'Bulan': '🗓️', 'Tahun': '📊', 'Jam': '⏰',
+      'Menit': '⏱️', 'Detik': '⏲️', 'Pagi': '🌅', 'Siang': '☀️', 'Malam': '🌙'
+    };
+    
+    return emojiMap[word.indonesian] || '📝';
+  };
+
   return (
     <VocabularyContainer>
       <Title>词汇学习</Title>
@@ -626,6 +693,9 @@ function Vocabulary() {
           </MasteryIndicator>
           
           <CardFront>
+            <WordImage>
+              {getWordEmoji(currentWord, selectedCategory)}
+            </WordImage>
             <Word>{currentWord.indonesian}</Word>
             <Pronunciation>[ {currentWord.pronunciation} ]</Pronunciation>
             <div style={{ fontSize: '16px', opacity: 0.8 }}>
@@ -634,6 +704,9 @@ function Vocabulary() {
           </CardFront>
           
           <CardBack>
+            <WordImageBack>
+              {getWordEmoji(currentWord, selectedCategory)}
+            </WordImageBack>
             <Chinese>{currentWord.chinese}</Chinese>
             <Example>{currentWord.example}</Example>
             <ExampleChinese>{currentWord.exampleChinese}</ExampleChinese>
