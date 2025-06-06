@@ -288,7 +288,7 @@ function Home() {
   return (
     <HomeContainer>
       <Hero>
-        <Title>Bahasa Beraja</Title>
+        <Title>Belajar Bahasa</Title>
         <Subtitle>智能印尼语学习平台</Subtitle>
       </Hero>
 

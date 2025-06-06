@@ -45,7 +45,7 @@ function LoginRoute({ children }) {
 function App() {
   useEffect(() => {
     // 应用启动时的初始化
-    console.log('Bahasa Beraja - Indonesian Language Learning App');
+    console.log('Belajar Bahasa - Indonesian Language Learning App');
     
     // 检查用户登录状态
     const currentUser = UserManager.getCurrentUser();

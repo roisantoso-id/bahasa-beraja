@@ -278,7 +278,7 @@ function Login() {
       if (result.success) {
         showMessage(
           result.user.loginCount === 1 
-            ? `欢迎加入 Bahasa Beraja，${result.user.displayName}！` 
+            ? `欢迎加入 Belajar Bahasa，${result.user.displayName}！` 
             : `欢迎回来，${result.user.displayName}！`,
           'success'
         );
@@ -323,7 +323,7 @@ function Login() {
           <LogoIcon>
             <Book size={24} />
           </LogoIcon>
-          <LogoText>Bahasa Beraja</LogoText>
+          <LogoText>Belajar Bahasa</LogoText>
         </Logo>
 
         <Title>{isLogin ? '登录账户' : '创建账户'}</Title>

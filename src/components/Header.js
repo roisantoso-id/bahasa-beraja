@@ -255,7 +255,7 @@ function Header() {
           <LogoIcon>
             <Book size={20} />
           </LogoIcon>
-          <LogoText>Bahasa Beraja</LogoText>
+          <LogoText>Belajar Bahasa</LogoText>
         </Logo>
 
         {currentUser && (
