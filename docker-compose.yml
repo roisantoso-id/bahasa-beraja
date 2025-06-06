@@ -7,50 +7,11 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://bahasa_user:bahasa_pass@postgres:5432/bahasa_beraja
+    networks:
+      - tools_network
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      - postgres
 
-  # PostgreSQL数据库服务
-  postgres:
-    image: postgres:15-alpine
-    container_name: bahasa-beraja-db
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: bahasa_beraja
-      POSTGRES_USER: bahasa_user
-      POSTGRES_PASSWORD: bahasa_pass
-      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
-    ports:
-      - "5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U bahasa_user -d bahasa_beraja"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  # 数据库管理工具 (可选)
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: bahasa-beraja-pgadmin
-    restart: unless-stopped
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@bahasa.local
-      PGADMIN_DEFAULT_PASSWORD: admin123
-    ports:
-      - "5050:80"
-    depends_on:
-      - postgres
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
-
-volumes:
-  postgres_data:
-    driver: local
-  pgadmin_data:
-    driver: local 
+networks:
+  tools_network:
+    external: true 

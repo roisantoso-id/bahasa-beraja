@@ -25,16 +25,23 @@ const HeroLogo = styled(motion.div)`
 `;
 
 const LogoIcon = styled.div`
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 100px;
+  height: 100px;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
   box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
   border: 3px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  background: white;
+`;
+
+const LogoImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 17px;
 `;
 
 const LogoText = styled.div`
@@ -334,7 +341,7 @@ function Home() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <LogoIcon>
-            <BookOpen size={40} />
+            <LogoImage src="/company-logo.jpeg" alt="Belajar Bahasa Logo" />
           </LogoIcon>
           <LogoText>
             <LogoTitle>Belajar Bahasa</LogoTitle>
