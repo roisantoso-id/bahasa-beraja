@@ -399,27 +399,71 @@ function Vocabulary() {
       utterance.pitch = 1.0;
       utterance.volume = 1.0;
       
-      const voices = speechSynthesis.getVoices();
-      const indonesianVoice = voices.find(voice => 
-        voice.lang.startsWith('id') || 
-        voice.lang.startsWith('ID') ||
-        voice.name.toLowerCase().includes('indones')
-      );
-      
-      if (indonesianVoice) {
-        utterance.voice = indonesianVoice;
-      } else {
-        const femaleVoice = voices.find(voice => 
-          voice.lang.startsWith('en') && 
-          voice.name.toLowerCase().includes('female')
+      // 处理Android设备语音问题
+      const setVoiceAndSpeak = () => {
+        const voices = speechSynthesis.getVoices();
+        
+        // 优先查找印尼语语音
+        const indonesianVoice = voices.find(voice => 
+          voice.lang.startsWith('id') || 
+          voice.lang.startsWith('ID') ||
+          voice.name.toLowerCase().includes('indones')
         );
-        if (femaleVoice) {
-          utterance.voice = femaleVoice;
-          utterance.rate = 0.7;
+        
+        if (indonesianVoice) {
+          utterance.voice = indonesianVoice;
+        } else {
+          // 备选：使用英语女声，语速稍慢
+          const femaleVoice = voices.find(voice => 
+            voice.lang.startsWith('en') && 
+            (voice.name.toLowerCase().includes('female') || voice.name.toLowerCase().includes('woman'))
+          );
+          if (femaleVoice) {
+            utterance.voice = femaleVoice;
+            utterance.rate = 0.7;
+          } else if (voices.length > 0) {
+            // 如果没有找到合适的语音，使用第一个可用的
+            utterance.voice = voices[0];
+            utterance.rate = 0.7;
+          }
         }
-      }
+        
+        // 添加错误处理
+        utterance.onerror = (event) => {
+          console.error('语音播放错误:', event.error);
+        };
+        
+        utterance.onend = () => {
+          console.log('语音播放完成');
+        };
+        
+        try {
+          speechSynthesis.speak(utterance);
+        } catch (error) {
+          console.error('语音播放失败:', error);
+        }
+      };
       
-      speechSynthesis.speak(utterance);
+      // 检查语音是否已加载
+      const voices = speechSynthesis.getVoices();
+      if (voices.length > 0) {
+        setVoiceAndSpeak();
+      } else {
+        // 等待语音加载完成（主要针对Android设备）
+        const handleVoicesChanged = () => {
+          speechSynthesis.removeEventListener('voiceschanged', handleVoicesChanged);
+          setVoiceAndSpeak();
+        };
+        speechSynthesis.addEventListener('voiceschanged', handleVoicesChanged);
+        
+        // 设置超时，避免无限等待
+        setTimeout(() => {
+          speechSynthesis.removeEventListener('voiceschanged', handleVoicesChanged);
+          setVoiceAndSpeak();
+        }, 1000);
+      }
+    } else {
+      console.warn('此浏览器不支持语音合成功能');
     }
   };
 
