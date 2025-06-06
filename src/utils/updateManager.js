@@ -39,84 +39,84 @@ class UpdateManager {
     return {
       version: this.CURRENT_VERSION,
       title: {
-        chinese: '🎉 Belajar Bahasa 2.0 重大更新！',
-        indonesian: '🎉 Pembaruan Besar Belajar Bahasa 2.0!'
+        chinese: '🚀 Belajar Bahasa 2.0 功能大升级！',
+        indonesian: '🚀 Upgrade Fitur Besar Belajar Bahasa 2.0!'
       },
       subtitle: {
-        chinese: '感谢您的耐心等待，我们为您带来了令人兴奋的新功能和改进！',
-        indonesian: 'Terima kasih atas kesabaran Anda, kami membawa fitur dan perbaikan baru yang menarik!'
+        chinese: '全新功能上线，让印尼语学习更智能、更高效、更有趣！',
+        indonesian: 'Fitur-fitur baru telah diluncurkan, membuat pembelajaran bahasa Indonesia lebih cerdas, efisien, dan menyenangkan!'
       },
       updates: [
         {
-          icon: '🔧',
+          icon: '🧠',
           title: {
-            chinese: '界面优化',
-            indonesian: 'Optimasi Antarmuka'
+            chinese: '智能学习系统',
+            indonesian: 'Sistem Pembelajaran Cerdas'
           },
           description: {
-            chinese: '修复测验页面按钮位置问题，优化用户体验',
-            indonesian: 'Memperbaiki posisi tombol halaman kuis, mengoptimalkan pengalaman pengguna'
+            chinese: '新增智能过滤模式，自动跳过已掌握词汇，专注学习新内容，大幅提升学习效率',
+            indonesian: 'Menambahkan mode filter cerdas, otomatis melewati kosakata yang dikuasai, fokus belajar konten baru, meningkatkan efisiensi belajar secara signifikan'
           }
         },
         {
           icon: '📚',
           title: {
-            chinese: '词汇库扩展',
-            indonesian: 'Ekspansi Kosakata'
+            chinese: '词汇库大扩容',
+            indonesian: 'Ekspansi Besar Kosakata'
           },
           description: {
-            chinese: '从25个扩展到80个词汇，新增动物、身体部位、时间等分类',
-            indonesian: 'Diperluas dari 25 menjadi 80 kosakata, menambah kategori hewan, bagian tubuh, waktu, dll'
-          }
-        },
-        {
-          icon: '🎯',
-          title: {
-            chinese: '应用名称更新',
-            indonesian: 'Pembaruan Nama Aplikasi'
-          },
-          description: {
-            chinese: '应用名称正式更新为"Belajar Bahasa"',
-            indonesian: 'Nama aplikasi resmi diperbarui menjadi "Belajar Bahasa"'
+            chinese: '词汇量从25个激增至80个，新增动物、身体部位、时间等3大分类，学习内容更丰富全面',
+            indonesian: 'Kosakata meningkat drastis dari 25 menjadi 80, menambah 3 kategori besar: hewan, bagian tubuh, waktu, konten pembelajaran lebih kaya dan komprehensif'
           }
         },
         {
           icon: '🔊',
           title: {
-            chinese: '语音功能增强',
-            indonesian: 'Peningkatan Fitur Suara'
+            chinese: '语音技术优化',
+            indonesian: 'Optimasi Teknologi Suara'
           },
           description: {
-            chinese: '改进Android设备语音合成，发音更加清晰准确',
-            indonesian: 'Meningkatkan sintesis suara perangkat Android, pengucapan lebih jelas dan akurat'
+            chinese: '全面优化语音合成引擎，特别针对Android设备进行适配，发音更准确流畅',
+            indonesian: 'Mengoptimalkan mesin sintesis suara secara menyeluruh, khusus adaptasi untuk perangkat Android, pengucapan lebih akurat dan lancar'
           }
         },
         {
-          icon: '🧠',
+          icon: '🎯',
           title: {
-            chinese: '智能学习模式',
-            indonesian: 'Mode Pembelajaran Cerdas'
+            chinese: '学习进度跟踪',
+            indonesian: 'Pelacakan Progres Belajar'
           },
           description: {
-            chinese: '新增智能过滤功能，自动跳过已掌握词汇，提高学习效率',
-            indonesian: 'Menambah fitur filter cerdas, otomatis melewati kosakata yang dikuasai, meningkatkan efisiensi belajar'
+            chinese: '新增掌握程度标记系统，实时记录学习状态，个性化调整学习路径',
+            indonesian: 'Menambahkan sistem penanda tingkat penguasaan, merekam status belajar secara real-time, menyesuaikan jalur pembelajaran secara personal'
+          }
+        },
+        {
+          icon: '📊',
+          title: {
+            chinese: '智能测验升级',
+            indonesian: 'Upgrade Kuis Cerdas'
+          },
+          description: {
+            chinese: '测验系统支持多难度选择，根据掌握程度自动生成题目，测试更精准有效',
+            indonesian: 'Sistem kuis mendukung pilihan multi-tingkat kesulitan, otomatis menghasilkan soal berdasarkan tingkat penguasaan, pengujian lebih tepat dan efektif'
           }
         },
         {
           icon: '🎨',
           title: {
-            chinese: '视觉升级',
-            indonesian: 'Peningkatan Visual'
+            chinese: '记忆增强技术',
+            indonesian: 'Teknologi Peningkatan Memori'
           },
           description: {
-            chinese: '为所有词汇卡片添加精美emoji图标，增强记忆效果',
-            indonesian: 'Menambahkan ikon emoji indah untuk semua kartu kosakata, meningkatkan efek memori'
+            chinese: '为每个词汇配备专属emoji图标，运用视觉记忆法，显著提升记忆效果和学习趣味性',
+            indonesian: 'Melengkapi setiap kosakata dengan ikon emoji khusus, menggunakan metode memori visual, secara signifikan meningkatkan efek memori dan kesenangan belajar'
           }
         }
       ],
       footer: {
-        chinese: '立即体验这些激动人心的新功能吧！',
-        indonesian: 'Nikmati fitur-fitur baru yang menarik ini sekarang juga!'
+        chinese: '体验全新功能，开启高效印尼语学习之旅！',
+        indonesian: 'Rasakan fitur-fitur baru, mulai perjalanan pembelajaran bahasa Indonesia yang efisien!'
       }
     };
   }
