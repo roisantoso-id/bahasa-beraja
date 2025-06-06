@@ -498,6 +498,19 @@ function Quiz() {
     // 保存测验结果
     LocalDatabase.saveQuizResult(quizResult);
     
+    // 处理生词本 - 将答题结果转换为生词本需要的格式
+    const vocabularyBookResults = finalAnswers.map((answer, index) => {
+      const question = questions[index];
+      return {
+        categoryIndex: question.categoryIndex,
+        wordIndex: question.wordIndex,
+        isCorrect: answer.isCorrect
+      };
+    });
+    
+    // 自动管理生词本
+    LocalDatabase.processQuizResultForVocabularyBook(vocabularyBookResults);
+    
     setQuizState('result');
   };
 

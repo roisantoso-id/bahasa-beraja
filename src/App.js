@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Vocabulary from './pages/Vocabulary';
+import VocabularyBook from './pages/VocabularyBook';
 import Grammar from './pages/Grammar';
 import Quiz from './pages/Quiz';
 import Login from './pages/Login';
@@ -100,6 +101,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Vocabulary />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/vocabulary-book" 
+              element={
+                <ProtectedRoute>
+                  <VocabularyBook />
                 </ProtectedRoute>
               } 
             />

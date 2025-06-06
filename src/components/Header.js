@@ -263,6 +263,7 @@ function Header() {
   const navItems = [
     { path: '/', label: '首页' },
     { path: '/vocabulary', label: '词汇学习' },
+    { path: '/vocabulary-book', label: '我的生词本' },
     { path: '/grammar', label: '语法学习' },
     { path: '/quiz', label: '练习测验' }
   ];
