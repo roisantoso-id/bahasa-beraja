@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './components/Header';
@@ -7,7 +7,9 @@ import Vocabulary from './pages/Vocabulary';
 import Grammar from './pages/Grammar';
 import Quiz from './pages/Quiz';
 import Login from './pages/Login';
+import UpdateModal from './components/UpdateModal';
 import UserManager from './utils/userManager';
+import UpdateManager from './utils/updateManager';
 
 // 全局样式容器
 const AppContainer = styled.div`
@@ -43,6 +45,8 @@ function LoginRoute({ children }) {
 }
 
 function App() {
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+
   useEffect(() => {
     // 应用启动时的初始化
     console.log('Belajar Bahasa - Indonesian Language Learning App');
@@ -51,8 +55,20 @@ function App() {
     const currentUser = UserManager.getCurrentUser();
     if (currentUser) {
       console.log(`Welcome back, ${currentUser.displayName}!`);
+      
+      // 检查是否需要显示更新弹窗（仅对已登录用户）
+      if (UpdateManager.shouldShowUpdateModal()) {
+        // 延迟1秒显示，让页面完全加载
+        setTimeout(() => {
+          setShowUpdateModal(true);
+        }, 1000);
+      }
     }
   }, []);
+
+  const handleCloseUpdateModal = () => {
+    setShowUpdateModal(false);
+  };
 
   return (
     <Router>
@@ -108,6 +124,12 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </MainContent>
+
+        {/* 更新弹窗 */}
+        <UpdateModal 
+          isOpen={showUpdateModal} 
+          onClose={handleCloseUpdateModal} 
+        />
       </AppContainer>
     </Router>
   );

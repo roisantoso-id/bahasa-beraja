@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Book, User, LogOut, Settings, BarChart } from 'lucide-react';
 import UserManager from '../utils/userManager';
+import UpdateManager from '../utils/updateManager';
 
 const HeaderContainer = styled.header`
   background: rgba(255, 255, 255, 0.95);
@@ -170,6 +171,17 @@ const DropdownItem = styled.button`
   }
 `;
 
+const DevDropdownItem = styled(DropdownItem)`
+  color: #667eea;
+  font-size: 12px;
+  opacity: 0.7;
+  
+  &:hover {
+    opacity: 1;
+    background: rgba(102, 126, 234, 0.1);
+  }
+`;
+
 const UserStats = styled.div`
   padding: 12px 16px;
   border-bottom: 1px solid #e1e5e9;
@@ -239,6 +251,13 @@ function Header() {
     setCurrentUser(null);
     setShowDropdown(false);
     navigate('/login');
+  };
+
+  const handleResetUpdate = () => {
+    UpdateManager.resetUpdateStatus();
+    setShowDropdown(false);
+    // 刷新页面以触发更新检查
+    window.location.reload();
   };
 
   const navItems = [
@@ -316,6 +335,10 @@ function Header() {
                       <BarChart size={16} />
                       学习统计
                     </DropdownItem>
+                    
+                    <DevDropdownItem onClick={handleResetUpdate}>
+                      🔄 重置更新状态 (Dev)
+                    </DevDropdownItem>
                     
                     <DropdownItem onClick={handleLogout}>
                       <LogOut size={16} />
