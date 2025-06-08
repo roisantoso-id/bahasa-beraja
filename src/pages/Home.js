@@ -332,6 +332,46 @@ const WhatsAppIcon = styled.span`
   font-size: 24px;
 `;
 
+const QRRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 32px;
+  justify-content: center;
+  margin-bottom: 18px;
+`;
+
+const QRBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const WeChatQR = styled.img`
+  width: 160px;
+  height: 160px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  margin-bottom: 8px;
+  background: #fff;
+`;
+
+const WhatsAppQR = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  margin-bottom: 8px;
+  background: #fff;
+`;
+
+const QRLabel = styled.div`
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+`;
+
 function Home() {
   const [stats, setStats] = useState({
     wordsLearned: 0,
@@ -572,12 +612,27 @@ function Home() {
           </em>
         </CommunitySubtitle>
         <CommunityImageContainer>
-          <CommunityImage src="/whatsapp-group.jpg" alt="WhatsApp Indonesian Learning Community" />
+          <QRRow>
+            <QRBlock>
+              <WeChatQR src={require('../assets/wechat_group.jpg')} alt="微信群二维码" />
+              <QRLabel>
+                微信社群<br/>Scan to join WeChat group<br/>
+                <span style={{ color: '#888', fontSize: '13px' }}>
+                  推荐微信扫码加入 | Disarankan scan dengan WeChat
+                </span>
+              </QRLabel>
+            </QRBlock>
+            <QRBlock>
+              <WhatsAppQR src="/whatsapp-group.jpg" alt="WhatsApp群二维码" />
+              <QRLabel>
+                WhatsApp社群<br/>WhatsApp Group<br/>
+                <span style={{ color: '#888', fontSize: '13px' }}>
+                  点击下方按钮加入 | Klik tombol di bawah untuk bergabung
+                </span>
+              </QRLabel>
+            </QRBlock>
+          </QRRow>
         </CommunityImageContainer>
-        <JoinButton as="a" href="https://chat.whatsapp.com/DhyJ8M3sopvHsk02vDOzU1" target="_blank" rel="noopener noreferrer">
-          <WhatsAppIcon>📱</WhatsAppIcon>
-          加入WhatsApp社群 | Gabung Grup WhatsApp
-        </JoinButton>
       </CommunitySection>
     </HomeContainer>
   );

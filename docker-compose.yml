@@ -2,7 +2,7 @@ services:
   bahasa-beraja:
     build: .
     ports:
-      - "3000:80"
+      - "2999:80"
     container_name: bahasa-beraja-app
     restart: unless-stopped
     environment:
