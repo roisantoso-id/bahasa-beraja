@@ -9,6 +9,15 @@ const QuizContainer = styled.div`
   padding: 40px 20px;
   max-width: 800px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 20px 15px;
+    max-width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px 10px;
+  }
 `;
 
 const Title = styled.h1`
@@ -18,6 +27,16 @@ const Title = styled.h1`
   text-align: center;
   margin-bottom: 40px;
   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 `;
 
 const StatsContainer = styled.div`
@@ -26,6 +45,16 @@ const StatsContainer = styled.div`
   gap: 20px;
   margin-bottom: 30px;
   flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
 `;
 
 const StatCard = styled.div`
@@ -35,18 +64,45 @@ const StatCard = styled.div`
   text-align: center;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+
+  @media (max-width: 768px) {
+    padding: 12px 16px;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px 14px;
+    border-radius: 10px;
+    min-width: 80px;
+  }
 `;
 
 const StatValue = styled.div`
   font-size: 20px;
   font-weight: 700;
   color: #667eea;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 
 const StatLabel = styled.div`
   font-size: 12px;
   color: #666;
   margin-top: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+  }
 `;
 
 const QuizSetup = styled.div`
@@ -55,6 +111,18 @@ const QuizSetup = styled.div`
   padding: 40px;
   margin-bottom: 30px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+  @media (max-width: 768px) {
+    padding: 30px 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 25px 20px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+  }
 `;
 
 const SetupTitle = styled.h2`
@@ -63,10 +131,28 @@ const SetupTitle = styled.h2`
   color: #333;
   text-align: center;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
 `;
 
 const OptionGroup = styled.div`
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 20px;
+  }
 `;
 
 const OptionLabel = styled.label`
@@ -75,12 +161,30 @@ const OptionLabel = styled.label`
   font-weight: 600;
   color: #333;
   margin-bottom: 15px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
 `;
 
 const OptionButtons = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 6px;
+  }
 `;
 
 const OptionButton = styled.button`
@@ -96,6 +200,20 @@ const OptionButton = styled.button`
   &:hover {
     border-color: #667eea;
     background: ${props => props.$active ? '#667eea' : 'rgba(102, 126, 234, 0.1)'};
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 18px;
+    flex: 1;
+    min-width: 0;
   }
 `;
 
@@ -115,6 +233,18 @@ const StartButton = styled.button`
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
   }
+
+  @media (max-width: 768px) {
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 18px;
+  }
 `;
 
 const QuizCard = styled(motion.div)`
@@ -123,12 +253,34 @@ const QuizCard = styled(motion.div)`
   padding: 40px;
   margin-bottom: 30px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+  @media (max-width: 768px) {
+    padding: 30px 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 25px 20px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+  }
 `;
 
 const QuestionNumber = styled.div`
   font-size: 14px;
   color: #666;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
 `;
 
 const Question = styled.h2`
@@ -136,12 +288,32 @@ const Question = styled.h2`
   font-weight: 700;
   color: #333;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 26px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
 `;
 
 const OptionsContainer = styled.div`
   display: grid;
   gap: 15px;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
 `;
 
 const AnswerOption = styled.button`
@@ -178,6 +350,23 @@ const AnswerOption = styled.button`
   &:disabled {
     cursor: not-allowed;
   }
+
+  @media (max-width: 768px) {
+    padding: 14px 16px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+  }
 `;
 
 const AnswerIcon = styled.div`
@@ -185,6 +374,10 @@ const AnswerIcon = styled.div`
   right: 16px;
   top: 50%;
   transform: translateY(-50%);
+
+  @media (max-width: 480px) {
+    right: 14px;
+  }
 `;
 
 const ProgressBar = styled.div`
@@ -194,6 +387,16 @@ const ProgressBar = styled.div`
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    height: 6px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    height: 5px;
+    margin-bottom: 12px;
+  }
 `;
 
 const Progress = styled.div`
@@ -212,6 +415,18 @@ const Timer = styled.div`
   color: #666;
   font-size: 16px;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    margin-bottom: 15px;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    margin-bottom: 12px;
+    gap: 6px;
+  }
 `;
 
 const Controls = styled.div`
@@ -226,6 +441,22 @@ const Controls = styled.div`
   backdrop-filter: blur(10px);
   border-radius: 15px;
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    gap: 15px;
+    padding: 15px 0;
+    border-radius: 12px;
+    margin-top: 15px;
+    bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 10px;
+    padding: 12px 10px;
+    border-radius: 10px;
+    margin-top: 12px;
+    bottom: 10px;
+  }
 `;
 
 const ControlButton = styled.button`
@@ -255,6 +486,22 @@ const ControlButton = styled.button`
     transform: none;
     background: #ccc;
   }
+
+  @media (max-width: 768px) {
+    padding: 14px 28px;
+    font-size: 15px;
+    min-width: 100px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 24px;
+    font-size: 14px;
+    min-width: 80px;
+    border-radius: 18px;
+    flex: 1;
+    max-width: 140px;
+  }
 `;
 
 const ResultCard = styled.div`
@@ -263,6 +510,16 @@ const ResultCard = styled.div`
   padding: 40px;
   text-align: center;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+  @media (max-width: 768px) {
+    padding: 30px 25px;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 25px 20px;
+    border-radius: 14px;
+  }
 `;
 
 const ResultTitle = styled.h2`
@@ -270,6 +527,16 @@ const ResultTitle = styled.h2`
   font-weight: 700;
   color: #333;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
 `;
 
 const ScoreDisplay = styled.div`
@@ -277,6 +544,16 @@ const ScoreDisplay = styled.div`
   font-weight: 700;
   color: #667eea;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 40px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
 `;
 
 const ResultStats = styled.div`
@@ -284,6 +561,18 @@ const ResultStats = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
 `;
 
 const ResultStat = styled.div`
@@ -294,12 +583,28 @@ const ResultStatValue = styled.div`
   font-size: 24px;
   font-weight: 700;
   color: #667eea;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 const ResultStatLabel = styled.div`
   font-size: 14px;
   color: #666;
   margin-top: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 `;
 
 function Quiz() {
@@ -497,6 +802,19 @@ function Quiz() {
     
     // 保存测验结果
     LocalDatabase.saveQuizResult(quizResult);
+    
+    // 处理生词本 - 将答题结果转换为生词本需要的格式
+    const vocabularyBookResults = finalAnswers.map((answer, index) => {
+      const question = questions[index];
+      return {
+        categoryIndex: question.categoryIndex,
+        wordIndex: question.wordIndex,
+        isCorrect: answer.isCorrect
+      };
+    });
+    
+    // 自动管理生词本
+    LocalDatabase.processQuizResultForVocabularyBook(vocabularyBookResults);
     
     setQuizState('result');
   };
