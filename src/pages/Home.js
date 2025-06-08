@@ -1003,13 +1003,19 @@ function Home() {
               Bergabunglah dengan pelajar bahasa Indonesia dari seluruh dunia, berbagi pengalaman dan sumber belajar
             </em>
           </CommunitySubtitle>
-          <CommunityImageContainer>
-            <CommunityImage src="/whatsapp-group.jpg" alt="WhatsApp Indonesian Learning Community" />
+          <CommunityImageContainer style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '32px', marginBottom: 16 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <CommunityImage src="/wechat.jpg" alt="微信群二维码" style={{ width: 180, height: 180, borderRadius: 16, border: '3px solid #09bb07', boxShadow: '0 4px 16px #09bb0733' }} />
+              <div style={{ marginTop: 8, fontWeight: 'bold', fontSize: 18, color: '#09bb07' }}>加入微信群</div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <CommunityImage src="/whatsapp-group.jpg" alt="WhatsApp Indonesian Learning Community" style={{ width: 120, height: 120, borderRadius: 12, border: '2px solid #25d366', boxShadow: '0 2px 8px #25d36633' }} />
+              <JoinButton as="a" href="https://chat.whatsapp.com/DhyJ8M3sopvHsk02vDOzU1" target="_blank" rel="noopener noreferrer" style={{ marginTop: 8 }}>
+                <WhatsAppIcon>📱</WhatsAppIcon>
+                加入WhatsApp社群
+              </JoinButton>
+            </div>
           </CommunityImageContainer>
-          <JoinButton as="a" href="https://chat.whatsapp.com/DhyJ8M3sopvHsk02vDOzU1" target="_blank" rel="noopener noreferrer">
-            <WhatsAppIcon>📱</WhatsAppIcon>
-            加入WhatsApp社群 | Gabung Grup WhatsApp
-          </JoinButton>
         </CommunityContent>
       </CommunitySection>
     </HomeContainer>
