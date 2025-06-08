@@ -273,6 +273,30 @@ function Login() {
     setLoading(true);
 
     try {
+      // 检查是否为管理员登录
+      if (username.trim() === 'adminPC') {
+        // 管理员登录逻辑
+        const adminUser = {
+          userId: 'adminPC',
+          username: 'adminPC',
+          displayName: '管理员',
+          isAdmin: true,
+          loginAt: new Date().toISOString()
+        };
+        
+        localStorage.setItem('currentUser', JSON.stringify(adminUser));
+        
+        showMessage('管理员登录成功！', 'success');
+        
+        setTimeout(() => {
+          navigate('/admin');
+        }, 1500);
+        
+        setLoading(false);
+        return;
+      }
+
+      // 普通用户登录逻辑
       const result = UserManager.login(username.trim(), displayName.trim());
       
       if (result.success) {
