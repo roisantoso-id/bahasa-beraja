@@ -1,0 +1,6829 @@
+diff --git a/BUSINESS_INDONESIAN_FEATURE.md b/BUSINESS_INDONESIAN_FEATURE.md
+new file mode 100644
+index 0000000..3f8e068
+--- /dev/null
++++ b/BUSINESS_INDONESIAN_FEATURE.md
+@@ -0,0 +1,147 @@
++# 商务印尼语功能模块
++
++## 📋 功能概述
++
++新增了专门的商务印尼语学习模块，专注于职场和商务场景的印尼语学习，包含：
++
++### 🎯 主要功能
++
++1. **📚 商务词汇学习**
++   - 基础商务词汇（20个）
++   - 会议与沟通词汇（20个）  
++   - 金融与财务词汇（20个）
++   - 每个词汇包含：印尼语、中文翻译、发音、例句及中文翻译
++
++2. **💬 商务场景对话**
++   - 商务会议开场
++   - 电话商务洽谈
++   - 签署合同
++   - 客户服务
++   - 项目汇报
++   - 每个场景包含真实对话示例，配有发音标注
++
++3. **📝 商务实用句子**
++   - 会议用语（5个句子）
++   - 商务谈判用语（5个句子）
++   - 电子邮件用语（5个句子）
++   - 客户服务用语（5个句子）
++   - 每个句子包含使用场合说明
++
++## 🎨 设计特色
++
++- **响应式设计**：完美适配桌面端和移动端
++- **渐变色彩**：不同模块使用不同的渐变色彩主题
++- **流畅动画**：使用 Framer Motion 实现平滑过渡动画
++- **交互体验**：点击卡片展开详细内容，支持返回导航
++
++## 📱 技术实现
++
++### 文件结构
++
++```
++src/
++├── data/
++│   └── business-vocabulary.js     # 商务词汇数据
++├── pages/
++│   └── BusinessIndonesian.js      # 商务印尼语主页面
++└── ...
++```
++
++### 新增路由
++
++- **路径**: `/business`
++- **菜单名**: 商务印尼语
++- **图标**: 🏢
++
++### 数据结构
++
++#### 词汇数据
++```javascript
++{
++  id: 1,
++  category: '分类名',
++  words: [
++    {
++      indonesian: '印尼语',
++      chinese: '中文',
++      pronunciation: '发音',
++      example: '例句',
++      exampleChinese: '例句中文'
++    }
++  ]
++}
++```
++
++#### 场景对话
++```javascript
++{
++  id: 1,
++  title: '场景标题',
++  scenario: '场景标识',
++  dialogues: [
++    {
++      speaker: 'A',
++      indonesian: '印尼语对话',
++      chinese: '中文翻译',
++      pronunciation: '发音标注'
++    }
++  ]
++}
++```
++
++#### 实用句子
++```javascript
++{
++  id: 1,
++  category: '句子分类',
++  sentences: [
++    {
++      indonesian: '印尼语句子',
++      chinese: '中文翻译',
++      pronunciation: '发音',
++      usage: '使用场合'
++    }
++  ]
++}
++```
++
++## 🌐 访问方式
++
++1. **测试环境**: http://31.97.66.59:2999/business
++2. **本地开发**: http://localhost:3000/business
++
++## 📊 统计数据
++
++- **词汇总数**: 60个商务词汇
++- **场景对话**: 5个完整商务场景
++- **实用句子**: 20个常用商务句子
++- **覆盖领域**: 会议、谈判、金融、客服、项目管理
++
++## 🔧 技术要求
++
++- React 18+
++- Styled Components
++- Framer Motion
++- React Router
++- 响应式设计支持
++
++## 🎯 学习目标
++
++通过商务印尼语模块，用户可以：
++
++1. **掌握核心商务词汇**：学习职场必备的印尼语词汇
++2. **了解商务对话模式**：熟悉真实商务场景中的对话流程
++3. **运用实用句子**：快速掌握商务沟通中的关键表达
++4. **提升职场沟通能力**：为在印尼的职场环境做好语言准备
++
++## 🚀 部署状态
++
++✅ **测试环境已部署** - 功能正常运行
++- 所有词汇数据加载正常
++- 场景对话交互流畅
++- 响应式布局适配良好
++- 动画效果运行稳定
++
++---
++
++*本功能专为需要在印尼工作或进行商务活动的学习者设计，提供专业、实用的商务印尼语学习体验。* 
+\ No newline at end of file
+diff --git a/MOBILE_OPTIMIZATION.md b/MOBILE_OPTIMIZATION.md
+new file mode 100644
+index 0000000..a23ed5a
+--- /dev/null
++++ b/MOBILE_OPTIMIZATION.md
+@@ -0,0 +1,165 @@
++# Belajar Bahasa - 移动端响应式优化
++
++## 📱 优化概述
++
++本次优化全面提升了"Belajar Bahasa"印尼语学习应用的移动端体验，确保在各种设备上都能获得流畅的学习体验。
++
++## 🎯 优化范围
++
++### 1. 响应式断点设计
++- **桌面端**: > 768px
++- **平板端**: 768px - 480px  
++- **手机端**: < 480px
++
++### 2. Header组件优化
++- ✅ 添加汉堡菜单（手机端）
++- ✅ 侧滑式导航菜单
++- ✅ 用户头像和名称自适应
++- ✅ Logo在小屏幕下隐藏文字
++- ✅ 触摸友好的按钮尺寸
++
++### 3. 首页(Home)优化
++- ✅ 统计卡片网格自适应（4列→2列→1列）
++- ✅ Logo大小响应式调整
++- ✅ 字体大小分层优化
++- ✅ 功能卡片全宽布局（手机端）
++- ✅ 社区部分移动端友好
++
++### 4. 测验页面(Quiz)优化
++- ✅ 题目选项触摸优化
++- ✅ 控制按钮全宽布局
++- ✅ 进度条和计时器适配
++- ✅ 结果展示网格优化
++- ✅ 设置页面选项按钮响应式
++
++### 5. 生词本页面(VocabularyBook)优化
++- ✅ 词汇卡片单列布局（手机端）
++- ✅ 统计网格2x2布局
++- ✅ 标签页自适应换行
++- ✅ 复习模态框移动端优化
++- ✅ 操作按钮触摸友好
++
++## 🔧 技术实现
++
++### Viewport配置
++```html
++<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
++```
++
++### 响应式样式
++```css
++/* 标准媒体查询断点 */
++@media (max-width: 768px) { /* 平板 */ }
++@media (max-width: 480px) { /* 手机 */ }
++```
++
++### 触摸优化
++- 禁用文本选择（除输入框）
++- 透明点击高亮
++- 最小44px触摸目标
++- iOS Safari缩放防护
++
++## 📏 布局调整
++
++### 间距系统
++- **桌面端**: 40px, 30px, 20px
++- **平板端**: 30px, 25px, 15px  
++- **手机端**: 25px, 20px, 12px
++
++### 字体大小
++- **标题**: 36px → 28px → 24px
++- **副标题**: 24px → 20px → 18px
++- **正文**: 16px → 15px → 14px
++- **小字**: 14px → 13px → 12px
++
++### 组件尺寸
++- **按钮高度**: 最小44px（iOS建议）
++- **输入框**: 16px字体（防止iOS缩放）
++- **卡片圆角**: 20px → 16px → 14px
++
++## 🎨 交互优化
++
++### 汉堡菜单
++- 从右侧滑入
++- 背景蒙层关闭
++- 防止body滚动
++- 流畅动画过渡
++
++### 触摸反馈
++- hover效果在移动端优化
++- 缩短transform距离
++- 适配手指触摸
++
++### 导航体验
++- 固定Header高度调整（70px → 60px）
++- Sticky定位优化
++- Z-index层级管理
++
++## ✨ 用户体验提升
++
++### 1. 更好的导航
++- 单手操作友好
++- 清晰的视觉层次
++- 快速访问主要功能
++
++### 2. 优化的内容展示
++- 单列布局避免横向滚动
++- 合理的信息密度
++- 清晰的操作区域
++
++### 3. 流畅的交互
++- 60fps动画性能
++- 即时的触摸反馈
++- 符合原生应用体验
++
++## 🔧 开发建议
++
++### 测试方法
++1. Chrome DevTools设备模拟
++2. 实际设备测试
++3. 不同屏幕尺寸验证
++
++### 维护要点
++- 新功能需考虑移动端适配
++- 保持44px最小触摸目标
++- 遵循现有断点系统
++
++## 📱 兼容性
++
++### 支持设备
++- ✅ iPhone (iOS 12+)
++- ✅ Android手机 (Android 7+)
++- ✅ iPad
++- ✅ Android平板
++- ✅ 桌面浏览器
++
++### 浏览器支持
++- ✅ Safari (iOS/macOS)
++- ✅ Chrome (Android/Desktop)
++- ✅ Firefox
++- ✅ Edge
++
++## 🎯 性能优化
++
++- 使用CSS Grid和Flexbox实现响应式
++- 减少JavaScript计算布局
++- 优化动画使用transform属性
++- 合理的图片尺寸和格式
++
++---
++
++## 🚀 效果对比
++
++### 优化前 ❌
++- 需要横向滚动
++- 按钮过小难以点击
++- 导航菜单挤压
++- 字体过小难以阅读
++
++### 优化后 ✅
++- 完美适配各种屏幕
++- 触摸友好的交互
++- 原生应用般体验
++- 清晰易读的内容
++
++通过这次全面的移动端优化，"Belajar Bahasa"现在为用户提供了一致且优秀的学习体验，无论他们使用什么设备。 
+\ No newline at end of file
+diff --git a/TEST-ENVIRONMENT.md b/TEST-ENVIRONMENT.md
+new file mode 100644
+index 0000000..371ba48
+--- /dev/null
++++ b/TEST-ENVIRONMENT.md
+@@ -0,0 +1,153 @@
++# 🧪 Belajar Bahasa 测试环境
++
++## 📝 概述
++
++这是 Belajar Bahasa 印尼语学习应用的测试环境配置，运行在端口 **2999**，与生产环境完全隔离。
++
++## 🚀 快速启动
++
++### 启动测试环境
++```bash
++./deploy-test.sh
++```
++
++### 停止测试环境
++```bash
++./stop-test.sh
++```
++
++### 手动操作
++```bash
++# 启动
++docker-compose -f docker-compose.test.yml up -d
++
++# 停止
++docker-compose -f docker-compose.test.yml down
++
++# 查看日志
++docker logs bahasa-beraja-test
++
++# 查看容器状态
++docker ps | grep bahasa-beraja-test
++```
++
++## 🌐 访问地址
++
++- **本地访问**: http://localhost:2999
++- **服务器访问**: http://31.97.66.59:2999
++
++## ⚙️ 环境配置
++
++### 测试环境特性
++- 端口: **2999** (与生产环境 3000 隔离)
++- 容器名: `bahasa-beraja-test`
++- 网络: `bahasa-test-network` (独立网络)
++- 环境变量: `NODE_ENV=development`, `REACT_APP_ENV=test`
++- Traefik: 禁用 (不会被生产代理)
++
++### 与生产环境的区别
++| 项目 | 生产环境 | 测试环境 |
++|------|----------|----------|
++| 端口 | 3000 | **2999** |
++| 容器名 | bahasa-beraja-app | **bahasa-beraja-test** |
++| 网络 | tools_network | **test_network** |
++| NODE_ENV | production | **development** |
++| Traefik | 启用 | **禁用** |
++
++## 🔧 开发调试
++
++### 查看实时日志
++```bash
++docker logs -f bahasa-beraja-test
++```
++
++### 进入容器调试
++```bash
++docker exec -it bahasa-beraja-test sh
++```
++
++### 重新构建
++```bash
++docker-compose -f docker-compose.test.yml build --no-cache
++docker-compose -f docker-compose.test.yml up -d
++```
++
++## 📋 测试流程
++
++1. **启动测试环境**
++   ```bash
++   ./deploy-test.sh
++   ```
++
++2. **访问应用**
++   - 浏览器打开: http://31.97.66.59:2999
++
++3. **测试功能**
++   - 用户注册/登录
++   - 词汇学习
++   - 测验功能
++   - 生词本
++   - 移动端响应式
++
++4. **查看日志**
++   ```bash
++   docker logs bahasa-beraja-test
++   ```
++
++5. **停止测试**
++   ```bash
++   ./stop-test.sh
++   ```
++
++## 🛡️ 安全隔离
++
++- ✅ 独立的网络空间
++- ✅ 不同的端口号
++- ✅ 禁用生产代理
++- ✅ 环境标签标识
++- ✅ 独立的容器名称
++
++## 🚨 注意事项
++
++1. **不要在生产服务器上运行测试环境超过必要时间**
++2. **测试完成后及时停止容器**
++3. **测试数据不会影响生产环境**
++4. **端口2999仅用于测试，不要对外开放**
++
++## 📞 故障排除
++
++### 端口冲突
++```bash
++# 检查端口占用
++netstat -tulpn | grep :2999
++
++# 强制停止占用进程
++sudo kill -9 $(sudo lsof -t -i:2999)
++```
++
++### 容器启动失败
++```bash
++# 查看详细错误
++docker-compose -f docker-compose.test.yml logs
++
++# 清理并重新构建
++docker-compose -f docker-compose.test.yml down
++docker system prune -f
++./deploy-test.sh
++```
++
++### 无法访问
++1. 检查防火墙设置
++2. 确认容器状态: `docker ps`
++3. 查看容器日志: `docker logs bahasa-beraja-test`
++
++---
++
++## 🎯 测试完成后
++
++记得执行清理：
++```bash
++./stop-test.sh
++```
++
++选择清理镜像以释放磁盘空间。 
+\ No newline at end of file
+diff --git a/deploy-test.sh b/deploy-test.sh
+new file mode 100755
+index 0000000..b31e334
+--- /dev/null
++++ b/deploy-test.sh
+@@ -0,0 +1,40 @@
++#!/bin/bash
++
++echo "🚀 启动 Belajar Bahasa 测试环境..."
++echo "测试端口: 2999"
++echo "环境: Test/Development"
++
++# 停止并移除测试容器（如果存在）
++echo "🔄 停止现有测试容器..."
++docker-compose -f docker-compose.test.yml down
++
++# 清理测试相关镜像
++echo "🧹 清理旧的测试镜像..."
++docker image prune -f
++
++# 构建并启动测试环境
++echo "📦 构建测试镜像..."
++docker-compose -f docker-compose.test.yml build --no-cache
++
++echo "🎉 启动测试容器..."
++docker-compose -f docker-compose.test.yml up -d
++
++# 检查容器状态
++echo "⏳ 检查测试容器状态..."
++sleep 5
++
++if docker ps | grep -q "bahasa-beraja-test"; then
++    echo "✅ 测试环境启动成功!"
++    echo "🌐 访问地址: http://localhost:2999"
++    echo "🌐 服务器地址: http://31.97.66.59:2999"
++    echo ""
++    echo "📋 容器信息:"
++    docker ps | grep bahasa-beraja-test
++    echo ""
++    echo "📝 查看日志: docker logs bahasa-beraja-test"
++    echo "🛑 停止服务: docker-compose -f docker-compose.test.yml down"
++else
++    echo "❌ 测试环境启动失败!"
++    echo "📋 查看错误日志:"
++    docker-compose -f docker-compose.test.yml logs
++fi 
+\ No newline at end of file
+diff --git a/docker-compose.test.yml b/docker-compose.test.yml
+new file mode 100644
+index 0000000..2d9cca1
+--- /dev/null
++++ b/docker-compose.test.yml
+@@ -0,0 +1,24 @@
++services:
++  bahasa-beraja-test:
++    build: 
++      context: .
++      dockerfile: Dockerfile
++    ports:
++      - "2999:80"
++    container_name: bahasa-beraja-test
++    restart: unless-stopped
++    environment:
++      - NODE_ENV=development
++      - REACT_APP_ENV=test
++    networks:
++      - test_network
++    volumes:
++      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
++    labels:
++      - "traefik.enable=false"  # 确保不被生产环境代理
++      - "environment=test"
++
++networks:
++  test_network:
++    driver: bridge
++    name: bahasa-test-network 
+\ No newline at end of file
+diff --git a/package-lock.json b/package-lock.json
+index 6ef15ca..c84fced 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -18405,9 +18405,9 @@
+       }
+     },
+     "node_modules/typescript": {
+-      "version": "5.8.3",
+-      "resolved": "https://registry.npmjs.org/typescript/-/typescript-5.8.3.tgz",
+-      "integrity": "sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==",
++      "version": "4.9.5",
++      "resolved": "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz",
++      "integrity": "sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==",
+       "license": "Apache-2.0",
+       "peer": true,
+       "bin": {
+@@ -18415,7 +18415,7 @@
+         "tsserver": "bin/tsserver"
+       },
+       "engines": {
+-        "node": ">=14.17"
++        "node": ">=4.2.0"
+       }
+     },
+     "node_modules/unbox-primitive": {
+diff --git a/public/index.html b/public/index.html
+index f635fe3..98db94f 100644
+--- a/public/index.html
++++ b/public/index.html
+@@ -1,18 +1,59 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="zh-CN">
+   <head>
+     <meta charset="utf-8" />
+     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+-    <meta name="theme-color" content="#000000" />
++    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
++    <meta name="theme-color" content="#667eea" />
++    <meta name="format-detection" content="telephone=no" />
++    <meta name="apple-mobile-web-app-capable" content="yes" />
++    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+     <meta
+       name="description"
+-      content="Bahasa Beraja - 印尼语学习应用"
++      content="Belajar Bahasa - 印尼语学习应用，智能学习，轻松掌握印尼语"
+     />
+     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+-    <title>Bahasa Beraja - 印尼语学习</title>
++    <title>Belajar Bahasa - 印尼语学习</title>
++    <style>
++      /* 防止移动端页面缩放和滑动 */
++      * {
++        -webkit-tap-highlight-color: transparent;
++        -webkit-touch-callout: none;
++        -webkit-user-select: none;
++        -khtml-user-select: none;
++        -moz-user-select: none;
++        -ms-user-select: none;
++        user-select: none;
++      }
++      
++      /* 允许文本选择的元素 */
++      input, textarea, [contenteditable] {
++        -webkit-user-select: text;
++        -khtml-user-select: text;
++        -moz-user-select: text;
++        -ms-user-select: text;
++        user-select: text;
++      }
++      
++      /* 移动端优化 */
++      body {
++        -webkit-overflow-scrolling: touch;
++        overflow-x: hidden;
++      }
++      
++      /* 防止iOS Safari缩放 */
++      @media screen and (max-device-width: 480px) {
++        select, textarea, input[type="text"], input[type="password"], 
++        input[type="datetime"], input[type="datetime-local"], 
++        input[type="date"], input[type="month"], input[type="time"], 
++        input[type="week"], input[type="number"], input[type="email"], 
++        input[type="url"] {
++          font-size: 16px !important;
++        }
++      }
++    </style>
+   </head>
+   <body>
+     <noscript>You need to enable JavaScript to run this app.</noscript>
+diff --git a/public/wechat.jpg b/public/wechat.jpg
+new file mode 100644
+index 0000000..d4bf900
+Binary files /dev/null and b/public/wechat.jpg differ
+diff --git a/src/App.js b/src/App.js
+index b4102a3..1194178 100644
+--- a/src/App.js
++++ b/src/App.js
+@@ -4,9 +4,11 @@ import styled from 'styled-components';
+ import Header from './components/Header';
+ import Home from './pages/Home';
+ import Vocabulary from './pages/Vocabulary';
++import VocabularyBook from './pages/VocabularyBook';
+ import Grammar from './pages/Grammar';
+ import Quiz from './pages/Quiz';
+ import Login from './pages/Login';
++import BusinessIndonesian from './pages/BusinessIndonesian';
+ import UpdateModal from './components/UpdateModal';
+ import UserManager from './utils/userManager';
+ import UpdateManager from './utils/updateManager';
+@@ -20,6 +22,10 @@ const AppContainer = styled.div`
+ 
+ const MainContent = styled.main`
+   padding-top: 70px; /* Header height */
++
++  @media (max-width: 768px) {
++    padding-top: 60px; /* Mobile header height */
++  }
+ `;
+ 
+ // 路由保护组件
+@@ -103,6 +109,14 @@ function App() {
+                 </ProtectedRoute>
+               } 
+             />
++            <Route 
++              path="/vocabulary-book" 
++              element={
++                <ProtectedRoute>
++                  <VocabularyBook />
++                </ProtectedRoute>
++              } 
++            />
+             <Route 
+               path="/grammar" 
+               element={
+@@ -119,6 +133,14 @@ function App() {
+                 </ProtectedRoute>
+               } 
+             />
++            <Route 
++              path="/business" 
++              element={
++                <ProtectedRoute>
++                  <BusinessIndonesian />
++                </ProtectedRoute>
++              } 
++            />
+             
+             {/* 404 重定向 */}
+             <Route path="*" element={<Navigate to="/" replace />} />
+diff --git a/src/components/Header.js b/src/components/Header.js
+index 71cf134..29269de 100644
+--- a/src/components/Header.js
++++ b/src/components/Header.js
+@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
+ import { Link, useLocation, useNavigate } from 'react-router-dom';
+ import styled from 'styled-components';
+ import { motion, AnimatePresence } from 'framer-motion';
+-import { Book, User, LogOut, Settings, BarChart } from 'lucide-react';
++import { Book, User, LogOut, Settings, BarChart, Menu, X } from 'lucide-react';
+ import UserManager from '../utils/userManager';
+ import UpdateManager from '../utils/updateManager';
+ 
+@@ -16,6 +16,10 @@ const HeaderContainer = styled.header`
+   left: 0;
+   right: 0;
+   z-index: 1000;
++
++  @media (max-width: 768px) {
++    padding: 0 15px;
++  }
+ `;
+ 
+ const HeaderContent = styled.div`
+@@ -25,6 +29,10 @@ const HeaderContent = styled.div`
+   align-items: center;
+   justify-content: space-between;
+   height: 70px;
++
++  @media (max-width: 768px) {
++    height: 60px;
++  }
+ `;
+ 
+ const Logo = styled(Link)`
+@@ -33,6 +41,10 @@ const Logo = styled(Link)`
+   gap: 15px;
+   text-decoration: none;
+   color: #333;
++
++  @media (max-width: 768px) {
++    gap: 10px;
++  }
+ `;
+ 
+ const LogoIcon = styled.div`
+@@ -44,15 +56,28 @@ const LogoIcon = styled.div`
+   align-items: center;
+   justify-content: center;
+   color: white;
++
++  @media (max-width: 768px) {
++    width: 36px;
++    height: 36px;
++  }
+ `;
+ 
+ const LogoText = styled.h1`
+   font-size: 24px;
+   font-weight: 700;
+   margin: 0;
++
++  @media (max-width: 768px) {
++    font-size: 20px;
++  }
++
++  @media (max-width: 480px) {
++    display: none;
++  }
+ `;
+ 
+-const Nav = styled.nav`
++const DesktopNav = styled.nav`
+   display: flex;
+   align-items: center;
+   gap: 30px;
+@@ -62,14 +87,96 @@ const Nav = styled.nav`
+   }
+ `;
+ 
++const MobileMenuButton = styled.button`
++  display: none;
++  background: none;
++  border: none;
++  cursor: pointer;
++  padding: 8px;
++  border-radius: 8px;
++  transition: all 0.3s ease;
++
++  &:hover {
++    background: rgba(102, 126, 234, 0.1);
++  }
++
++  @media (max-width: 768px) {
++    display: flex;
++    align-items: center;
++    justify-content: center;
++  }
++`;
++
++const MobileMenuOverlay = styled(motion.div)`
++  display: none;
++  position: fixed;
++  top: 0;
++  left: 0;
++  right: 0;
++  bottom: 0;
++  background: rgba(0, 0, 0, 0.5);
++  z-index: 999;
++
++  @media (max-width: 768px) {
++    display: block;
++  }
++`;
++
++const MobileMenuContent = styled(motion.div)`
++  position: fixed;
++  top: 0;
++  right: 0;
++  width: 280px;
++  height: 100vh;
++  background: white;
++  padding: 20px;
++  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
++  overflow-y: auto;
++
++  @media (max-width: 480px) {
++    width: 100vw;
++    padding: 15px;
++  }
++`;
++
++const MobileMenuHeader = styled.div`
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  margin-bottom: 30px;
++  padding-bottom: 20px;
++  border-bottom: 1px solid #f0f0f0;
++`;
++
++const MobileMenuClose = styled.button`
++  background: none;
++  border: none;
++  cursor: pointer;
++  padding: 8px;
++  border-radius: 8px;
++  transition: all 0.3s ease;
++
++  &:hover {
++    background: rgba(102, 126, 234, 0.1);
++  }
++`;
++
++const MobileNav = styled.nav`
++  display: flex;
++  flex-direction: column;
++  gap: 5px;
++  margin-bottom: 30px;
++`;
++
+ const NavLink = styled(Link)`
+   text-decoration: none;
+   color: #666;
+   font-weight: 500;
+-  padding: 8px 16px;
+-  border-radius: 20px;
++  padding: 12px 16px;
++  border-radius: 12px;
+   transition: all 0.3s ease;
+   position: relative;
++  display: block;
+ 
+   &:hover {
+     color: #667eea;
+@@ -79,17 +186,31 @@ const NavLink = styled(Link)`
+   ${props => props.$active && `
+     color: #667eea;
+     background: rgba(102, 126, 234, 0.1);
++    font-weight: 600;
+   `}
++
++  @media (max-width: 768px) {
++    padding: 15px 16px;
++    font-size: 16px;
++  }
+ `;
+ 
+ const UserSection = styled.div`
+   display: flex;
+   align-items: center;
+   gap: 15px;
++
++  @media (max-width: 768px) {
++    gap: 10px;
++  }
+ `;
+ 
+ const UserInfo = styled.div`
+   position: relative;
++
++  @media (max-width: 768px) {
++    order: -1;
++  }
+ `;
+ 
+ const UserButton = styled.button`
+@@ -106,6 +227,11 @@ const UserButton = styled.button`
+   &:hover {
+     background: rgba(102, 126, 234, 0.1);
+   }
++
++  @media (max-width: 768px) {
++    padding: 6px 8px;
++    gap: 8px;
++  }
+ `;
+ 
+ const UserAvatar = styled.div`
+@@ -119,6 +245,12 @@ const UserAvatar = styled.div`
+   color: white;
+   font-weight: 600;
+   font-size: 14px;
++
++  @media (max-width: 768px) {
++    width: 32px;
++    height: 32px;
++    font-size: 12px;
++  }
+ `;
+ 
+ const UserName = styled.span`
+@@ -145,6 +277,17 @@ const UserDropdown = styled(motion.div)`
+   border: 1px solid rgba(0, 0, 0, 0.1);
+   overflow: hidden;
+   min-width: 200px;
++
++  @media (max-width: 768px) {
++    position: static;
++    margin-top: 0;
++    box-shadow: none;
++    border: none;
++    border-radius: 0;
++    background: transparent;
++    min-width: auto;
++    width: 100%;
++  }
+ `;
+ 
+ const DropdownItem = styled.button`
+@@ -169,6 +312,28 @@ const DropdownItem = styled.button`
+     border-top: 1px solid #e1e5e9;
+     color: #dc2626;
+   }
++
++  @media (max-width: 768px) {
++    padding: 15px 16px;
++    font-size: 16px;
++    border-radius: 12px;
++    margin-bottom: 5px;
++
++    &:hover {
++      background: rgba(102, 126, 234, 0.1);
++    }
++
++    &:last-child {
++      border-top: none;
++      border: 1px solid #fecaca;
++      background: #fef2f2;
++      color: #dc2626;
++
++      &:hover {
++        background: #fee2e2;
++      }
++    }
++  }
+ `;
+ 
+ const DevDropdownItem = styled(DropdownItem)`
+@@ -180,12 +345,23 @@ const DevDropdownItem = styled(DropdownItem)`
+     opacity: 1;
+     background: rgba(102, 126, 234, 0.1);
+   }
++
++  @media (max-width: 768px) {
++    font-size: 14px;
++  }
+ `;
+ 
+ const UserStats = styled.div`
+   padding: 12px 16px;
+   border-bottom: 1px solid #e1e5e9;
+   background: #f8fafc;
++
++  @media (max-width: 768px) {
++    background: rgba(102, 126, 234, 0.05);
++    border-radius: 12px;
++    margin-bottom: 15px;
++    border: none;
++  }
+ `;
+ 
+ const StatRow = styled.div`
+@@ -198,6 +374,10 @@ const StatRow = styled.div`
+   &:last-child {
+     margin-bottom: 0;
+   }
++
++  @media (max-width: 768px) {
++    font-size: 14px;
++  }
+ `;
+ 
+ const StatLabel = styled.span`
+@@ -225,6 +405,11 @@ const LoginButton = styled(Link)`
+     transform: translateY(-2px);
+     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+   }
++
++  @media (max-width: 768px) {
++    padding: 8px 16px;
++    font-size: 14px;
++  }
+ `;
+ 
+ function Header() {
+@@ -232,6 +417,7 @@ function Header() {
+   const navigate = useNavigate();
+   const [currentUser, setCurrentUser] = useState(null);
+   const [showDropdown, setShowDropdown] = useState(false);
++  const [showMobileMenu, setShowMobileMenu] = useState(false);
+   const [userStats, setUserStats] = useState(null);
+ 
+   useEffect(() => {
+@@ -246,25 +432,46 @@ function Header() {
+     }
+   }, [location]);
+ 
++  // 关闭移动端菜单
++  useEffect(() => {
++    if (showMobileMenu) {
++      document.body.style.overflow = 'hidden';
++    } else {
++      document.body.style.overflow = 'unset';
++    }
++
++    return () => {
++      document.body.style.overflow = 'unset';
++    };
++  }, [showMobileMenu]);
++
+   const handleLogout = () => {
+     UserManager.logout();
+     setCurrentUser(null);
+     setShowDropdown(false);
++    setShowMobileMenu(false);
+     navigate('/login');
+   };
+ 
+   const handleResetUpdate = () => {
+     UpdateManager.resetUpdateStatus();
+     setShowDropdown(false);
++    setShowMobileMenu(false);
+     // 刷新页面以触发更新检查
+     window.location.reload();
+   };
+ 
++  const closeMobileMenu = () => {
++    setShowMobileMenu(false);
++  };
++
+   const navItems = [
+     { path: '/', label: '首页' },
+     { path: '/vocabulary', label: '词汇学习' },
++    { path: '/vocabulary-book', label: '我的生词本' },
+     { path: '/grammar', label: '语法学习' },
+-    { path: '/quiz', label: '练习测验' }
++    { path: '/quiz', label: '练习测验' },
++    { path: '/business', label: '商务印尼语' }
+   ];
+ 
+   return (
+@@ -278,7 +485,7 @@ function Header() {
+         </Logo>
+ 
+         {currentUser && (
+-          <Nav>
++          <DesktopNav>
+             {navItems.map((item) => (
+               <NavLink
+                 key={item.path}
+@@ -288,66 +495,72 @@ function Header() {
+                 {item.label}
+               </NavLink>
+             ))}
+-          </Nav>
++          </DesktopNav>
+         )}
+ 
+         <UserSection>
+           {currentUser ? (
+-            <UserInfo>
+-              <UserButton onClick={() => setShowDropdown(!showDropdown)}>
+-                <UserAvatar $color={UserManager.getUserAvatarColor(currentUser.username)}>
+-                  {UserManager.getUserAvatarLetter(currentUser.username)}
+-                </UserAvatar>
+-                <UserName>{currentUser.displayName}</UserName>
+-              </UserButton>
+-
+-              <AnimatePresence>
+-                {showDropdown && (
+-                  <UserDropdown
+-                    initial={{ opacity: 0, y: -10 }}
+-                    animate={{ opacity: 1, y: 0 }}
+-                    exit={{ opacity: 0, y: -10 }}
+-                    transition={{ duration: 0.2 }}
+-                  >
+-                    <UserStats>
+-                      <StatRow>
+-                        <StatLabel>用户名</StatLabel>
+-                        <StatValue>{currentUser.username}</StatValue>
+-                      </StatRow>
+-                      <StatRow>
+-                        <StatLabel>注册时间</StatLabel>
+-                        <StatValue>
+-                          {new Date(currentUser.createdAt).toLocaleDateString()}
+-                        </StatValue>
+-                      </StatRow>
+-                      <StatRow>
+-                        <StatLabel>登录次数</StatLabel>
+-                        <StatValue>{currentUser.loginCount || 0}</StatValue>
+-                      </StatRow>
+-                    </UserStats>
+-
+-                    <DropdownItem onClick={() => setShowDropdown(false)}>
+-                      <Settings size={16} />
+-                      设置
+-                    </DropdownItem>
+-                    
+-                    <DropdownItem onClick={() => setShowDropdown(false)}>
+-                      <BarChart size={16} />
+-                      学习统计
+-                    </DropdownItem>
+-                    
+-                    <DevDropdownItem onClick={handleResetUpdate}>
+-                      🔄 重置更新状态 (Dev)
+-                    </DevDropdownItem>
+-                    
+-                    <DropdownItem onClick={handleLogout}>
+-                      <LogOut size={16} />
+-                      退出登录
+-                    </DropdownItem>
+-                  </UserDropdown>
+-                )}
+-              </AnimatePresence>
+-            </UserInfo>
++            <>
++              <UserInfo>
++                <UserButton onClick={() => setShowDropdown(!showDropdown)}>
++                  <UserAvatar $color={UserManager.getUserAvatarColor(currentUser.username)}>
++                    {UserManager.getUserAvatarLetter(currentUser.username)}
++                  </UserAvatar>
++                  <UserName>{currentUser.displayName}</UserName>
++                </UserButton>
++
++                <AnimatePresence>
++                  {showDropdown && (
++                    <UserDropdown
++                      initial={{ opacity: 0, y: -10 }}
++                      animate={{ opacity: 1, y: 0 }}
++                      exit={{ opacity: 0, y: -10 }}
++                      transition={{ duration: 0.2 }}
++                    >
++                      <UserStats>
++                        <StatRow>
++                          <StatLabel>用户名</StatLabel>
++                          <StatValue>{currentUser.username}</StatValue>
++                        </StatRow>
++                        <StatRow>
++                          <StatLabel>注册时间</StatLabel>
++                          <StatValue>
++                            {new Date(currentUser.createdAt).toLocaleDateString()}
++                          </StatValue>
++                        </StatRow>
++                        <StatRow>
++                          <StatLabel>登录次数</StatLabel>
++                          <StatValue>{currentUser.loginCount || 0}</StatValue>
++                        </StatRow>
++                      </UserStats>
++
++                      <DropdownItem onClick={() => setShowDropdown(false)}>
++                        <Settings size={16} />
++                        设置
++                      </DropdownItem>
++                      
++                      <DropdownItem onClick={() => setShowDropdown(false)}>
++                        <BarChart size={16} />
++                        学习统计
++                      </DropdownItem>
++                      
++                      <DevDropdownItem onClick={handleResetUpdate}>
++                        🔄 重置更新状态 (Dev)
++                      </DevDropdownItem>
++                      
++                      <DropdownItem onClick={handleLogout}>
++                        <LogOut size={16} />
++                        退出登录
++                      </DropdownItem>
++                    </UserDropdown>
++                  )}
++                </AnimatePresence>
++              </UserInfo>
++              
++              <MobileMenuButton onClick={() => setShowMobileMenu(true)}>
++                <Menu size={24} color="#667eea" />
++              </MobileMenuButton>
++            </>
+           ) : (
+             <LoginButton to="/login">
+               <User size={16} />
+@@ -355,6 +568,93 @@ function Header() {
+             </LoginButton>
+           )}
+         </UserSection>
++
++        {/* 移动端菜单 */}
++        <AnimatePresence>
++          {showMobileMenu && (
++            <>
++              <MobileMenuOverlay
++                initial={{ opacity: 0 }}
++                animate={{ opacity: 1 }}
++                exit={{ opacity: 0 }}
++                onClick={closeMobileMenu}
++              />
++              <MobileMenuContent
++                initial={{ x: '100%' }}
++                animate={{ x: 0 }}
++                exit={{ x: '100%' }}
++                transition={{ type: 'tween', duration: 0.3 }}
++              >
++                <MobileMenuHeader>
++                  <Logo to="/" onClick={closeMobileMenu}>
++                    <LogoIcon>
++                      <Book size={16} />
++                    </LogoIcon>
++                    <span style={{ fontSize: '18px', fontWeight: '700' }}>Belajar Bahasa</span>
++                  </Logo>
++                  <MobileMenuClose onClick={closeMobileMenu}>
++                    <X size={24} color="#667eea" />
++                  </MobileMenuClose>
++                </MobileMenuHeader>
++
++                {currentUser && (
++                  <>
++                    <MobileNav>
++                      {navItems.map((item) => (
++                        <NavLink
++                          key={item.path}
++                          to={item.path}
++                          $active={location.pathname === item.path}
++                          onClick={closeMobileMenu}
++                        >
++                          {item.label}
++                        </NavLink>
++                      ))}
++                    </MobileNav>
++
++                    <UserDropdown>
++                      <UserStats>
++                        <StatRow>
++                          <StatLabel>用户名</StatLabel>
++                          <StatValue>{currentUser.username}</StatValue>
++                        </StatRow>
++                        <StatRow>
++                          <StatLabel>注册时间</StatLabel>
++                          <StatValue>
++                            {new Date(currentUser.createdAt).toLocaleDateString()}
++                          </StatValue>
++                        </StatRow>
++                        <StatRow>
++                          <StatLabel>登录次数</StatLabel>
++                          <StatValue>{currentUser.loginCount || 0}</StatValue>
++                        </StatRow>
++                      </UserStats>
++
++                      <DropdownItem onClick={closeMobileMenu}>
++                        <Settings size={16} />
++                        设置
++                      </DropdownItem>
++                      
++                      <DropdownItem onClick={closeMobileMenu}>
++                        <BarChart size={16} />
++                        学习统计
++                      </DropdownItem>
++                      
++                      <DevDropdownItem onClick={handleResetUpdate}>
++                        🔄 重置更新状态 (Dev)
++                      </DevDropdownItem>
++                      
++                      <DropdownItem onClick={handleLogout}>
++                        <LogOut size={16} />
++                        退出登录
++                      </DropdownItem>
++                    </UserDropdown>
++                  </>
++                )}
++              </MobileMenuContent>
++            </>
++          )}
++        </AnimatePresence>
+       </HeaderContent>
+     </HeaderContainer>
+   );
+diff --git a/src/data/business-vocabulary.js b/src/data/business-vocabulary.js
+new file mode 100644
+index 0000000..a9d448d
+--- /dev/null
++++ b/src/data/business-vocabulary.js
+@@ -0,0 +1,748 @@
++// 商务印尼语词汇和场景数据
++export const businessVocabularyData = [
++  {
++    id: 1,
++    category: '基础商务词汇',
++    words: [
++      {
++        indonesian: 'Bisnis',
++        chinese: '生意/商务',
++        pronunciation: 'BIS-nis',
++        example: 'Saya ingin memulai bisnis sendiri.',
++        exampleChinese: '我想开始自己的生意。'
++      },
++      {
++        indonesian: 'Perusahaan',
++        chinese: '公司',
++        pronunciation: 'pe-ru-SA-ha-an',
++        example: 'Perusahaan kami berkembang pesat.',
++        exampleChinese: '我们公司发展迅速。'
++      },
++      {
++        indonesian: 'Kantor',
++        chinese: '办公室',
++        pronunciation: 'KAN-tor',
++        example: 'Kantor saya di lantai lima.',
++        exampleChinese: '我的办公室在五楼。'
++      },
++      {
++        indonesian: 'Karyawan',
++        chinese: '员工',
++        pronunciation: 'kar-ya-WAN',
++        example: 'Perusahaan ini memiliki 200 karyawan.',
++        exampleChinese: '这家公司有200名员工。'
++      },
++      {
++        indonesian: 'Bos',
++        chinese: '老板',
++        pronunciation: 'BOS',
++        example: 'Bos saya sangat baik.',
++        exampleChinese: '我的老板很好。'
++      },
++      {
++        indonesian: 'Direktur',
++        chinese: '总监/主任',
++        pronunciation: 'di-REK-tur',
++        example: 'Beliau adalah direktur pemasaran.',
++        exampleChinese: '他是营销总监。'
++      },
++      {
++        indonesian: 'Manajer',
++        chinese: '经理',
++        pronunciation: 'ma-na-JER',
++        example: 'Manajer proyek akan hadir dalam rapat.',
++        exampleChinese: '项目经理将参加会议。'
++      },
++      {
++        indonesian: 'Klien',
++        chinese: '客户',
++        pronunciation: 'kli-EN',
++        example: 'Klien ini sangat penting bagi kami.',
++        exampleChinese: '这个客户对我们很重要。'
++      },
++      {
++        indonesian: 'Kontrak',
++        chinese: '合同',
++        pronunciation: 'KON-trak',
++        example: 'Kita perlu menandatangani kontrak ini.',
++        exampleChinese: '我们需要签署这份合同。'
++      },
++      {
++        indonesian: 'Proyek',
++        chinese: '项目',
++        pronunciation: 'pro-YEK',
++        example: 'Proyek ini akan selesai bulan depan.',
++        exampleChinese: '这个项目下个月完成。'
++      },
++      {
++        indonesian: 'Deadline',
++        chinese: '截止日期',
++        pronunciation: 'DEAD-line',
++        example: 'Deadline proyek ini adalah Jumat.',
++        exampleChinese: '这个项目的截止日期是星期五。'
++      },
++      {
++        indonesian: 'Laporan',
++        chinese: '报告',
++        pronunciation: 'la-po-RAN',
++        example: 'Saya harus menyelesaikan laporan ini.',
++        exampleChinese: '我必须完成这份报告。'
++      },
++      {
++        indonesian: 'Presentasi',
++        chinese: '演示/展示',
++        pronunciation: 'pre-sen-TA-si',
++        example: 'Presentasi Anda sangat menarik.',
++        exampleChinese: '您的演示很有趣。'
++      },
++      {
++        indonesian: 'Rapat',
++        chinese: '会议',
++        pronunciation: 'RA-pat',
++        example: 'Rapat dimulai pukul sembilan.',
++        exampleChinese: '会议九点开始。'
++      },
++      {
++        indonesian: 'Negosiasi',
++        chinese: '谈判',
++        pronunciation: 'ne-go-si-A-si',
++        example: 'Negosiasi kontrak berlangsung lancar.',
++        exampleChinese: '合同谈判进行顺利。'
++      },
++      {
++        indonesian: 'Investasi',
++        chinese: '投资',
++        pronunciation: 'in-ves-TA-si',
++        example: 'Kami membutuhkan investasi untuk ekspansi.',
++        exampleChinese: '我们需要投资来扩张。'
++      },
++      {
++        indonesian: 'Keuntungan',
++        chinese: '利润',
++        pronunciation: 'ke-un-TUNG-an',
++        example: 'Keuntungan perusahaan meningkat tahun ini.',
++        exampleChinese: '公司利润今年增长了。'
++      },
++      {
++        indonesian: 'Penjualan',
++        chinese: '销售',
++        pronunciation: 'pen-ju-A-lan',
++        example: 'Target penjualan bulan ini tercapai.',
++        exampleChinese: '本月销售目标已达成。'
++      },
++      {
++        indonesian: 'Pemasaran',
++        chinese: '营销',
++        pronunciation: 'pe-ma-SAR-an',
++        example: 'Strategi pemasaran harus diperbaiki.',
++        exampleChinese: '营销策略需要改进。'
++      },
++      {
++        indonesian: 'Anggaran',
++        chinese: '预算',
++        pronunciation: 'ang-ga-RAN',
++        example: 'Anggaran proyek sudah disetujui.',
++        exampleChinese: '项目预算已获批准。'
++      }
++    ]
++  },
++  {
++    id: 2,
++    category: '会议与沟通',
++    words: [
++      {
++        indonesian: 'Agenda',
++        chinese: '议程',
++        pronunciation: 'a-GEN-da',
++        example: 'Agenda rapat sudah dikirim ke semua peserta.',
++        exampleChinese: '会议议程已发送给所有参与者。'
++      },
++      {
++        indonesian: 'Diskusi',
++        chinese: '讨论',
++        pronunciation: 'dis-KU-si',
++        example: 'Mari kita diskusikan masalah ini.',
++        exampleChinese: '让我们讨论这个问题。'
++      },
++      {
++        indonesian: 'Kesimpulan',
++        chinese: '结论',
++        pronunciation: 'ke-sim-PUL-an',
++        example: 'Apa kesimpulan dari rapat tadi?',
++        exampleChinese: '刚才会议的结论是什么？'
++      },
++      {
++        indonesian: 'Keputusan',
++        chinese: '决定',
++        pronunciation: 'ke-pu-TUS-an',
++        example: 'Keputusan final akan diambil besok.',
++        exampleChinese: '最终决定明天做出。'
++      },
++      {
++        indonesian: 'Usulan',
++        chinese: '建议',
++        pronunciation: 'u-SU-lan',
++        example: 'Saya ingin mengajukan usulan baru.',
++        exampleChinese: '我想提出一个新建议。'
++      },
++      {
++        indonesian: 'Persetujuan',
++        chinese: '同意/批准',
++        pronunciation: 'per-se-tu-JU-an',
++        example: 'Kami memerlukan persetujuan dari direktur.',
++        exampleChinese: '我们需要总监的批准。'
++      },
++      {
++        indonesian: 'Jadwal',
++        chinese: '时间表',
++        pronunciation: 'JAD-wal',
++        example: 'Jadwal rapat minggu ini sudah penuh.',
++        exampleChinese: '这周的会议时间表已经满了。'
++      },
++      {
++        indonesian: 'Prioritas',
++        chinese: '优先级',
++        pronunciation: 'pri-o-ri-TAS',
++        example: 'Proyek ini adalah prioritas utama.',
++        exampleChinese: '这个项目是首要优先级。'
++      },
++      {
++        indonesian: 'Strategi',
++        chinese: '策略',
++        pronunciation: 'stra-TE-gi',
++        example: 'Kita perlu mengubah strategi pemasaran.',
++        exampleChinese: '我们需要改变营销策略。'
++      },
++      {
++        indonesian: 'Evaluasi',
++        chinese: '评估',
++        pronunciation: 'e-va-lu-A-si',
++        example: 'Evaluasi kinerja akan dilakukan bulan depan.',
++        exampleChinese: '绩效评估将在下个月进行。'
++      },
++      {
++        indonesian: 'Feedback',
++        chinese: '反馈',
++        pronunciation: 'FEED-back',
++        example: 'Mohon berikan feedback untuk presentasi saya.',
++        exampleChinese: '请给我的演示提供反馈。'
++      },
++      {
++        indonesian: 'Target',
++        chinese: '目标',
++        pronunciation: 'TAR-get',
++        example: 'Target penjualan kuartal ini tinggi.',
++        exampleChinese: '本季度的销售目标很高。'
++      },
++      {
++        indonesian: 'Pencapaian',
++        chinese: '成就',
++        pronunciation: 'pen-ca-PAI-an',
++        example: 'Pencapaian tim sangat memuaskan.',
++        exampleChinese: '团队的成就非常令人满意。'
++      },
++      {
++        indonesian: 'Kolaborasi',
++        chinese: '合作',
++        pronunciation: 'ko-la-bo-RA-si',
++        example: 'Kolaborasi antar departemen sangat penting.',
++        exampleChinese: '部门间的合作非常重要。'
++      },
++      {
++        indonesian: 'Koordinasi',
++        chinese: '协调',
++        pronunciation: 'ko-or-di-NA-si',
++        example: 'Koordinasi proyek berjalan dengan baik.',
++        exampleChinese: '项目协调进行得很好。'
++      },
++      {
++        indonesian: 'Delegasi',
++        chinese: '委派',
++        pronunciation: 'de-le-GA-si',
++        example: 'Saya akan mendelegasikan tugas ini.',
++        exampleChinese: '我将委派这个任务。'
++      },
++      {
++        indonesian: 'Tanggung jawab',
++        chinese: '责任',
++        pronunciation: 'tang-gung JA-wab',
++        example: 'Ini adalah tanggung jawab kita bersama.',
++        exampleChinese: '这是我们共同的责任。'
++      },
++      {
++        indonesian: 'Komunikasi',
++        chinese: '沟通',
++        pronunciation: 'ko-mu-ni-KA-si',
++        example: 'Komunikasi yang baik adalah kunci sukses.',
++        exampleChinese: '良好的沟通是成功的关键。'
++      },
++      {
++        indonesian: 'Informasi',
++        chinese: '信息',
++        pronunciation: 'in-for-MA-si',
++        example: 'Saya butuh informasi lebih detail.',
++        exampleChinese: '我需要更详细的信息。'
++      },
++      {
++        indonesian: 'Konfirmasi',
++        chinese: '确认',
++        pronunciation: 'kon-fir-MA-si',
++        example: 'Mohon konfirmasi kehadiran Anda.',
++        exampleChinese: '请确认您的出席。'
++      }
++    ]
++  },
++  {
++    id: 3,
++    category: '金融与财务',
++    words: [
++      {
++        indonesian: 'Uang',
++        chinese: '钱',
++        pronunciation: 'U-ang',
++        example: 'Berapa uang yang dibutuhkan untuk proyek ini?',
++        exampleChinese: '这个项目需要多少钱？'
++      },
++      {
++        indonesian: 'Harga',
++        chinese: '价格',
++        pronunciation: 'HAR-ga',
++        example: 'Harga produk ini sangat kompetitif.',
++        exampleChinese: '这个产品的价格很有竞争力。'
++      },
++      {
++        indonesian: 'Biaya',
++        chinese: '费用',
++        pronunciation: 'bi-A-ya',
++        example: 'Biaya operasional meningkat bulan ini.',
++        exampleChinese: '本月运营费用增加了。'
++      },
++      {
++        indonesian: 'Pendapatan',
++        chinese: '收入',
++        pronunciation: 'pen-da-PAT-an',
++        example: 'Pendapatan perusahaan stabil tahun ini.',
++        exampleChinese: '公司收入今年很稳定。'
++      },
++      {
++        indonesian: 'Pengeluaran',
++        chinese: '支出',
++        pronunciation: 'peng-e-lu-AR-an',
++        example: 'Pengeluaran harus dikontrol dengan ketat.',
++        exampleChinese: '支出必须严格控制。'
++      },
++      {
++        indonesian: 'Hutang',
++        chinese: '债务',
++        pronunciation: 'HU-tang',
++        example: 'Perusahaan harus melunasi hutang ini.',
++        exampleChinese: '公司必须偿还这笔债务。'
++      },
++      {
++        indonesian: 'Piutang',
++        chinese: '应收账款',
++        pronunciation: 'pi-U-tang',
++        example: 'Piutang dari klien sudah jatuh tempo.',
++        exampleChinese: '客户的应收账款已到期。'
++      },
++      {
++        indonesian: 'Modal',
++        chinese: '资本',
++        pronunciation: 'mo-DAL',
++        example: 'Kami membutuhkan modal tambahan.',
++        exampleChinese: '我们需要额外的资本。'
++      },
++      {
++        indonesian: 'Kredit',
++        chinese: '信贷',
++        pronunciation: 'KRE-dit',
++        example: 'Aplikasi kredit sudah disetujui bank.',
++        exampleChinese: '信贷申请已被银行批准。'
++      },
++      {
++        indonesian: 'Bunga',
++        chinese: '利息',
++        pronunciation: 'BU-nga',
++        example: 'Bunga pinjaman cukup rendah.',
++        exampleChinese: '贷款利息相当低。'
++      },
++      {
++        indonesian: 'Cicilan',
++        chinese: '分期付款',
++        pronunciation: 'ci-CIL-an',
++        example: 'Cicilan bulanan sudah dibayar.',
++        exampleChinese: '月付款已支付。'
++      },
++      {
++        indonesian: 'Pembayaran',
++        chinese: '付款',
++        pronunciation: 'pem-ba-YAR-an',
++        example: 'Pembayaran akan dilakukan minggu depan.',
++        exampleChinese: '付款将在下周进行。'
++      },
++      {
++        indonesian: 'Faktur',
++        chinese: '发票',
++        pronunciation: 'FAK-tur',
++        example: 'Faktur sudah dikirim ke klien.',
++        exampleChinese: '发票已发送给客户。'
++      },
++      {
++        indonesian: 'Diskon',
++        chinese: '折扣',
++        pronunciation: 'DIS-kon',
++        example: 'Kami bisa memberikan diskon 10%.',
++        exampleChinese: '我们可以给10%的折扣。'
++      },
++      {
++        indonesian: 'Pajak',
++        chinese: '税收',
++        pronunciation: 'PA-jak',
++        example: 'Pajak perusahaan harus dibayar tepat waktu.',
++        exampleChinese: '公司税必须按时缴纳。'
++      },
++      {
++        indonesian: 'Akuntansi',
++        chinese: '会计',
++        pronunciation: 'a-kun-TAN-si',
++        example: 'Departemen akuntansi sedang sibuk.',
++        exampleChinese: '会计部门很忙。'
++      },
++      {
++        indonesian: 'Audit',
++        chinese: '审计',
++        pronunciation: 'AU-dit',
++        example: 'Audit tahunan akan segera dimulai.',
++        exampleChinese: '年度审计即将开始。'
++      },
++      {
++        indonesian: 'Cashflow',
++        chinese: '现金流',
++        pronunciation: 'CASH-flow',
++        example: 'Cashflow perusahaan sedang bermasalah.',
++        exampleChinese: '公司现金流出现问题。'
++      },
++      {
++        indonesian: 'ROI',
++        chinese: '投资回报率',
++        pronunciation: 'R-O-I',
++        example: 'ROI proyek ini sangat menjanjikan.',
++        exampleChinese: '这个项目的投资回报率很有前景。'
++      },
++      {
++        indonesian: 'Valuasi',
++        chinese: '估值',
++        pronunciation: 'va-lu-A-si',
++        example: 'Valuasi perusahaan meningkat drastis.',
++        exampleChinese: '公司估值大幅上涨。'
++      }
++    ]
++  }
++];
++
++// 商务场景对话数据
++export const businessScenariosData = [
++  {
++    id: 1,
++    title: '商务会议开场',
++    scenario: 'meeting_opening',
++    dialogues: [
++      {
++        speaker: 'A',
++        indonesian: 'Selamat pagi semuanya, terima kasih sudah hadir dalam rapat ini.',
++        chinese: '大家早上好，感谢大家参加这次会议。',
++        pronunciation: 'se-LA-mat PA-gi se-mu-A-nya, te-RI-ma KA-sih su-DAH ha-DIR da-LAM RA-pat I-ni'
++      },
++      {
++        speaker: 'B',
++        indonesian: 'Selamat pagi, Pak. Kami siap untuk membahas agenda hari ini.',
++        chinese: '早上好，先生。我们准备讨论今天的议程。',
++        pronunciation: 'se-LA-mat PA-gi, PAK. ka-MI si-AP un-TUK mem-BA-has a-GEN-da ha-RI i-NI'
++      },
++      {
++        speaker: 'A',
++        indonesian: 'Baik, mari kita mulai dengan laporan penjualan bulan lalu.',
++        chinese: '好的，让我们从上个月的销售报告开始。',
++        pronunciation: 'BA-ik, ma-RI ki-TA mu-LAI de-NGAN la-po-RAN pen-ju-A-lan bu-LAN la-LU'
++      },
++      {
++        speaker: 'B',
++        indonesian: 'Laporan menunjukkan peningkatan 15% dibandingkan bulan sebelumnya.',
++        chinese: '报告显示比上个月增长了15%。',
++        pronunciation: 'la-po-RAN me-nun-JUK-kan pe-ning-KAT-an li-MA be-LAS per-SEN di-ban-DING-kan bu-LAN se-be-LUM-nya'
++      }
++    ]
++  },
++  {
++    id: 2,
++    title: '电话商务洽谈',
++    scenario: 'phone_negotiation',
++    dialogues: [
++      {
++        speaker: 'A',
++        indonesian: 'Halo, saya ingin membicarakan penawaran yang Anda kirimkan.',
++        chinese: '您好，我想谈论您发送的报价。',
++        pronunciation: 'ha-LO, sa-YA i-NGIN mem-bi-ca-RA-kan pe-na-WAR-an yang AN-da ki-RIM-kan'
++      },
++      {
++        speaker: 'B',
++        indonesian: 'Tentu, Pak. Apakah ada yang ingin Anda tanyakan tentang penawaran tersebut?',
++        chinese: '当然，先生。您对该报价有什么想问的吗？',
++        pronunciation: 'ten-TU, PAK. a-pa-KAH a-DA yang i-NGIN AN-da ta-NYA-kan ten-TANG pe-na-WAR-an ter-se-BUT'
++      },
++      {
++        speaker: 'A',
++        indonesian: 'Harganya masih terlalu tinggi untuk anggaran kami. Bisakah ada penyesuaian?',
++        chinese: '价格对我们的预算来说还是太高了。能否调整一下？',
++        pronunciation: 'HAR-ga-nya ma-SIH ter-la-LU TING-gi un-TUK ang-ga-RAN ka-MI. bi-SA-kah a-DA pe-nye-su-AI-an'
++      },
++      {
++        speaker: 'B',
++        indonesian: 'Mari kita diskusikan. Berapa anggaran yang Anda miliki untuk proyek ini?',
++        chinese: '我们来讨论一下。您这个项目的预算是多少？',
++        pronunciation: 'ma-RI ki-TA dis-ku-SI-kan. be-ra-PA ang-ga-RAN yang AN-da mi-LI-ki un-TUK pro-YEK i-NI'
++      }
++    ]
++  },
++  {
++    id: 3,
++    title: '签署合同',
++    scenario: 'contract_signing',
++    dialogues: [
++      {
++        speaker: 'A',
++        indonesian: 'Setelah negosiasi panjang, akhirnya kita sampai pada kesepakatan.',
++        chinese: '经过长时间的谈判，我们终于达成了协议。',
++        pronunciation: 'se-te-LAH ne-go-si-A-si pan-JANG, a-KHIR-nya ki-TA sam-PAI pa-DA ke-se-pa-KAT-an'
++      },
++      {
++        speaker: 'B',
++        indonesian: 'Ya, saya senang kita bisa bekerja sama. Kontraknya sudah siap untuk ditandatangani.',
++        chinese: '是的，我很高兴我们能合作。合同已经准备好签署了。',
++        pronunciation: 'ya, sa-YA se-NANG ki-TA bi-SA be-ker-JA sa-MA. kon-TRAK-nya su-DAH si-AP un-TUK di-tan-da-ta-NGA-ni'
++      },
++      {
++        speaker: 'A',
++        indonesian: 'Saya sudah membaca semua klausulnya. Semua terlihat sesuai kesepakatan.',
++        chinese: '我已经阅读了所有条款。一切看起来都符合协议。',
++        pronunciation: 'sa-YA su-DAH mem-BA-ca se-MU-a klau-SUL-nya. se-MU-a ter-li-HAT se-su-AI ke-se-pa-KAT-an'
++      },
++      {
++        speaker: 'B',
++        indonesian: 'Baik, mari kita tandatangani kontrak ini dan mulai kerjasama yang sukses.',
++        chinese: '好的，让我们签署这份合同，开始成功的合作。',
++        pronunciation: 'BA-ik, ma-RI ki-TA tan-da-ta-NGA-ni kon-TRAK i-NI dan mu-LAI ker-ja-sa-MA yang suk-SES'
++      }
++    ]
++  },
++  {
++    id: 4,
++    title: '客户服务',
++    scenario: 'customer_service',
++    dialogues: [
++      {
++        speaker: 'A',
++        indonesian: 'Selamat siang, ada yang bisa saya bantu?',
++        chinese: '下午好，有什么可以帮您的吗？',
++        pronunciation: 'se-LA-mat si-ANG, a-DA yang bi-SA sa-YA ban-TU'
++      },
++      {
++        speaker: 'B',
++        indonesian: 'Saya ingin mengajukan komplain tentang produk yang saya beli minggu lalu.',
++        chinese: '我想投诉上周购买的产品。',
++        pronunciation: 'sa-YA i-NGIN meng-a-JU-kan kom-PLAIN ten-TANG pro-DUK yang sa-YA be-LI ming-GU la-LU'
++      },
++      {
++        speaker: 'A',
++        indonesian: 'Maaf mendengar masalah Anda. Bisakah Anda jelaskan masalahnya secara detail?',
++        chinese: '很抱歉听到您的问题。您能详细说明一下问题吗？',
++        pronunciation: 'ma-AF men-de-NGAR ma-sa-LAH AN-da. bi-SA-kah AN-da je-las-KAN ma-sa-LAH-nya se-ca-RA de-TAIL'
++      },
++      {
++        speaker: 'B',
++        indonesian: 'Produknya tidak sesuai dengan spesifikasi yang dijanjikan di website.',
++        chinese: '产品不符合网站上承诺的规格。',
++        pronunciation: 'pro-DUK-nya ti-DAK se-su-AI de-NGAN spe-si-fi-KA-si yang di-jan-JI-kan di WEB-site'
++      }
++    ]
++  },
++  {
++    id: 5,
++    title: '项目汇报',
++    scenario: 'project_report',
++    dialogues: [
++      {
++        speaker: 'A',
++        indonesian: 'Bagaimana progress proyek yang sedang Anda kerjakan?',
++        chinese: '您正在进行的项目进展如何？',
++        pronunciation: 'ba-gai-MA-na pro-GRESS pro-YEK yang se-DANG AN-da ker-JA-kan'
++      },
++      {
++        speaker: 'B',
++        indonesian: 'Proyek berjalan sesuai jadwal. Kami sudah menyelesaikan 70% dari total pekerjaan.',
++        chinese: '项目按计划进行。我们已经完成了70%的工作。',
++        pronunciation: 'pro-YEK ber-ja-LAN se-su-AI jad-WAL. ka-MI su-DAH me-nye-le-SAI-kan tu-JUH pu-LUH per-SEN da-RI to-TAL pe-ker-JA-an'
++      },
++      {
++        speaker: 'A',
++        indonesian: 'Bagus! Apakah ada hambatan yang perlu diatasi?',
++        chinese: '很好！有什么需要解决的障碍吗？',
++        pronunciation: 'ba-GUS! a-pa-KAH a-DA ham-BAT-an yang per-LU di-a-TA-si'
++      },
++      {
++        speaker: 'B',
++        indonesian: 'Ada sedikit kendala di bagian testing, tapi tim IT sedang menanganinya.',
++        chinese: '在测试部分有一些小问题，但IT团队正在处理。',
++        pronunciation: 'a-DA se-di-KIT ken-DA-la di ba-GI-an TES-ting, ta-PI tim I-T se-DANG me-na-nga-NI-nya'
++      }
++    ]
++  }
++];
++
++// 商务实用句子
++export const businessSentencesData = [
++  {
++    id: 1,
++    category: '会议用语',
++    sentences: [
++      {
++        indonesian: 'Mari kita mulai rapat.',
++        chinese: '让我们开始会议吧。',
++        pronunciation: 'ma-RI ki-TA mu-LAI RA-pat',
++        usage: '会议开始时使用'
++      },
++      {
++        indonesian: 'Apakah semua sudah siap?',
++        chinese: '大家都准备好了吗？',
++        pronunciation: 'a-pa-KAH se-MU-a su-DAH si-AP',
++        usage: '确认会议开始前的准备'
++      },
++      {
++        indonesian: 'Saya setuju dengan pendapat Anda.',
++        chinese: '我同意您的观点。',
++        pronunciation: 'sa-YA se-tu-JU de-NGAN pen-da-PAT AN-da',
++        usage: '表示同意对方观点'
++      },
++      {
++        indonesian: 'Bisakah Anda menjelaskan lebih detail?',
++        chinese: '您能解释得更详细一些吗？',
++        pronunciation: 'bi-SA-kah AN-da men-je-las-KAN le-BIH de-TAIL',
++        usage: '要求更详细的解释'
++      },
++      {
++        indonesian: 'Mari kita voting untuk keputusan ini.',
++        chinese: '让我们为这个决定投票吧。',
++        pronunciation: 'ma-RI ki-TA VO-ting un-TUK ke-pu-TUS-an i-NI',
++        usage: '提议投票决定'
++      }
++    ]
++  },
++  {
++    id: 2,
++    category: '商务谈判',
++    sentences: [
++      {
++        indonesian: 'Kami tertarik dengan penawaran Anda.',
++        chinese: '我们对您的报价感兴趣。',
++        pronunciation: 'ka-MI ter-ta-RIK de-NGAN pe-na-WAR-an AN-da',
++        usage: '表示对报价的兴趣'
++      },
++      {
++        indonesian: 'Apakah harga ini bisa dinegosiasi?',
++        chinese: '这个价格可以商量吗？',
++        pronunciation: 'a-pa-KAH HAR-ga i-NI bi-SA di-ne-go-si-A-si',
++        usage: '询问价格是否可以谈判'
++      },
++      {
++        indonesian: 'Kami membutuhkan waktu untuk mempertimbangkan.',
++        chinese: '我们需要时间考虑。',
++        pronunciation: 'ka-MI me-mer-lu-KAN wak-TU un-TUK mem-per-tim-BANG-kan',
++        usage: '要求考虑时间'
++      },
++      {
++        indonesian: 'Bagaimana dengan syarat pembayarannya?',
++        chinese: '付款条件怎么样？',
++        pronunciation: 'ba-gai-MA-na de-NGAN sya-RAT pem-ba-YAR-an-nya',
++        usage: '询问付款条件'
++      },
++      {
++        indonesian: 'Apakah ada garansi untuk produk ini?',
++        chinese: '这个产品有保修吗？',
++        pronunciation: 'a-pa-KAH a-DA ga-RAN-si un-TUK pro-DUK i-NI',
++        usage: '询问产品保修'
++      }
++    ]
++  },
++  {
++    id: 3,
++    category: '电子邮件',
++    sentences: [
++      {
++        indonesian: 'Terima kasih atas email Anda.',
++        chinese: '感谢您的邮件。',
++        pronunciation: 'te-RI-ma KA-sih a-TAS e-MAIL AN-da',
++        usage: '感谢邮件的开头'
++      },
++      {
++        indonesian: 'Saya akan membalas email ini sesegera mungkin.',
++        chinese: '我会尽快回复这封邮件。',
++        pronunciation: 'sa-YA a-KAN mem-ba-LAS e-MAIL i-NI se-se-ge-RA mung-KIN',
++        usage: '承诺尽快回复'
++      },
++      {
++        indonesian: 'Mohon konfirmasi penerimaan email ini.',
++        chinese: '请确认收到此邮件。',
++        pronunciation: 'mo-HON kon-fir-MA-si pe-ne-ri-MA-an e-MAIL i-NI',
++        usage: '要求确认收到邮件'
++      },
++      {
++        indonesian: 'Saya lampirkan dokumen yang Anda minta.',
++        chinese: '我附上您要求的文件。',
++        pronunciation: 'sa-YA lam-pir-KAN do-ku-MEN yang AN-da min-TA',
++        usage: '说明附件'
++      },
++      {
++        indonesian: 'Jika ada pertanyaan, jangan ragu untuk menghubungi saya.',
++        chinese: '如有疑问，请随时联系我。',
++        pronunciation: 'ji-KA a-DA per-ta-NYA-an, ja-NGAN ra-GU un-TUK meng-hu-BUNG-i sa-YA',
++        usage: '邮件结尾礼貌用语'
++      }
++    ]
++  },
++  {
++    id: 4,
++    category: '客户服务',
++    sentences: [
++      {
++        indonesian: 'Bagaimana saya bisa membantu Anda hari ini?',
++        chinese: '今天我能为您做些什么？',
++        pronunciation: 'ba-gai-MA-na sa-YA bi-SA mem-ban-TU AN-da ha-RI i-NI',
++        usage: '客服开场白'
++      },
++      {
++        indonesian: 'Maaf atas ketidaknyamanan yang terjadi.',
++        chinese: '很抱歉给您带来不便。',
++        pronunciation: 'ma-AF a-TAS ke-ti-dak-nya-MAN-an yang ter-ja-DI',
++        usage: '为问题道歉'
++      },
++      {
++        indonesian: 'Kami akan segera menyelesaikan masalah ini.',
++        chinese: '我们会立即解决这个问题。',
++        pronunciation: 'ka-MI a-KAN se-ge-RA me-nye-le-SAI-kan ma-sa-LAH i-NI',
++        usage: '承诺解决问题'
++      },
++      {
++        indonesian: 'Apakah ada hal lain yang bisa saya bantu?',
++        chinese: '还有其他我能帮助的吗？',
++        pronunciation: 'a-pa-KAH a-DA hal la-IN yang bi-SA sa-YA ban-TU',
++        usage: '询问是否还需要其他帮助'
++      },
++      {
++        indonesian: 'Terima kasih atas kesabaran Anda.',
++        chinese: '感谢您的耐心。',
++        pronunciation: 'te-RI-ma KA-sih a-TAS ke-sa-BAR-an AN-da',
++        usage: '感谢客户的耐心'
++      }
++    ]
++  }
++]; 
+\ No newline at end of file
+diff --git a/src/data/vocabulary.js b/src/data/vocabulary.js
+index 11ef2f9..d72267b 100644
+--- a/src/data/vocabulary.js
++++ b/src/data/vocabulary.js
+@@ -606,5 +606,1611 @@ export const vocabularyData = [
+         exampleChinese: '晚上我学习。'
+       }
+     ]
++  },
++  {
++    id: 9,
++    category: '机场',
++    words: [
++      {
++        indonesian: 'Bandara',
++        chinese: '机场',
++        pronunciation: 'ban-DA-ra',
++        example: 'Saya pergi ke bandara.',
++        exampleChinese: '我去机场。'
++      },
++      {
++        indonesian: 'Pesawat',
++        chinese: '飞机',
++        pronunciation: 'pe-SA-wat',
++        example: 'Pesawat akan lepas landas.',
++        exampleChinese: '飞机将要起飞。'
++      },
++      {
++        indonesian: 'Tiket',
++        chinese: '机票',
++        pronunciation: 'TI-ket',
++        example: 'Saya membeli tiket pesawat.',
++        exampleChinese: '我买了机票。'
++      },
++      {
++        indonesian: 'Passport',
++        chinese: '护照',
++        pronunciation: 'PASS-port',
++        example: 'Tolong tunjukkan passport Anda.',
++        exampleChinese: '请出示您的护照。'
++      },
++      {
++        indonesian: 'Bagasi',
++        chinese: '行李',
++        pronunciation: 'ba-GA-si',
++        example: 'Bagasi saya terlalu berat.',
++        exampleChinese: '我的行李太重了。'
++      },
++      {
++        indonesian: 'Check-in',
++        chinese: '登机手续',
++        pronunciation: 'CHECK-in',
++        example: 'Saya perlu check-in dulu.',
++        exampleChinese: '我需要先办理登机手续。'
++      },
++      {
++        indonesian: 'Gate',
++        chinese: '登机口',
++        pronunciation: 'GATE',
++        example: 'Gate nomor berapa?',
++        exampleChinese: '几号登机口？'
++      },
++      {
++        indonesian: 'Delay',
++        chinese: '延误',
++        pronunciation: 'de-LAY',
++        example: 'Pesawat mengalami delay.',
++        exampleChinese: '飞机延误了。'
++      },
++      {
++        indonesian: 'Boarding',
++        chinese: '登机',
++        pronunciation: 'BOAR-ding',
++        example: 'Boarding sudah dimulai.',
++        exampleChinese: '登机已经开始了。'
++      },
++      {
++        indonesian: 'Pilot',
++        chinese: '飞行员',
++        pronunciation: 'PI-lot',
++        example: 'Pilot mengumumkan cuaca buruk.',
++        exampleChinese: '飞行员宣布天气不好。'
++      },
++      {
++        indonesian: 'Pramugari',
++        chinese: '空乘',
++        pronunciation: 'pra-mu-GA-ri',
++        example: 'Pramugari sangat ramah.',
++        exampleChinese: '空乘很友好。'
++      },
++      {
++        indonesian: 'Terminal',
++        chinese: '航站楼',
++        pronunciation: 'ter-MI-nal',
++        example: 'Kita bertemu di terminal 2.',
++        exampleChinese: '我们在2号航站楼见面。'
++      },
++      {
++        indonesian: 'Imigrasi',
++        chinese: '入境处',
++        pronunciation: 'i-mi-GRA-si',
++        example: 'Antrian imigrasi sangat panjang.',
++        exampleChinese: '入境处排队很长。'
++      },
++      {
++        indonesian: 'Bea cukai',
++        chinese: '海关',
++        pronunciation: 'BE-a CU-kai',
++        example: 'Periksa di bea cukai.',
++        exampleChinese: '在海关检查。'
++      },
++      {
++        indonesian: 'Keberangkatan',
++        chinese: '出发',
++        pronunciation: 'ke-be-rang-KAT-an',
++        example: 'Jadwal keberangkatan jam 8.',
++        exampleChinese: '出发时间是8点。'
++      },
++      {
++        indonesian: 'Kedatangan',
++        chinese: '到达',
++        pronunciation: 'ke-da-TANG-an',
++        example: 'Waktu kedatangan jam 10.',
++        exampleChinese: '到达时间是10点。'
++      },
++      {
++        indonesian: 'Transit',
++        chinese: '转机',
++        pronunciation: 'TRAN-sit',
++        example: 'Saya transit di Singapore.',
++        exampleChinese: '我在新加坡转机。'
++      },
++      {
++        indonesian: 'Visa',
++        chinese: '签证',
++        pronunciation: 'VI-sa',
++        example: 'Apakah saya perlu visa?',
++        exampleChinese: '我需要签证吗？'
++      },
++      {
++        indonesian: 'Lounge',
++        chinese: '贵宾室',
++        pronunciation: 'LOUN-ge',
++        example: 'Saya menunggu di lounge.',
++        exampleChinese: '我在贵宾室等候。'
++      },
++      {
++        indonesian: 'Trolley',
++        chinese: '行李推车',
++        pronunciation: 'TROL-ley',
++        example: 'Ambil trolley untuk bagasi.',
++        exampleChinese: '拿行李推车装行李。'
++      }
++    ]
++  },
++  {
++    id: 10,
++    category: '医院',
++    words: [
++      {
++        indonesian: 'Rumah sakit',
++        chinese: '医院',
++        pronunciation: 'RU-mah SA-kit',
++        example: 'Saya pergi ke rumah sakit.',
++        exampleChinese: '我去医院。'
++      },
++      {
++        indonesian: 'Dokter',
++        chinese: '医生',
++        pronunciation: 'DOK-ter',
++        example: 'Dokter memeriksa pasien.',
++        exampleChinese: '医生检查病人。'
++      },
++      {
++        indonesian: 'Perawat',
++        chinese: '护士',
++        pronunciation: 'pe-RA-wat',
++        example: 'Perawat memberikan obat.',
++        exampleChinese: '护士给药。'
++      },
++      {
++        indonesian: 'Pasien',
++        chinese: '病人',
++        pronunciation: 'pa-SI-en',
++        example: 'Pasien menunggu giliran.',
++        exampleChinese: '病人在等候。'
++      },
++      {
++        indonesian: 'Obat',
++        chinese: '药',
++        pronunciation: 'O-bat',
++        example: 'Minum obat tiga kali sehari.',
++        exampleChinese: '一天吃三次药。'
++      },
++      {
++        indonesian: 'Sakit',
++        chinese: '疼痛',
++        pronunciation: 'SA-kit',
++        example: 'Perut saya sakit.',
++        exampleChinese: '我肚子疼。'
++      },
++      {
++        indonesian: 'Demam',
++        chinese: '发烧',
++        pronunciation: 'DE-mam',
++        example: 'Anak saya demam tinggi.',
++        exampleChinese: '我的孩子发高烧。'
++      },
++      {
++        indonesian: 'Batuk',
++        chinese: '咳嗽',
++        pronunciation: 'BA-tuk',
++        example: 'Saya batuk sudah seminggu.',
++        exampleChinese: '我咳嗽一周了。'
++      },
++      {
++        indonesian: 'Pilek',
++        chinese: '感冒',
++        pronunciation: 'PI-lek',
++        example: 'Pilek saya belum sembuh.',
++        exampleChinese: '我的感冒还没好。'
++      },
++      {
++        indonesian: 'Operasi',
++        chinese: '手术',
++        pronunciation: 'o-pe-RA-si',
++        example: 'Besok saya akan operasi.',
++        exampleChinese: '明天我要做手术。'
++      },
++      {
++        indonesian: 'Suntikan',
++        chinese: '注射',
++        pronunciation: 'sun-TIK-an',
++        example: 'Saya takut suntikan.',
++        exampleChinese: '我害怕打针。'
++      },
++      {
++        indonesian: 'Resep',
++        chinese: '处方',
++        pronunciation: 'RE-sep',
++        example: 'Dokter memberikan resep.',
++        exampleChinese: '医生开了处方。'
++      },
++      {
++        indonesian: 'Ambulans',
++        chinese: '救护车',
++        pronunciation: 'am-bu-LANS',
++        example: 'Panggil ambulans!',
++        exampleChinese: '叫救护车！'
++      },
++      {
++        indonesian: 'Emergency',
++        chinese: '急诊',
++        pronunciation: 'e-MER-gen-cy',
++        example: 'Ini situasi emergency.',
++        exampleChinese: '这是紧急情况。'
++      },
++      {
++        indonesian: 'Rontgen',
++        chinese: 'X光',
++        pronunciation: 'RONT-gen',
++        example: 'Saya perlu rontgen dada.',
++        exampleChinese: '我需要拍胸部X光。'
++      },
++      {
++        indonesian: 'Darah',
++        chinese: '血',
++        pronunciation: 'DA-rah',
++        example: 'Tes darah menunjukkan normal.',
++        exampleChinese: '血检显示正常。'
++      },
++      {
++        indonesian: 'Tekanan darah',
++        chinese: '血压',
++        pronunciation: 'te-KAN-an DA-rah',
++        example: 'Tekanan darah saya tinggi.',
++        exampleChinese: '我血压高。'
++      },
++      {
++        indonesian: 'Gula darah',
++        chinese: '血糖',
++        pronunciation: 'GU-la DA-rah',
++        example: 'Periksa gula darah rutin.',
++        exampleChinese: '定期检查血糖。'
++      },
++      {
++        indonesian: 'Alergi',
++        chinese: '过敏',
++        pronunciation: 'a-LER-gi',
++        example: 'Saya alergi seafood.',
++        exampleChinese: '我对海鲜过敏。'
++      },
++      {
++        indonesian: 'Vitamin',
++        chinese: '维生素',
++        pronunciation: 'vi-ta-MIN',
++        example: 'Minum vitamin setiap hari.',
++        exampleChinese: '每天吃维生素。'
++      }
++    ]
++  },
++  {
++    id: 11,
++    category: '办公室',
++    words: [
++      {
++        indonesian: 'Kantor',
++        chinese: '办公室',
++        pronunciation: 'kan-TOR',
++        example: 'Saya bekerja di kantor.',
++        exampleChinese: '我在办公室工作。'
++      },
++      {
++        indonesian: 'Komputer',
++        chinese: '电脑',
++        pronunciation: 'kom-PU-ter',
++        example: 'Komputer saya rusak.',
++        exampleChinese: '我的电脑坏了。'
++      },
++      {
++        indonesian: 'Meeting',
++        chinese: '会议',
++        pronunciation: 'MII-ting',
++        example: 'Meeting dimulai jam 9.',
++        exampleChinese: '会议9点开始。'
++      },
++      {
++        indonesian: 'Bos',
++        chinese: '老板',
++        pronunciation: 'BOS',
++        example: 'Bos saya sangat baik.',
++        exampleChinese: '我的老板很好。'
++      },
++      {
++        indonesian: 'Karyawan',
++        chinese: '员工',
++        pronunciation: 'kar-ya-WAN',
++        example: 'Karyawan baru mulai hari ini.',
++        exampleChinese: '新员工今天开始上班。'
++      },
++      {
++        indonesian: 'Email',
++        chinese: '邮件',
++        pronunciation: 'I-meil',
++        example: 'Kirim email ke klien.',
++        exampleChinese: '给客户发邮件。'
++      },
++      {
++        indonesian: 'Printer',
++        chinese: '打印机',
++        pronunciation: 'PRIN-ter',
++        example: 'Printer kehabisan tinta.',
++        exampleChinese: '打印机没墨了。'
++      },
++      {
++        indonesian: 'Dokumen',
++        chinese: '文件',
++        pronunciation: 'do-ku-MEN',
++        example: 'Simpan dokumen ini.',
++        exampleChinese: '保存这个文件。'
++      },
++      {
++        indonesian: 'Deadline',
++        chinese: '截止日期',
++        pronunciation: 'DEDD-lain',
++        example: 'Deadline proyek besok.',
++        exampleChinese: '项目截止日期是明天。'
++      },
++      {
++        indonesian: 'Proyek',
++        chinese: '项目',
++        pronunciation: 'pro-YEK',
++        example: 'Proyek ini sangat penting.',
++        exampleChinese: '这个项目很重要。'
++      },
++      {
++        indonesian: 'Laporan',
++        chinese: '报告',
++        pronunciation: 'la-por-AN',
++        example: 'Buat laporan bulanan.',
++        exampleChinese: '制作月度报告。'
++      },
++      {
++        indonesian: 'Presentasi',
++        chinese: '演示',
++        pronunciation: 'pre-sen-TA-si',
++        example: 'Presentasi akan dimulai.',
++        exampleChinese: '演示即将开始。'
++      },
++      {
++        indonesian: 'Klien',
++        chinese: '客户',
++        pronunciation: 'kli-EN',
++        example: 'Klien sangat puas.',
++        exampleChinese: '客户很满意。'
++      },
++      {
++        indonesian: 'Kontrak',
++        chinese: '合同',
++        pronunciation: 'KON-trak',
++        example: 'Tanda tangan kontrak.',
++        exampleChinese: '签署合同。'
++      },
++      {
++        indonesian: 'Gaji',
++        chinese: '工资',
++        pronunciation: 'GA-ji',
++        example: 'Gaji dibayar tanggal 25.',
++        exampleChinese: '25号发工资。'
++      },
++      {
++        indonesian: 'Cuti',
++        chinese: '假期',
++        pronunciation: 'CU-ti',
++        example: 'Saya ambil cuti minggu depan.',
++        exampleChinese: '我下周请假。'
++      },
++      {
++        indonesian: 'Overtime',
++        chinese: '加班',
++        pronunciation: 'O-ver-taim',
++        example: 'Hari ini saya overtime.',
++        exampleChinese: '今天我要加班。'
++      },
++      {
++        indonesian: 'Telepon',
++        chinese: '电话',
++        pronunciation: 'te-le-PON',
++        example: 'Ada telepon untuk Anda.',
++        exampleChinese: '有您的电话。'
++      },
++      {
++        indonesian: 'Fax',
++        chinese: '传真',
++        pronunciation: 'FAKS',
++        example: 'Kirim dokumen via fax.',
++        exampleChinese: '通过传真发送文件。'
++      },
++      {
++        indonesian: 'Kantin',
++        chinese: '食堂',
++        pronunciation: 'kan-TIN',
++        example: 'Makan siang di kantin.',
++        exampleChinese: '在食堂吃午饭。'
++      }
++    ]
++  },
++  {
++    id: 12,
++    category: '餐厅',
++    words: [
++      {
++        indonesian: 'Restoran',
++        chinese: '餐厅',
++        pronunciation: 'res-to-RAN',
++        example: 'Restoran ini sangat terkenal.',
++        exampleChinese: '这家餐厅很有名。'
++      },
++      {
++        indonesian: 'Menu',
++        chinese: '菜单',
++        pronunciation: 'ME-nu',
++        example: 'Boleh saya lihat menu?',
++        exampleChinese: '我可以看看菜单吗？'
++      },
++      {
++        indonesian: 'Pelayan',
++        chinese: '服务员',
++        pronunciation: 'pe-la-YAN',
++        example: 'Pelayan sangat ramah.',
++        exampleChinese: '服务员很友好。'
++      },
++      {
++        indonesian: 'Meja',
++        chinese: '桌子',
++        pronunciation: 'ME-ja',
++        example: 'Meja untuk dua orang.',
++        exampleChinese: '两人桌。'
++      },
++      {
++        indonesian: 'Kursi',
++        chinese: '椅子',
++        pronunciation: 'KUR-si',
++        example: 'Kursi ini nyaman.',
++        exampleChinese: '这椅子很舒服。'
++      },
++      {
++        indonesian: 'Pesan',
++        chinese: '点菜',
++        pronunciation: 'PE-san',
++        example: 'Saya mau pesan nasi goreng.',
++        exampleChinese: '我要点炒饭。'
++      },
++      {
++        indonesian: 'Makanan',
++        chinese: '食物',
++        pronunciation: 'ma-kan-AN',
++        example: 'Makanan ini enak sekali.',
++        exampleChinese: '这食物很好吃。'
++      },
++      {
++        indonesian: 'Minuman',
++        chinese: '饮料',
++        pronunciation: 'mi-num-AN',
++        example: 'Minuman apa yang Anda mau?',
++        exampleChinese: '您要什么饮料？'
++      },
++      {
++        indonesian: 'Bill',
++        chinese: '账单',
++        pronunciation: 'BIL',
++        example: 'Minta bill, please.',
++        exampleChinese: '请拿账单。'
++      },
++      {
++        indonesian: 'Bayar',
++        chinese: '付款',
++        pronunciation: 'BA-yar',
++        example: 'Saya mau bayar dengan kartu.',
++        exampleChinese: '我要用卡付款。'
++      },
++      {
++        indonesian: 'Tips',
++        chinese: '小费',
++        pronunciation: 'TIPS',
++        example: 'Berapa tips yang wajar?',
++        exampleChinese: '给多少小费合适？'
++      },
++      {
++        indonesian: 'Reservasi',
++        chinese: '预订',
++        pronunciation: 're-ser-VA-si',
++        example: 'Saya mau buat reservasi.',
++        exampleChinese: '我要预订。'
++      },
++      {
++        indonesian: 'Spesial',
++        chinese: '特色菜',
++        pronunciation: 'spe-si-AL',
++        example: 'Apa menu spesial hari ini?',
++        exampleChinese: '今天有什么特色菜？'
++      },
++      {
++        indonesian: 'Appetizer',
++        chinese: '开胃菜',
++        pronunciation: 'a-pe-TAI-zer',
++        example: 'Appetizer apa yang enak?',
++        exampleChinese: '有什么好吃的开胃菜？'
++      },
++      {
++        indonesian: 'Main course',
++        chinese: '主菜',
++        pronunciation: 'MEIN kors',
++        example: 'Main course saya steak.',
++        exampleChinese: '我的主菜是牛排。'
++      },
++      {
++        indonesian: 'Dessert',
++        chinese: '甜点',
++        pronunciation: 'de-SERT',
++        example: 'Ada dessert apa saja?',
++        exampleChinese: '有什么甜点？'
++      },
++      {
++        indonesian: 'Chef',
++        chinese: '厨师',
++        pronunciation: 'CHEF',
++        example: 'Chef memasak dengan baik.',
++        exampleChinese: '厨师做菜很好。'
++      },
++      {
++        indonesian: 'Dapur',
++        chinese: '厨房',
++        pronunciation: 'DA-pur',
++        example: 'Makanan dibuat di dapur.',
++        exampleChinese: '食物在厨房做。'
++      },
++      {
++        indonesian: 'Saus',
++        chinese: '酱料',
++        pronunciation: 'SA-us',
++        example: 'Minta saus tambahan.',
++        exampleChinese: '要额外的酱料。'
++      },
++      {
++        indonesian: 'Piring',
++        chinese: '盘子',
++        pronunciation: 'PI-ring',
++        example: 'Piring ini bersih.',
++        exampleChinese: '这盘子很干净。'
++      }
++    ]
++  },
++  {
++    id: 13,
++    category: '银行',
++    words: [
++      {
++        indonesian: 'Bank',
++        chinese: '银行',
++        pronunciation: 'BANK',
++        example: 'Saya pergi ke bank.',
++        exampleChinese: '我去银行。'
++      },
++      {
++        indonesian: 'Rekening',
++        chinese: '账户',
++        pronunciation: 're-ken-ING',
++        example: 'Buka rekening baru.',
++        exampleChinese: '开新账户。'
++      },
++      {
++        indonesian: 'ATM',
++        chinese: '提款机',
++        pronunciation: 'A-T-M',
++        example: 'Dimana ATM terdekat?',
++        exampleChinese: '最近的提款机在哪？'
++      },
++      {
++        indonesian: 'Kartu kredit',
++        chinese: '信用卡',
++        pronunciation: 'KAR-tu kre-DIT',
++        example: 'Saya mau apply kartu kredit.',
++        exampleChinese: '我要申请信用卡。'
++      },
++      {
++        indonesian: 'Uang',
++        chinese: '钱',
++        pronunciation: 'U-ang',
++        example: 'Tarik uang di ATM.',
++        exampleChinese: '在提款机取钱。'
++      },
++      {
++        indonesian: 'Transfer',
++        chinese: '转账',
++        pronunciation: 'TRANS-fer',
++        example: 'Transfer ke rekening lain.',
++        exampleChinese: '转账到其他账户。'
++      },
++      {
++        indonesian: 'Saldo',
++        chinese: '余额',
++        pronunciation: 'SAL-do',
++        example: 'Cek saldo rekening.',
++        exampleChinese: '查看账户余额。'
++      },
++      {
++        indonesian: 'Bunga',
++        chinese: '利息',
++        pronunciation: 'BU-nga',
++        example: 'Bunga deposito berapa persen?',
++        exampleChinese: '定期存款利息是多少？'
++      },
++      {
++        indonesian: 'Pinjaman',
++        chinese: '贷款',
++        pronunciation: 'pin-jam-AN',
++        example: 'Mengajukan pinjaman rumah.',
++        exampleChinese: '申请房屋贷款。'
++      },
++      {
++        indonesian: 'Deposito',
++        chinese: '定期存款',
++        pronunciation: 'de-po-SI-to',
++        example: 'Buat deposito 1 tahun.',
++        exampleChinese: '做一年期定存。'
++      },
++      {
++        indonesian: 'Teller',
++        chinese: '柜员',
++        pronunciation: 'TEL-ler',
++        example: 'Teller melayani nasabah.',
++        exampleChinese: '柜员为客户服务。'
++      },
++      {
++        indonesian: 'Nasabah',
++        chinese: '客户',
++        pronunciation: 'na-SA-bah',
++        example: 'Nasabah menunggu giliran.',
++        exampleChinese: '客户在等候。'
++      },
++      {
++        indonesian: 'PIN',
++        chinese: '密码',
++        pronunciation: 'PIN',
++        example: 'Masukkan PIN Anda.',
++        exampleChinese: '输入您的密码。'
++      },
++      {
++        indonesian: 'Cicilan',
++        chinese: '分期付款',
++        pronunciation: 'ci-cil-AN',
++        example: 'Bayar dengan cicilan.',
++        exampleChinese: '分期付款。'
++      },
++      {
++        indonesian: 'Investasi',
++        chinese: '投资',
++        pronunciation: 'in-ves-TA-si',
++        example: 'Produk investasi yang aman.',
++        exampleChinese: '安全的投资产品。'
++      },
++      {
++        indonesian: 'Asuransi',
++        chinese: '保险',
++        pronunciation: 'a-su-ran-SI',
++        example: 'Beli asuransi jiwa.',
++        exampleChinese: '买人寿保险。'
++      },
++      {
++        indonesian: 'Valuta asing',
++        chinese: '外汇',
++        pronunciation: 'va-LU-ta A-sing',
++        example: 'Tukar valuta asing.',
++        exampleChinese: '兑换外汇。'
++      },
++      {
++        indonesian: 'Cek',
++        chinese: '支票',
++        pronunciation: 'CEK',
++        example: 'Cairkan cek ini.',
++        exampleChinese: '兑现这张支票。'
++      },
++      {
++        indonesian: 'Pembayaran',
++        chinese: '付款',
++        pronunciation: 'pem-ba-yar-AN',
++        example: 'Pembayaran listrik di bank.',
++        exampleChinese: '在银行交电费。'
++      },
++      {
++        indonesian: 'Mobile banking',
++        chinese: '手机银行',
++        pronunciation: 'MO-bail BANK-ing',
++        example: 'Pakai mobile banking.',
++        exampleChinese: '使用手机银行。'
++      }
++    ]
++  },
++  {
++    id: 14,
++    category: '酒店',
++    words: [
++      {
++        indonesian: 'Hotel',
++        chinese: '酒店',
++        pronunciation: 'ho-TEL',
++        example: 'Hotel ini sangat mewah.',
++        exampleChinese: '这家酒店很豪华。'
++      },
++      {
++        indonesian: 'Kamar',
++        chinese: '房间',
++        pronunciation: 'KA-mar',
++        example: 'Kamar saya di lantai 5.',
++        exampleChinese: '我的房间在5楼。'
++      },
++      {
++        indonesian: 'Check-in',
++        chinese: '入住',
++        pronunciation: 'CHECK-in',
++        example: 'Check-in dimulai jam 2 siang.',
++        exampleChinese: '下午2点开始入住。'
++      },
++      {
++        indonesian: 'Check-out',
++        chinese: '退房',
++        pronunciation: 'CHECK-out',
++        example: 'Check-out sebelum jam 12.',
++        exampleChinese: '12点前退房。'
++      },
++      {
++        indonesian: 'Resepsionis',
++        chinese: '前台接待',
++        pronunciation: 're-sep-si-o-NIS',
++        example: 'Resepsionis sangat ramah.',
++        exampleChinese: '前台接待很友好。'
++      },
++      {
++        indonesian: 'Sarapan',
++        chinese: '早餐',
++        pronunciation: 'sa-RA-pan',
++        example: 'Sarapan gratis sampai jam 10.',
++        exampleChinese: '免费早餐到10点。'
++      },
++      {
++        indonesian: 'WiFi',
++        chinese: '无线网',
++        pronunciation: 'WAI-fai',
++        example: 'Password WiFi apa?',
++        exampleChinese: '无线网密码是什么？'
++      },
++      {
++        indonesian: 'AC',
++        chinese: '空调',
++        pronunciation: 'A-C',
++        example: 'AC kamar tidak dingin.',
++        exampleChinese: '房间空调不凉。'
++      },
++      {
++        indonesian: 'Lift',
++        chinese: '电梯',
++        pronunciation: 'LIFT',
++        example: 'Naik lift ke lantai 10.',
++        exampleChinese: '坐电梯到10楼。'
++      },
++      {
++        indonesian: 'Kolam renang',
++        chinese: '游泳池',
++        pronunciation: 'KO-lam RE-nang',
++        example: 'Kolam renang di lantai 3.',
++        exampleChinese: '游泳池在3楼。'
++      },
++      {
++        indonesian: 'Room service',
++        chinese: '客房服务',
++        pronunciation: 'RUM SER-vis',
++        example: 'Pesan makanan room service.',
++        exampleChinese: '点客房服务餐食。'
++      },
++      {
++        indonesian: 'Kunci',
++        chinese: '钥匙',
++        pronunciation: 'KUN-ci',
++        example: 'Kunci kamar hilang.',
++        exampleChinese: '房间钥匙丢了。'
++      },
++      {
++        indonesian: 'Laundry',
++        chinese: '洗衣服务',
++        pronunciation: 'LAUN-dry',
++        example: 'Pakai jasa laundry hotel.',
++        exampleChinese: '使用酒店洗衣服务。'
++      },
++      {
++        indonesian: 'Gym',
++        chinese: '健身房',
++        pronunciation: 'GIM',
++        example: 'Gym buka 24 jam.',
++        exampleChinese: '健身房24小时营业。'
++      },
++      {
++        indonesian: 'Spa',
++        chinese: '水疗',
++        pronunciation: 'SPA',
++        example: 'Booking spa untuk besok.',
++        exampleChinese: '预订明天的水疗。'
++      },
++      {
++        indonesian: 'Concierge',
++        chinese: '礼宾部',
++        pronunciation: 'kon-si-ERG',
++        example: 'Tanya concierge untuk info.',
++        exampleChinese: '向礼宾部询问信息。'
++      },
++      {
++        indonesian: 'Safe',
++        chinese: '保险箱',
++        pronunciation: 'SEIF',
++        example: 'Simpan valuables di safe.',
++        exampleChinese: '把贵重物品放保险箱。'
++      },
++      {
++        indonesian: 'Minibar',
++        chinese: '迷你吧',
++        pronunciation: 'MI-ni-bar',
++        example: 'Minibar di dalam kamar.',
++        exampleChinese: '房间里有迷你吧。'
++      },
++      {
++        indonesian: 'Housekeeping',
++        chinese: '客房清洁',
++        pronunciation: 'HAUS-kii-ping',
++        example: 'Housekeeping datang pagi.',
++        exampleChinese: '客房清洁早上来。'
++      },
++      {
++        indonesian: 'Parkir',
++        chinese: '停车',
++        pronunciation: 'PAR-kir',
++        example: 'Dimana tempat parkir?',
++        exampleChinese: '停车场在哪里？'
++      }
++    ]
++  },
++  {
++    id: 15,
++    category: '购物中心',
++    words: [
++      {
++        indonesian: 'Mall',
++        chinese: '商场',
++        pronunciation: 'MOL',
++        example: 'Mall ini sangat besar.',
++        exampleChinese: '这个商场很大。'
++      },
++      {
++        indonesian: 'Toko',
++        chinese: '商店',
++        pronunciation: 'TO-ko',
++        example: 'Toko baju di lantai 2.',
++        exampleChinese: '服装店在2楼。'
++      },
++      {
++        indonesian: 'Harga',
++        chinese: '价格',
++        pronunciation: 'HAR-ga',
++        example: 'Harga berapa?',
++        exampleChinese: '多少钱？'
++      },
++      {
++        indonesian: 'Diskon',
++        chinese: '折扣',
++        pronunciation: 'DIS-kon',
++        example: 'Ada diskon 50%.',
++        exampleChinese: '有50%折扣。'
++      },
++      {
++        indonesian: 'Kasir',
++        chinese: '收银员',
++        pronunciation: 'ka-SIR',
++        example: 'Bayar di kasir.',
++        exampleChinese: '在收银台付款。'
++      },
++      {
++        indonesian: 'Sale',
++        chinese: '促销',
++        pronunciation: 'SEIL',
++        example: 'Sale besar-besaran.',
++        exampleChinese: '大促销。'
++      },
++      {
++        indonesian: 'Fitting room',
++        chinese: '试衣间',
++        pronunciation: 'FI-ting RUM',
++        example: 'Coba di fitting room.',
++        exampleChinese: '在试衣间试穿。'
++      },
++      {
++        indonesian: 'Ukuran',
++        chinese: '尺寸',
++        pronunciation: 'u-KUR-an',
++        example: 'Ukuran M ada tidak?',
++        exampleChinese: '有M码吗？'
++      },
++      {
++        indonesian: 'Warna',
++        chinese: '颜色',
++        pronunciation: 'WAR-na',
++        example: 'Warna lain ada?',
++        exampleChinese: '有其他颜色吗？'
++      },
++      {
++        indonesian: 'Mahal',
++        chinese: '贵',
++        pronunciation: 'MA-hal',
++        example: 'Terlalu mahal.',
++        exampleChinese: '太贵了。'
++      },
++      {
++        indonesian: 'Murah',
++        chinese: '便宜',
++        pronunciation: 'MU-rah',
++        example: 'Harga sangat murah.',
++        exampleChinese: '价格很便宜。'
++      },
++      {
++        indonesian: 'Tawar',
++        chinese: '讨价还价',
++        pronunciation: 'TA-war',
++        example: 'Boleh tawar tidak?',
++        exampleChinese: '可以讨价还价吗？'
++      },
++      {
++        indonesian: 'Struk',
++        chinese: '收据',
++        pronunciation: 'STRUK',
++        example: 'Minta struk pembelian.',
++        exampleChinese: '要购买收据。'
++      },
++      {
++        indonesian: 'Return',
++        chinese: '退货',
++        pronunciation: 're-TURN',
++        example: 'Bisa return dalam 7 hari.',
++        exampleChinese: '可以7天内退货。'
++      },
++      {
++        indonesian: 'Garansi',
++        chinese: '保修',
++        pronunciation: 'ga-ran-SI',
++        example: 'Garansi berapa lama?',
++        exampleChinese: '保修多长时间？'
++      },
++      {
++        indonesian: 'Escalator',
++        chinese: '自动扶梯',
++        pronunciation: 'es-ka-LA-tor',
++        example: 'Naik escalator ke atas.',
++        exampleChinese: '坐扶梯上楼。'
++      },
++      {
++        indonesian: 'Food court',
++        chinese: '美食广场',
++        pronunciation: 'FUD kort',
++        example: 'Makan di food court.',
++        exampleChinese: '在美食广场吃饭。'
++      },
++      {
++        indonesian: 'Toilet',
++        chinese: '洗手间',
++        pronunciation: 'to-i-LET',
++        example: 'Dimana toilet terdekat?',
++        exampleChinese: '最近的洗手间在哪？'
++      },
++      {
++        indonesian: 'Parkir',
++        chinese: '停车',
++        pronunciation: 'PAR-kir',
++        example: 'Parkir gratis 2 jam.',
++        exampleChinese: '免费停车2小时。'
++      },
++      {
++        indonesian: 'Customer service',
++        chinese: '客服',
++        pronunciation: 'KAS-to-mer SER-vis',
++        example: 'Lapor ke customer service.',
++        exampleChinese: '向客服报告。'
++      }
++    ]
++  },
++  {
++    id: 16,
++    category: '交通工具',
++    words: [
++      {
++        indonesian: 'Mobil',
++        chinese: '汽车',
++        pronunciation: 'MO-bil',
++        example: 'Mobil saya rusak.',
++        exampleChinese: '我的车坏了。'
++      },
++      {
++        indonesian: 'Motor',
++        chinese: '摩托车',
++        pronunciation: 'MO-tor',
++        example: 'Naik motor ke kantor.',
++        exampleChinese: '骑摩托车去办公室。'
++      },
++      {
++        indonesian: 'Bus',
++        chinese: '公交车',
++        pronunciation: 'BUS',
++        example: 'Bus datang setiap 15 menit.',
++        exampleChinese: '公交车每15分钟一班。'
++      },
++      {
++        indonesian: 'Kereta',
++        chinese: '火车',
++        pronunciation: 'ke-RE-ta',
++        example: 'Kereta berangkat jam 8.',
++        exampleChinese: '火车8点发车。'
++      },
++      {
++        indonesian: 'Taksi',
++        chinese: '出租车',
++        pronunciation: 'TAK-si',
++        example: 'Panggil taksi online.',
++        exampleChinese: '叫网约车。'
++      },
++      {
++        indonesian: 'Ojek',
++        chinese: '摩的',
++        pronunciation: 'O-jek',
++        example: 'Naik ojek lebih cepat.',
++        exampleChinese: '坐摩的更快。'
++      },
++      {
++        indonesian: 'Sepeda',
++        chinese: '自行车',
++        pronunciation: 'se-PE-da',
++        example: 'Sepeda saya dicuri.',
++        exampleChinese: '我的自行车被偷了。'
++      },
++      {
++        indonesian: 'Kapal',
++        chinese: '船',
++        pronunciation: 'KA-pal',
++        example: 'Naik kapal ke Bali.',
++        exampleChinese: '坐船去巴厘岛。'
++      },
++      {
++        indonesian: 'Pesawat',
++        chinese: '飞机',
++        pronunciation: 'pe-SA-wat',
++        example: 'Pesawat delay 2 jam.',
++        exampleChinese: '飞机延误2小时。'
++      },
++      {
++        indonesian: 'Supir',
++        chinese: '司机',
++        pronunciation: 'su-PIR',
++        example: 'Supir sangat hati-hati.',
++        exampleChinese: '司机很小心。'
++      },
++      {
++        indonesian: 'Helm',
++        chinese: '头盔',
++        pronunciation: 'HELM',
++        example: 'Pakai helm saat naik motor.',
++        exampleChinese: '骑摩托车要戴头盔。'
++      },
++      {
++        indonesian: 'Sabuk pengaman',
++        chinese: '安全带',
++        pronunciation: 'SA-buk pe-nga-MAN',
++        example: 'Pasang sabuk pengaman.',
++        exampleChinese: '系好安全带。'
++      },
++      {
++        indonesian: 'Bensin',
++        chinese: '汽油',
++        pronunciation: 'BEN-sin',
++        example: 'Isi bensin dulu.',
++        exampleChinese: '先加油。'
++      },
++      {
++        indonesian: 'Parkir',
++        chinese: '停车',
++        pronunciation: 'PAR-kir',
++        example: 'Cari tempat parkir.',
++        exampleChinese: '找停车位。'
++      },
++      {
++        indonesian: 'Macet',
++        chinese: '堵车',
++        pronunciation: 'MA-cet',
++        example: 'Jalan macet parah.',
++        exampleChinese: '路很堵。'
++      },
++      {
++        indonesian: 'Lampu merah',
++        chinese: '红绿灯',
++        pronunciation: 'LAM-pu ME-rah',
++        example: 'Berhenti di lampu merah.',
++        exampleChinese: '在红绿灯前停车。'
++      },
++      {
++        indonesian: 'Jalan tol',
++        chinese: '高速公路',
++        pronunciation: 'ja-LAN TOL',
++        example: 'Lewat jalan tol lebih cepat.',
++        exampleChinese: '走高速更快。'
++      },
++      {
++        indonesian: 'SIM',
++        chinese: '驾照',
++        pronunciation: 'S-I-M',
++        example: 'SIM saya habis masa berlaku.',
++        exampleChinese: '我的驾照过期了。'
++      },
++      {
++        indonesian: 'Stasiun',
++        chinese: '车站',
++        pronunciation: 'sta-si-UN',
++        example: 'Tunggu di stasiun bus.',
++        exampleChinese: '在公交站等车。'
++      },
++      {
++        indonesian: 'Tiket',
++        chinese: '车票',
++        pronunciation: 'TI-ket',
++        example: 'Beli tiket kereta.',
++        exampleChinese: '买火车票。'
++      }
++    ]
++  },
++  {
++    id: 17,
++    category: '学校',
++    words: [
++      {
++        indonesian: 'Sekolah',
++        chinese: '学校',
++        pronunciation: 'se-ko-LAH',
++        example: 'Sekolah dimulai jam 7.',
++        exampleChinese: '学校7点开始。'
++      },
++      {
++        indonesian: 'Guru',
++        chinese: '老师',
++        pronunciation: 'GU-ru',
++        example: 'Guru mengajar dengan baik.',
++        exampleChinese: '老师教得很好。'
++      },
++      {
++        indonesian: 'Murid',
++        chinese: '学生',
++        pronunciation: 'MU-rid',
++        example: 'Murid sedang belajar.',
++        exampleChinese: '学生在学习。'
++      },
++      {
++        indonesian: 'Kelas',
++        chinese: '班级',
++        pronunciation: 'KE-las',
++        example: 'Kelas saya di lantai 2.',
++        exampleChinese: '我的班级在2楼。'
++      },
++      {
++        indonesian: 'Buku',
++        chinese: '书',
++        pronunciation: 'BU-ku',
++        example: 'Buku pelajaran sangat tebal.',
++        exampleChinese: '课本很厚。'
++      },
++      {
++        indonesian: 'Pelajaran',
++        chinese: '课程',
++        pronunciation: 'pe-la-jar-AN',
++        example: 'Pelajaran matematika sulit.',
++        exampleChinese: '数学课很难。'
++      },
++      {
++        indonesian: 'Ujian',
++        chinese: '考试',
++        pronunciation: 'u-ji-AN',
++        example: 'Ujian besok pagi.',
++        exampleChinese: '明天早上考试。'
++      },
++      {
++        indonesian: 'Nilai',
++        chinese: '成绩',
++        pronunciation: 'ni-LAI',
++        example: 'Nilai saya bagus.',
++        exampleChinese: '我的成绩很好。'
++      },
++      {
++        indonesian: 'PR',
++        chinese: '作业',
++        pronunciation: 'P-R',
++        example: 'PR matematika banyak.',
++        exampleChinese: '数学作业很多。'
++      },
++      {
++        indonesian: 'Perpustakaan',
++        chinese: '图书馆',
++        pronunciation: 'per-pus-ta-KA-an',
++        example: 'Baca di perpustakaan.',
++        exampleChinese: '在图书馆看书。'
++      },
++      {
++        indonesian: 'Kantin',
++        chinese: '食堂',
++        pronunciation: 'kan-TIN',
++        example: 'Makan siang di kantin.',
++        exampleChinese: '在食堂吃午饭。'
++      },
++      {
++        indonesian: 'Lapangan',
++        chinese: '操场',
++        pronunciation: 'la-PANG-an',
++        example: 'Olahraga di lapangan.',
++        exampleChinese: '在操场运动。'
++      },
++      {
++        indonesian: 'Pensil',
++        chinese: '铅笔',
++        pronunciation: 'PEN-sil',
++        example: 'Pensil saya patah.',
++        exampleChinese: '我的铅笔断了。'
++      },
++      {
++        indonesian: 'Pulpen',
++        chinese: '圆珠笔',
++        pronunciation: 'pul-PEN',
++        example: 'Pinjam pulpen dong.',
++        exampleChinese: '借支圆珠笔。'
++      },
++      {
++        indonesian: 'Papan tulis',
++        chinese: '黑板',
++        pronunciation: 'PA-pan TU-lis',
++        example: 'Tulis di papan tulis.',
++        exampleChinese: '在黑板上写。'
++      },
++      {
++        indonesian: 'Tas',
++        chinese: '书包',
++        pronunciation: 'TAS',
++        example: 'Tas sekolah berat.',
++        exampleChinese: '书包很重。'
++      },
++      {
++        indonesian: 'Seragam',
++        chinese: '校服',
++        pronunciation: 'se-ra-GAM',
++        example: 'Seragam harus rapi.',
++        exampleChinese: '校服要整齐。'
++      },
++      {
++        indonesian: 'Laboratorium',
++        chinese: '实验室',
++        pronunciation: 'la-bo-ra-to-ri-UM',
++        example: 'Eksperimen di laboratorium.',
++        exampleChinese: '在实验室做实验。'
++      },
++      {
++        indonesian: 'Kepala sekolah',
++        chinese: '校长',
++        pronunciation: 'ke-PA-la se-ko-LAH',
++        example: 'Kepala sekolah sangat baik.',
++        exampleChinese: '校长很好。'
++      },
++      {
++        indonesian: 'Liburan',
++        chinese: '假期',
++        pronunciation: 'li-bur-AN',
++        example: 'Liburan sekolah 2 minggu.',
++        exampleChinese: '学校假期2周。'
++      }
++    ]
++  },
++  {
++    id: 18,
++    category: '运动',
++    words: [
++      {
++        indonesian: 'Olahraga',
++        chinese: '运动',
++        pronunciation: 'o-lah-ra-GA',
++        example: 'Saya suka olahraga.',
++        exampleChinese: '我喜欢运动。'
++      },
++      {
++        indonesian: 'Sepak bola',
++        chinese: '足球',
++        pronunciation: 'se-PAK BO-la',
++        example: 'Main sepak bola sore ini.',
++        exampleChinese: '今天下午踢足球。'
++      },
++      {
++        indonesian: 'Basket',
++        chinese: '篮球',
++        pronunciation: 'BAS-ket',
++        example: 'Tim basket kita menang.',
++        exampleChinese: '我们篮球队赢了。'
++      },
++      {
++        indonesian: 'Badminton',
++        chinese: '羽毛球',
++        pronunciation: 'bad-min-TON',
++        example: 'Badminton olahraga favorit.',
++        exampleChinese: '羽毛球是最喜欢的运动。'
++      },
++      {
++        indonesian: 'Renang',
++        chinese: '游泳',
++        pronunciation: 're-NANG',
++        example: 'Renang di kolam umum.',
++        exampleChinese: '在公共泳池游泳。'
++      },
++      {
++        indonesian: 'Lari',
++        chinese: '跑步',
++        pronunciation: 'LA-ri',
++        example: 'Lari pagi setiap hari.',
++        exampleChinese: '每天晨跑。'
++      },
++      {
++        indonesian: 'Bersepeda',
++        chinese: '骑自行车',
++        pronunciation: 'ber-se-pe-DA',
++        example: 'Bersepeda ke pantai.',
++        exampleChinese: '骑自行车去海滩。'
++      },
++      {
++        indonesian: 'Gym',
++        chinese: '健身房',
++        pronunciation: 'GIM',
++        example: 'Pergi gym 3 kali seminggu.',
++        exampleChinese: '一周去3次健身房。'
++      },
++      {
++        indonesian: 'Yoga',
++        chinese: '瑜伽',
++        pronunciation: 'YO-ga',
++        example: 'Yoga membantu relaksasi.',
++        exampleChinese: '瑜伽有助于放松。'
++      },
++      {
++        indonesian: 'Tenis',
++        chinese: '网球',
++        pronunciation: 'TE-nis',
++        example: 'Main tenis di lapangan.',
++        exampleChinese: '在球场打网球。'
++      },
++      {
++        indonesian: 'Golf',
++        chinese: '高尔夫',
++        pronunciation: 'GOLF',
++        example: 'Golf olahraga mahal.',
++        exampleChinese: '高尔夫是昂贵的运动。'
++      },
++      {
++        indonesian: 'Voli',
++        chinese: '排球',
++        pronunciation: 'VO-li',
++        example: 'Tim voli putri hebat.',
++        exampleChinese: '女排队很棒。'
++      },
++      {
++        indonesian: 'Pelatih',
++        chinese: '教练',
++        pronunciation: 'pe-LA-tih',
++        example: 'Pelatih sangat disiplin.',
++        exampleChinese: '教练很严格。'
++      },
++      {
++        indonesian: 'Lapangan',
++        chinese: '场地',
++        pronunciation: 'la-PANG-an',
++        example: 'Lapangan dalam kondisi baik.',
++        exampleChinese: '场地状况很好。'
++      },
++      {
++        indonesian: 'Pertandingan',
++        chinese: '比赛',
++        pronunciation: 'per-tan-ding-AN',
++        example: 'Pertandingan dimulai jam 3.',
++        exampleChinese: '比赛3点开始。'
++      },
++      {
++        indonesian: 'Menang',
++        chinese: '赢',
++        pronunciation: 'me-NANG',
++        example: 'Tim kita menang 2-1.',
++        exampleChinese: '我们队2比1获胜。'
++      },
++      {
++        indonesian: 'Kalah',
++        chinese: '输',
++        pronunciation: 'KA-lah',
++        example: 'Sayang sekali kita kalah.',
++        exampleChinese: '很可惜我们输了。'
++      },
++      {
++        indonesian: 'Skor',
++        chinese: '比分',
++        pronunciation: 'SKOR',
++        example: 'Skor akhir 3-2.',
++        exampleChinese: '最终比分3比2。'
++      },
++      {
++        indonesian: 'Wasit',
++        chinese: '裁判',
++        pronunciation: 'wa-SIT',
++        example: 'Wasit memberikan kartu kuning.',
++        exampleChinese: '裁判出示黄牌。'
++      },
++      {
++        indonesian: 'Medali',
++        chinese: '奖牌',
++        pronunciation: 'me-DA-li',
++        example: 'Dapat medali emas.',
++        exampleChinese: '获得金牌。'
++      }
++    ]
++  },
++  {
++    id: 19,
++    category: '天气',
++    words: [
++      {
++        indonesian: 'Cuaca',
++        chinese: '天气',
++        pronunciation: 'cu-A-ca',
++        example: 'Cuaca hari ini cerah.',
++        exampleChinese: '今天天气晴朗。'
++      },
++      {
++        indonesian: 'Panas',
++        chinese: '热',
++        pronunciation: 'PA-nas',
++        example: 'Hari ini sangat panas.',
++        exampleChinese: '今天很热。'
++      },
++      {
++        indonesian: 'Dingin',
++        chinese: '冷',
++        pronunciation: 'DI-ngin',
++        example: 'Malam ini dingin sekali.',
++        exampleChinese: '今晚很冷。'
++      },
++      {
++        indonesian: 'Hujan',
++        chinese: '下雨',
++        pronunciation: 'HU-jan',
++        example: 'Besok akan hujan.',
++        exampleChinese: '明天会下雨。'
++      },
++      {
++        indonesian: 'Cerah',
++        chinese: '晴朗',
++        pronunciation: 'ce-RAH',
++        example: 'Langit cerah tanpa awan.',
++        exampleChinese: '天空晴朗无云。'
++      },
++      {
++        indonesian: 'Berawan',
++        chinese: '多云',
++        pronunciation: 'ber-A-wan',
++        example: 'Langit berawan tebal.',
++        exampleChinese: '天空乌云密布。'
++      },
++      {
++        indonesian: 'Mendung',
++        chinese: '阴天',
++        pronunciation: 'men-DUNG',
++        example: 'Cuaca mendung akan hujan.',
++        exampleChinese: '阴天要下雨了。'
++      },
++      {
++        indonesian: 'Angin',
++        chinese: '风',
++        pronunciation: 'A-ngin',
++        example: 'Angin bertiup kencang.',
++        exampleChinese: '风刮得很大。'
++      },
++      {
++        indonesian: 'Badai',
++        chinese: '暴风雨',
++        pronunciation: 'ba-DAI',
++        example: 'Badai akan datang malam ini.',
++        exampleChinese: '今晚会有暴风雨。'
++      },
++      {
++        indonesian: 'Petir',
++        chinese: '雷电',
++        pronunciation: 'pe-TIR',
++        example: 'Suara petir sangat keras.',
++        exampleChinese: '雷声很大。'
++      },
++      {
++        indonesian: 'Kilat',
++        chinese: '闪电',
++        pronunciation: 'ki-LAT',
++        example: 'Kilat menyambar di kejauhan.',
++        exampleChinese: '远处有闪电。'
++      },
++      {
++        indonesian: 'Kabut',
++        chinese: '雾',
++        pronunciation: 'ka-BUT',
++        example: 'Kabut tebal di pagi hari.',
++        exampleChinese: '早晨有浓雾。'
++      },
++      {
++        indonesian: 'Embun',
++        chinese: '露水',
++        pronunciation: 'em-BUN',
++        example: 'Embun menetes dari daun.',
++        exampleChinese: '露水从叶子上滴下来。'
++      },
++      {
++        indonesian: 'Salju',
++        chinese: '雪',
++        pronunciation: 'SAL-ju',
++        example: 'Di Indonesia tidak ada salju.',
++        exampleChinese: '印尼没有雪。'
++      },
++      {
++        indonesian: 'Matahari',
++        chinese: '太阳',
++        pronunciation: 'ma-ta-HA-ri',
++        example: 'Matahari bersinar terang.',
++        exampleChinese: '太阳照耀明亮。'
++      },
++      {
++        indonesian: 'Bulan',
++        chinese: '月亮',
++        pronunciation: 'BU-lan',
++        example: 'Bulan purnama sangat indah.',
++        exampleChinese: '满月很美。'
++      },
++      {
++        indonesian: 'Bintang',
++        chinese: '星星',
++        pronunciation: 'bin-TANG',
++        example: 'Bintang berkelap-kelip.',
++        exampleChinese: '星星闪闪发光。'
++      },
++      {
++        indonesian: 'Pelangi',
++        chinese: '彩虹',
++        pronunciation: 'pe-la-NGI',
++        example: 'Pelangi muncul setelah hujan.',
++        exampleChinese: '雨后出现彩虹。'
++      },
++      {
++        indonesian: 'Suhu',
++        chinese: '温度',
++        pronunciation: 'SU-hu',
++        example: 'Suhu hari ini 30 derajat.',
++        exampleChinese: '今天温度30度。'
++      },
++      {
++        indonesian: 'Kelembaban',
++        chinese: '湿度',
++        pronunciation: 'ke-lem-bab-AN',
++        example: 'Kelembaban tinggi di Jakarta.',
++        exampleChinese: '雅加达湿度很高。'
++      }
++    ]
+   }
+ ]; 
+\ No newline at end of file
+diff --git a/src/pages/BusinessIndonesian.js b/src/pages/BusinessIndonesian.js
+new file mode 100644
+index 0000000..62f045a
+--- /dev/null
++++ b/src/pages/BusinessIndonesian.js
+@@ -0,0 +1,567 @@
++import React, { useState, useEffect } from 'react';
++import styled from 'styled-components';
++import { motion, AnimatePresence } from 'framer-motion';
++import { 
++  businessVocabularyData, 
++  businessScenariosData, 
++  businessSentencesData 
++} from '../data/business-vocabulary';
++
++const BusinessContainer = styled.div`
++  min-height: 100vh;
++  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
++  padding: 20px;
++
++  @media (max-width: 768px) {
++    padding: 10px;
++  }
++`;
++
++const BusinessContent = styled.div`
++  max-width: 1200px;
++  margin: 0 auto;
++`;
++
++const BusinessHeader = styled.div`
++  text-align: center;
++  margin-bottom: 40px;
++  color: white;
++
++  h1 {
++    font-size: 2.5rem;
++    margin-bottom: 10px;
++    font-weight: 700;
++
++    @media (max-width: 768px) {
++      font-size: 2rem;
++    }
++  }
++
++  p {
++    font-size: 1.2rem;
++    opacity: 0.9;
++
++    @media (max-width: 768px) {
++      font-size: 1rem;
++    }
++  }
++`;
++
++const TabContainer = styled.div`
++  display: flex;
++  justify-content: center;
++  gap: 20px;
++  margin-bottom: 30px;
++
++  @media (max-width: 768px) {
++    gap: 10px;
++    flex-wrap: wrap;
++  }
++`;
++
++const TabButton = styled.button`
++  padding: 12px 24px;
++  border: none;
++  border-radius: 25px;
++  background: ${props => props.active ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.2)'};
++  color: ${props => props.active ? '#667eea' : 'white'};
++  font-size: 1rem;
++  font-weight: 600;
++  cursor: pointer;
++  transition: all 0.3s ease;
++  backdrop-filter: blur(10px);
++
++  &:hover {
++    background: rgba(255, 255, 255, 0.8);
++    color: #667eea;
++    transform: translateY(-2px);
++  }
++
++  @media (max-width: 768px) {
++    padding: 10px 16px;
++    font-size: 0.9rem;
++  }
++`;
++
++const ContentPanel = styled(motion.div)`
++  background: rgba(255, 255, 255, 0.95);
++  border-radius: 20px;
++  padding: 30px;
++  backdrop-filter: blur(20px);
++  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
++
++  @media (max-width: 768px) {
++    padding: 20px;
++    margin: 0 5px;
++  }
++`;
++
++// 词汇学习组件样式
++const VocabularyGrid = styled.div`
++  display: grid;
++  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
++  gap: 20px;
++  margin-bottom: 30px;
++
++  @media (max-width: 768px) {
++    grid-template-columns: 1fr;
++    gap: 15px;
++  }
++`;
++
++const CategoryCard = styled(motion.div)`
++  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
++  border-radius: 15px;
++  padding: 20px;
++  color: white;
++  cursor: pointer;
++  transition: all 0.3s ease;
++
++  &:hover {
++    transform: translateY(-5px);
++    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
++  }
++
++  h3 {
++    font-size: 1.3rem;
++    margin-bottom: 10px;
++    font-weight: 600;
++  }
++
++  p {
++    opacity: 0.9;
++    font-size: 0.95rem;
++  }
++`;
++
++const WordCard = styled(motion.div)`
++  background: white;
++  border-radius: 12px;
++  padding: 20px;
++  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
++  margin-bottom: 15px;
++  border-left: 5px solid #667eea;
++
++  .word-header {
++    display: flex;
++    justify-content: space-between;
++    align-items: center;
++    margin-bottom: 15px;
++
++    @media (max-width: 768px) {
++      flex-direction: column;
++      align-items: flex-start;
++      gap: 5px;
++    }
++  }
++
++  .indonesian {
++    font-size: 1.4rem;
++    font-weight: 700;
++    color: #2c3e50;
++  }
++
++  .chinese {
++    font-size: 1.2rem;
++    color: #e74c3c;
++    font-weight: 600;
++  }
++
++  .pronunciation {
++    font-size: 1rem;
++    color: #8e44ad;
++    font-style: italic;
++    margin-bottom: 10px;
++  }
++
++  .example {
++    background: #f8f9fa;
++    padding: 12px;
++    border-radius: 8px;
++    margin-top: 10px;
++
++    .example-indo {
++      font-weight: 600;
++      color: #2c3e50;
++      margin-bottom: 5px;
++    }
++
++    .example-chinese {
++      color: #7f8c8d;
++      font-size: 0.95rem;
++    }
++  }
++`;
++
++// 场景对话组件样式
++const ScenarioContainer = styled.div`
++  display: grid;
++  gap: 25px;
++`;
++
++const ScenarioCard = styled(motion.div)`
++  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
++  border-radius: 15px;
++  padding: 25px;
++  color: white;
++  cursor: pointer;
++
++  &:hover {
++    transform: translateY(-3px);
++    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
++  }
++
++  h3 {
++    font-size: 1.4rem;
++    margin-bottom: 15px;
++    font-weight: 600;
++  }
++`;
++
++const DialogueBox = styled.div`
++  background: white;
++  border-radius: 12px;
++  padding: 20px;
++  margin-top: 20px;
++
++  .dialogue-item {
++    margin-bottom: 20px;
++    padding: 15px;
++    border-radius: 10px;
++    
++    &:nth-child(odd) {
++      background: #e3f2fd;
++      border-left: 4px solid #2196f3;
++    }
++    
++    &:nth-child(even) {
++      background: #f3e5f5;
++      border-left: 4px solid #9c27b0;
++    }
++
++    .speaker {
++      font-weight: 700;
++      color: #333;
++      margin-bottom: 8px;
++      font-size: 0.9rem;
++    }
++
++    .text-indo {
++      font-size: 1.1rem;
++      color: #2c3e50;
++      margin-bottom: 5px;
++    }
++
++    .text-chinese {
++      color: #e74c3c;
++      margin-bottom: 5px;
++    }
++
++    .pronunciation {
++      font-size: 0.9rem;
++      color: #8e44ad;
++      font-style: italic;
++    }
++  }
++`;
++
++// 实用句子组件样式
++const SentenceContainer = styled.div`
++  display: grid;
++  gap: 25px;
++`;
++
++const SentenceCategory = styled(motion.div)`
++  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
++  border-radius: 15px;
++  padding: 25px;
++  color: white;
++
++  h3 {
++    font-size: 1.4rem;
++    margin-bottom: 20px;
++    font-weight: 600;
++  }
++`;
++
++const SentenceItem = styled.div`
++  background: rgba(255, 255, 255, 0.95);
++  border-radius: 10px;
++  padding: 15px;
++  margin-bottom: 15px;
++  color: #333;
++
++  .sentence-indo {
++    font-size: 1.2rem;
++    font-weight: 600;
++    color: #2c3e50;
++    margin-bottom: 5px;
++  }
++
++  .sentence-chinese {
++    color: #e74c3c;
++    margin-bottom: 5px;
++  }
++
++  .sentence-pronunciation {
++    font-size: 0.9rem;
++    color: #8e44ad;
++    font-style: italic;
++    margin-bottom: 8px;
++  }
++
++  .usage {
++    background: #e8f5e8;
++    padding: 8px 12px;
++    border-radius: 6px;
++    font-size: 0.85rem;
++    color: #2e7d32;
++    border-left: 3px solid #4caf50;
++  }
++`;
++
++const BackButton = styled.button`
++  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
++  color: white;
++  border: none;
++  padding: 10px 20px;
++  border-radius: 20px;
++  cursor: pointer;
++  font-size: 0.9rem;
++  margin-bottom: 20px;
++  transition: all 0.3s ease;
++
++  &:hover {
++    transform: translateY(-2px);
++    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
++  }
++`;
++
++const BusinessIndonesian = () => {
++  const [activeTab, setActiveTab] = useState('vocabulary');
++  const [selectedCategory, setSelectedCategory] = useState(null);
++  const [selectedScenario, setSelectedScenario] = useState(null);
++
++  const tabs = [
++    { id: 'vocabulary', label: '商务词汇', icon: '📚' },
++    { id: 'scenarios', label: '场景对话', icon: '💬' },
++    { id: 'sentences', label: '实用句子', icon: '📝' }
++  ];
++
++  const renderVocabularyContent = () => {
++    if (selectedCategory) {
++      const category = businessVocabularyData.find(cat => cat.id === selectedCategory);
++      return (
++        <motion.div
++          initial={{ opacity: 0, y: 20 }}
++          animate={{ opacity: 1, y: 0 }}
++          transition={{ duration: 0.5 }}
++        >
++          <BackButton onClick={() => setSelectedCategory(null)}>
++            ← 返回分类
++          </BackButton>
++          <h2 style={{ color: '#2c3e50', marginBottom: '25px', fontSize: '1.8rem' }}>
++            {category.category}
++          </h2>
++          {category.words.map((word, index) => (
++            <WordCard
++              key={index}
++              initial={{ opacity: 0, x: -20 }}
++              animate={{ opacity: 1, x: 0 }}
++              transition={{ duration: 0.3, delay: index * 0.1 }}
++            >
++              <div className="word-header">
++                <div className="indonesian">{word.indonesian}</div>
++                <div className="chinese">{word.chinese}</div>
++              </div>
++              <div className="pronunciation">[{word.pronunciation}]</div>
++              <div className="example">
++                <div className="example-indo">{word.example}</div>
++                <div className="example-chinese">{word.exampleChinese}</div>
++              </div>
++            </WordCard>
++          ))}
++        </motion.div>
++      );
++    }
++
++    return (
++      <motion.div
++        initial={{ opacity: 0 }}
++        animate={{ opacity: 1 }}
++        transition={{ duration: 0.5 }}
++      >
++        <h2 style={{ color: '#2c3e50', marginBottom: '25px', fontSize: '1.8rem', textAlign: 'center' }}>
++          选择词汇分类
++        </h2>
++        <VocabularyGrid>
++          {businessVocabularyData.map((category) => (
++            <CategoryCard
++              key={category.id}
++              whileHover={{ scale: 1.02 }}
++              whileTap={{ scale: 0.98 }}
++              onClick={() => setSelectedCategory(category.id)}
++            >
++              <h3>{category.category}</h3>
++              <p>{category.words.length} 个单词</p>
++            </CategoryCard>
++          ))}
++        </VocabularyGrid>
++      </motion.div>
++    );
++  };
++
++  const renderScenariosContent = () => {
++    if (selectedScenario) {
++      const scenario = businessScenariosData.find(s => s.id === selectedScenario);
++      return (
++        <motion.div
++          initial={{ opacity: 0, y: 20 }}
++          animate={{ opacity: 1, y: 0 }}
++          transition={{ duration: 0.5 }}
++        >
++          <BackButton onClick={() => setSelectedScenario(null)}>
++            ← 返回场景列表
++          </BackButton>
++          <h2 style={{ color: '#2c3e50', marginBottom: '25px', fontSize: '1.8rem' }}>
++            {scenario.title}
++          </h2>
++          <DialogueBox>
++            {scenario.dialogues.map((dialogue, index) => (
++              <div key={index} className="dialogue-item">
++                <div className="speaker">说话者 {dialogue.speaker}:</div>
++                <div className="text-indo">{dialogue.indonesian}</div>
++                <div className="text-chinese">{dialogue.chinese}</div>
++                <div className="pronunciation">[{dialogue.pronunciation}]</div>
++              </div>
++            ))}
++          </DialogueBox>
++        </motion.div>
++      );
++    }
++
++    return (
++      <motion.div
++        initial={{ opacity: 0 }}
++        animate={{ opacity: 1 }}
++        transition={{ duration: 0.5 }}
++      >
++        <h2 style={{ color: '#2c3e50', marginBottom: '25px', fontSize: '1.8rem', textAlign: 'center' }}>
++          商务场景对话
++        </h2>
++        <ScenarioContainer>
++          {businessScenariosData.map((scenario) => (
++            <ScenarioCard
++              key={scenario.id}
++              whileHover={{ scale: 1.01 }}
++              whileTap={{ scale: 0.99 }}
++              onClick={() => setSelectedScenario(scenario.id)}
++            >
++              <h3>{scenario.title}</h3>
++              <p>{scenario.dialogues.length} 段对话</p>
++            </ScenarioCard>
++          ))}
++        </ScenarioContainer>
++      </motion.div>
++    );
++  };
++
++  const renderSentencesContent = () => {
++    return (
++      <motion.div
++        initial={{ opacity: 0 }}
++        animate={{ opacity: 1 }}
++        transition={{ duration: 0.5 }}
++      >
++        <h2 style={{ color: '#2c3e50', marginBottom: '25px', fontSize: '1.8rem', textAlign: 'center' }}>
++          商务实用句子
++        </h2>
++        <SentenceContainer>
++          {businessSentencesData.map((category) => (
++            <SentenceCategory
++              key={category.id}
++              initial={{ opacity: 0, y: 20 }}
++              animate={{ opacity: 1, y: 0 }}
++              transition={{ duration: 0.3, delay: category.id * 0.1 }}
++            >
++              <h3>{category.category}</h3>
++              {category.sentences.map((sentence, index) => (
++                <SentenceItem key={index}>
++                  <div className="sentence-indo">{sentence.indonesian}</div>
++                  <div className="sentence-chinese">{sentence.chinese}</div>
++                  <div className="sentence-pronunciation">[{sentence.pronunciation}]</div>
++                  <div className="usage">💡 {sentence.usage}</div>
++                </SentenceItem>
++              ))}
++            </SentenceCategory>
++          ))}
++        </SentenceContainer>
++      </motion.div>
++    );
++  };
++
++  const renderContent = () => {
++    switch (activeTab) {
++      case 'vocabulary':
++        return renderVocabularyContent();
++      case 'scenarios':
++        return renderScenariosContent();
++      case 'sentences':
++        return renderSentencesContent();
++      default:
++        return null;
++    }
++  };
++
++  return (
++    <BusinessContainer>
++      <BusinessContent>
++        <BusinessHeader>
++          <motion.h1
++            initial={{ opacity: 0, y: -50 }}
++            animate={{ opacity: 1, y: 0 }}
++            transition={{ duration: 0.6 }}
++          >
++            🏢 商务印尼语
++          </motion.h1>
++          <motion.p
++            initial={{ opacity: 0, y: -30 }}
++            animate={{ opacity: 1, y: 0 }}
++            transition={{ duration: 0.6, delay: 0.2 }}
++          >
++            专业商务场景，提升职场印尼语沟通能力
++          </motion.p>
++        </BusinessHeader>
++
++        <TabContainer>
++          {tabs.map((tab) => (
++            <TabButton
++              key={tab.id}
++              active={activeTab === tab.id}
++              onClick={() => {
++                setActiveTab(tab.id);
++                setSelectedCategory(null);
++                setSelectedScenario(null);
++              }}
++            >
++              {tab.icon} {tab.label}
++            </TabButton>
++          ))}
++        </TabContainer>
++
++        <ContentPanel
++          key={activeTab}
++          initial={{ opacity: 0, y: 30 }}
++          animate={{ opacity: 1, y: 0 }}
++          transition={{ duration: 0.5 }}
++        >
++          <AnimatePresence mode="wait">
++            {renderContent()}
++          </AnimatePresence>
++        </ContentPanel>
++      </BusinessContent>
++    </BusinessContainer>
++  );
++};
++
++export default BusinessIndonesian; 
+\ No newline at end of file
+diff --git a/src/pages/Home.js b/src/pages/Home.js
+index b63d77e..c6a50aa 100644
+--- a/src/pages/Home.js
++++ b/src/pages/Home.js
+@@ -9,11 +9,27 @@ const HomeContainer = styled.div`
+   padding: 40px 20px;
+   max-width: 1200px;
+   margin: 0 auto;
++
++  @media (max-width: 768px) {
++    padding: 20px 15px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 15px 10px;
++  }
+ `;
+ 
+ const Hero = styled.div`
+   text-align: center;
+   margin-bottom: 60px;
++
++  @media (max-width: 768px) {
++    margin-bottom: 40px;
++  }
++
++  @media (max-width: 480px) {
++    margin-bottom: 30px;
++  }
+ `;
+ 
+ const HeroLogo = styled(motion.div)`
+@@ -22,6 +38,17 @@ const HeroLogo = styled(motion.div)`
+   justify-content: center;
+   gap: 20px;
+   margin-bottom: 30px;
++
++  @media (max-width: 768px) {
++    gap: 15px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    flex-direction: column;
++    gap: 15px;
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const LogoIcon = styled.div`
+@@ -35,6 +62,19 @@ const LogoIcon = styled.div`
+   border: 3px solid rgba(255, 255, 255, 0.2);
+   overflow: hidden;
+   background: white;
++
++  @media (max-width: 768px) {
++    width: 80px;
++    height: 80px;
++    border-radius: 16px;
++    border: 2px solid rgba(255, 255, 255, 0.2);
++  }
++
++  @media (max-width: 480px) {
++    width: 70px;
++    height: 70px;
++    border-radius: 14px;
++  }
+ `;
+ 
+ const LogoImage = styled.img`
+@@ -42,11 +82,23 @@ const LogoImage = styled.img`
+   height: 100%;
+   object-fit: contain;
+   border-radius: 17px;
++
++  @media (max-width: 768px) {
++    border-radius: 14px;
++  }
++
++  @media (max-width: 480px) {
++    border-radius: 12px;
++  }
+ `;
+ 
+ const LogoText = styled.div`
+   color: white;
+   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
++
++  @media (max-width: 480px) {
++    text-align: center;
++  }
+ `;
+ 
+ const LogoTitle = styled.h1`
+@@ -54,6 +106,15 @@ const LogoTitle = styled.h1`
+   font-weight: 700;
+   margin: 0;
+   margin-bottom: 5px;
++
++  @media (max-width: 768px) {
++    font-size: 32px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 28px;
++    margin-bottom: 3px;
++  }
+ `;
+ 
+ const LogoSubtitle = styled.div`
+@@ -61,6 +122,15 @@ const LogoSubtitle = styled.div`
+   opacity: 0.9;
+   font-weight: 500;
+   letter-spacing: 1px;
++
++  @media (max-width: 768px) {
++    font-size: 14px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 13px;
++    letter-spacing: 0.5px;
++  }
+ `;
+ 
+ const Title = styled.h1`
+@@ -69,6 +139,16 @@ const Title = styled.h1`
+   color: white;
+   margin-bottom: 20px;
+   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
++
++  @media (max-width: 768px) {
++    font-size: 36px;
++    margin-bottom: 15px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 28px;
++    margin-bottom: 12px;
++  }
+ `;
+ 
+ const Subtitle = styled.p`
+@@ -76,6 +156,17 @@ const Subtitle = styled.p`
+   color: rgba(255, 255, 255, 0.9);
+   margin-bottom: 40px;
+   text-shadow: 0 1px 5px rgba(0,0,0,0.2);
++
++  @media (max-width: 768px) {
++    font-size: 20px;
++    margin-bottom: 30px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 18px;
++    margin-bottom: 25px;
++    padding: 0 10px;
++  }
+ `;
+ 
+ const StatsGrid = styled.div`
+@@ -83,6 +174,18 @@ const StatsGrid = styled.div`
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   gap: 20px;
+   margin-bottom: 60px;
++
++  @media (max-width: 768px) {
++    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
++    gap: 15px;
++    margin-bottom: 40px;
++  }
++
++  @media (max-width: 480px) {
++    grid-template-columns: 1fr;
++    gap: 12px;
++    margin-bottom: 30px;
++  }
+ `;
+ 
+ const StatCard = styled(motion.div)`
+@@ -93,6 +196,16 @@ const StatCard = styled(motion.div)`
+   backdrop-filter: blur(10px);
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
++
++  @media (max-width: 768px) {
++    padding: 25px 20px;
++    border-radius: 16px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 20px 15px;
++    border-radius: 14px;
++  }
+ `;
+ 
+ const StatIcon = styled.div`
+@@ -100,6 +213,14 @@ const StatIcon = styled.div`
+   justify-content: center;
+   margin-bottom: 20px;
+   color: #667eea;
++
++  @media (max-width: 768px) {
++    margin-bottom: 15px;
++  }
++
++  @media (max-width: 480px) {
++    margin-bottom: 12px;
++  }
+ `;
+ 
+ const StatValue = styled.div`
+@@ -107,12 +228,30 @@ const StatValue = styled.div`
+   font-weight: 700;
+   color: #667eea;
+   margin-bottom: 10px;
++
++  @media (max-width: 768px) {
++    font-size: 28px;
++    margin-bottom: 8px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 24px;
++    margin-bottom: 6px;
++  }
+ `;
+ 
+ const StatLabel = styled.div`
+   font-size: 16px;
+   color: #666;
+   font-weight: 500;
++
++  @media (max-width: 768px) {
++    font-size: 15px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 14px;
++  }
+ `;
+ 
+ const FeaturesGrid = styled.div`
+@@ -120,6 +259,18 @@ const FeaturesGrid = styled.div`
+   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+   gap: 30px;
+   margin-bottom: 60px;
++
++  @media (max-width: 768px) {
++    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
++    gap: 20px;
++    margin-bottom: 40px;
++  }
++
++  @media (max-width: 480px) {
++    grid-template-columns: 1fr;
++    gap: 15px;
++    margin-bottom: 30px;
++  }
+ `;
+ 
+ const FeatureCard = styled(motion.div)`
+@@ -134,6 +285,26 @@ const FeatureCard = styled(motion.div)`
+     transform: translateY(-10px);
+     box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+   }
++
++  @media (max-width: 768px) {
++    padding: 30px 25px;
++    border-radius: 16px;
++
++    &:hover {
++      transform: translateY(-5px);
++      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
++    }
++  }
++
++  @media (max-width: 480px) {
++    padding: 25px 20px;
++    border-radius: 14px;
++
++    &:hover {
++      transform: translateY(-3px);
++      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
++    }
++  }
+ `;
+ 
+ const FeatureIcon = styled.div`
+@@ -146,6 +317,20 @@ const FeatureIcon = styled.div`
+   justify-content: center;
+   margin-bottom: 20px;
+   color: white;
++
++  @media (max-width: 768px) {
++    width: 50px;
++    height: 50px;
++    border-radius: 12px;
++    margin-bottom: 15px;
++  }
++
++  @media (max-width: 480px) {
++    width: 45px;
++    height: 45px;
++    border-radius: 10px;
++    margin-bottom: 12px;
++  }
+ `;
+ 
+ const FeatureTitle = styled.h3`
+@@ -153,6 +338,16 @@ const FeatureTitle = styled.h3`
+   font-weight: 600;
+   color: #333;
+   margin-bottom: 15px;
++
++  @media (max-width: 768px) {
++    font-size: 20px;
++    margin-bottom: 12px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 18px;
++    margin-bottom: 10px;
++  }
+ `;
+ 
+ const FeatureDescription = styled.p`
+@@ -160,6 +355,16 @@ const FeatureDescription = styled.p`
+   color: #666;
+   line-height: 1.6;
+   margin-bottom: 20px;
++
++  @media (max-width: 768px) {
++    font-size: 15px;
++    margin-bottom: 15px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 14px;
++    margin-bottom: 12px;
++  }
+ `;
+ 
+ const FeatureButton = styled(Link)`
+@@ -177,6 +382,20 @@ const FeatureButton = styled(Link)`
+     transform: translateY(-2px);
+     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+   }
++
++  @media (max-width: 768px) {
++    padding: 10px 20px;
++    font-size: 14px;
++    border-radius: 20px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 8px 16px;
++    font-size: 13px;
++    border-radius: 18px;
++    width: 100%;
++    justify-content: center;
++  }
+ `;
+ 
+ const ProgressSection = styled.div`
+@@ -185,6 +404,18 @@ const ProgressSection = styled.div`
+   padding: 40px;
+   margin-bottom: 60px;
+   backdrop-filter: blur(10px);
++
++  @media (max-width: 768px) {
++    padding: 30px 25px;
++    margin-bottom: 40px;
++    border-radius: 16px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 25px 20px;
++    margin-bottom: 30px;
++    border-radius: 14px;
++  }
+ `;
+ 
+ const ProgressTitle = styled.h2`
+@@ -193,12 +424,32 @@ const ProgressTitle = styled.h2`
+   color: #333;
+   margin-bottom: 30px;
+   text-align: center;
++
++  @media (max-width: 768px) {
++    font-size: 24px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 20px;
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const ProgressGrid = styled.div`
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 20px;
++
++  @media (max-width: 768px) {
++    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
++    gap: 15px;
++  }
++
++  @media (max-width: 480px) {
++    grid-template-columns: 1fr 1fr;
++    gap: 12px;
++  }
+ `;
+ 
+ const ProgressItem = styled.div`
+@@ -222,16 +473,68 @@ const ProgressFill = styled.div`
+   width: ${props => props.$width}%;
+ `;
+ 
+-const ProgressLabel = styled.div`
+-  font-size: 14px;
+-  color: #666;
+-  margin-bottom: 5px;
++const ProgressCard = styled.div`
++  background: #f8f9fa;
++  border-radius: 15px;
++  padding: 20px;
++  text-align: center;
++  border: 1px solid #e9ecef;
++
++  @media (max-width: 768px) {
++    padding: 15px;
++    border-radius: 12px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 12px;
++    border-radius: 10px;
++  }
+ `;
+ 
+-const ProgressValue = styled.div`
++const ProgressLabel = styled.h4`
+   font-size: 16px;
+   font-weight: 600;
++  color: #333;
++  margin-bottom: 10px;
++
++  @media (max-width: 768px) {
++    font-size: 15px;
++    margin-bottom: 8px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 14px;
++    margin-bottom: 6px;
++  }
++`;
++
++const ProgressValue = styled.div`
++  font-size: 24px;
++  font-weight: 700;
+   color: #667eea;
++  margin-bottom: 5px;
++
++  @media (max-width: 768px) {
++    font-size: 20px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 18px;
++  }
++`;
++
++const ProgressDescription = styled.p`
++  font-size: 14px;
++  color: #666;
++  margin: 0;
++
++  @media (max-width: 768px) {
++    font-size: 13px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 12px;
++  }
+ `;
+ 
+ const QuickActions = styled.div`
+@@ -263,73 +566,205 @@ const QuickActionButton = styled(Link)`
+   }
+ `;
+ 
+-const CommunitySection = styled(motion.div)`
++const CommunitySection = styled.div`
+   background: rgba(255, 255, 255, 0.95);
+   border-radius: 20px;
+   padding: 40px;
+-  margin: 60px auto 40px;
+-  max-width: 800px;
+-  backdrop-filter: blur(10px);
+-  border: 1px solid rgba(255, 255, 255, 0.2);
+-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+   text-align: center;
++  backdrop-filter: blur(10px);
++  border: 2px solid #25D366;
++
++  @media (max-width: 768px) {
++    padding: 30px 25px;
++    border-radius: 16px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 25px 20px;
++    border-radius: 14px;
++  }
++`;
++
++const CommunityContent = styled.div`
++  max-width: 600px;
++  margin: 0 auto;
++
++  @media (max-width: 768px) {
++    max-width: 100%;
++  }
++`;
++
++const CommunityImage = styled.img`
++  width: 120px;
++  height: 120px;
++  border-radius: 60px;
++  margin-bottom: 20px;
++  object-fit: cover;
++  border: 3px solid #25D366;
++
++  @media (max-width: 768px) {
++    width: 100px;
++    height: 100px;
++    border-radius: 50px;
++    margin-bottom: 15px;
++  }
++
++  @media (max-width: 480px) {
++    width: 80px;
++    height: 80px;
++    border-radius: 40px;
++    margin-bottom: 12px;
++  }
++`;
++
++const CommunityImageContainer = styled.div`
++  display: flex;
++  justify-content: center;
++  margin-bottom: 20px;
++
++  @media (max-width: 768px) {
++    margin-bottom: 15px;
++  }
++
++  @media (max-width: 480px) {
++    margin-bottom: 12px;
++  }
+ `;
+ 
+ const CommunityTitle = styled.h2`
+-  font-size: 32px;
++  font-size: 28px;
+   font-weight: 700;
+   color: #333;
+-  margin-bottom: 20px;
++  margin-bottom: 15px;
++
++  @media (max-width: 768px) {
++    font-size: 24px;
++    margin-bottom: 12px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 20px;
++    margin-bottom: 10px;
++  }
+ `;
+ 
+ const CommunitySubtitle = styled.p`
+   font-size: 18px;
+   color: #666;
+-  margin-bottom: 30px;
++  margin-bottom: 20px;
+   line-height: 1.6;
+-`;
+-
+-const CommunityImageContainer = styled.div`
+-  display: flex;
+-  justify-content: center;
+-  margin-bottom: 30px;
+-`;
+ 
+-const CommunityImage = styled.img`
+-  max-width: 100%;
+-  max-height: 300px;
+-  border-radius: 15px;
+-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+-  transition: transform 0.3s ease;
++  @media (max-width: 768px) {
++    font-size: 16px;
++    margin-bottom: 15px;
++  }
+ 
+-  &:hover {
+-    transform: scale(1.02);
++  @media (max-width: 480px) {
++    font-size: 14px;
++    margin-bottom: 12px;
++    padding: 0 10px;
+   }
+ `;
+ 
+-const JoinButton = styled.button`
+-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
++const JoinButton = styled.a`
++  display: inline-flex;
++  align-items: center;
++  justify-content: center;
++  padding: 16px 32px;
++  background: #25D366;
+   color: white;
+-  border: none;
+-  border-radius: 25px;
+-  padding: 16px 40px;
++  text-decoration: none;
++  border-radius: 50px;
+   font-size: 18px;
+   font-weight: 600;
+-  cursor: pointer;
+-  transition: all 0.3s ease;
+-  display: inline-flex;
+-  align-items: center;
+   gap: 12px;
+-  text-decoration: none;
++  transition: all 0.3s ease;
++  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+ 
+   &:hover {
++    background: #128C7E;
+     transform: translateY(-2px);
+-    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
++    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
++  }
++
++  @media (max-width: 768px) {
++    padding: 14px 28px;
++    font-size: 16px;
++    gap: 10px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 12px 24px;
++    font-size: 14px;
++    gap: 8px;
++    width: 100%;
++    max-width: 280px;
+   }
+ `;
+ 
+ const WhatsAppIcon = styled.span`
+-  font-size: 24px;
++  font-size: 20px;
++
++  @media (max-width: 768px) {
++    font-size: 18px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 16px;
++  }
++`;
++
++const BenefitsList = styled.div`
++  display: grid;
++  grid-template-columns: 1fr 1fr;
++  gap: 15px;
++  margin: 25px 0;
++  text-align: left;
++
++  @media (max-width: 768px) {
++    gap: 12px;
++    margin: 20px 0;
++  }
++
++  @media (max-width: 480px) {
++    grid-template-columns: 1fr;
++    gap: 10px;
++    margin: 15px 0;
++  }
++`;
++
++const BenefitItem = styled.div`
++  display: flex;
++  align-items: center;
++  gap: 10px;
++  color: #333;
++  font-size: 16px;
++
++  @media (max-width: 768px) {
++    font-size: 15px;
++    gap: 8px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 14px;
++    gap: 6px;
++    justify-content: center;
++  }
++
++  &::before {
++    content: '✓';
++    color: #25D366;
++    font-weight: bold;
++    font-size: 18px;
++
++    @media (max-width: 768px) {
++      font-size: 16px;
++    }
++
++    @media (max-width: 480px) {
++      font-size: 14px;
++    }
++  }
+ `;
+ 
+ function Home() {
+@@ -391,7 +826,7 @@ function Home() {
+         learned: (learnedWords / totalWords) * 100,
+         mastered: (masteredWords / totalWords) * 100
+       };
+-    });
++    }).filter(category => category.learned < 100); // 过滤掉已完全掌握的类别
+ 
+     setCategoryProgress(progress);
+   }, []);
+@@ -557,27 +992,31 @@ function Home() {
+         </QuickActionButton>
+       </QuickActions>
+ 
+-      <CommunitySection
+-        initial={{ opacity: 0, y: 50 }}
+-        animate={{ opacity: 1, y: 0 }}
+-        transition={{ duration: 0.8, ease: "easeOut" }}
+-      >
+-        <CommunityTitle>
+-          🌐 印尼语学习交流社群 | Komunitas Belajar Bahasa Indonesia
+-        </CommunityTitle>
+-        <CommunitySubtitle>
+-          与全球印尼语学习者交流经验，分享学习资源，获取最新学习动态<br/>
+-          <em style={{ color: '#667eea', fontSize: '16px' }}>
+-            Bergabunglah dengan pelajar bahasa Indonesia dari seluruh dunia, berbagi pengalaman dan sumber belajar
+-          </em>
+-        </CommunitySubtitle>
+-        <CommunityImageContainer>
+-          <CommunityImage src="/whatsapp-group.jpg" alt="WhatsApp Indonesian Learning Community" />
+-        </CommunityImageContainer>
+-        <JoinButton as="a" href="https://chat.whatsapp.com/DhyJ8M3sopvHsk02vDOzU1" target="_blank" rel="noopener noreferrer">
+-          <WhatsAppIcon>📱</WhatsAppIcon>
+-          加入WhatsApp社群 | Gabung Grup WhatsApp
+-        </JoinButton>
++      <CommunitySection>
++        <CommunityContent>
++          <CommunityTitle>
++            🌐 印尼语学习交流社群 | Komunitas Belajar Bahasa Indonesia
++          </CommunityTitle>
++          <CommunitySubtitle>
++            与全球印尼语学习者交流经验，分享学习资源，获取最新学习动态<br/>
++            <em style={{ color: '#667eea', fontSize: '16px' }}>
++              Bergabunglah dengan pelajar bahasa Indonesia dari seluruh dunia, berbagi pengalaman dan sumber belajar
++            </em>
++          </CommunitySubtitle>
++          <CommunityImageContainer style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '32px', marginBottom: 16 }}>
++            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
++              <CommunityImage src="/wechat.jpg" alt="微信群二维码" style={{ width: 180, height: 180, borderRadius: 16, border: '3px solid #09bb07', boxShadow: '0 4px 16px #09bb0733' }} />
++              <div style={{ marginTop: 8, fontWeight: 'bold', fontSize: 18, color: '#09bb07' }}>加入微信群</div>
++            </div>
++            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
++              <CommunityImage src="/whatsapp-group.jpg" alt="WhatsApp Indonesian Learning Community" style={{ width: 120, height: 120, borderRadius: 12, border: '2px solid #25d366', boxShadow: '0 2px 8px #25d36633' }} />
++              <JoinButton as="a" href="https://chat.whatsapp.com/DhyJ8M3sopvHsk02vDOzU1" target="_blank" rel="noopener noreferrer" style={{ marginTop: 8 }}>
++                <WhatsAppIcon>📱</WhatsAppIcon>
++                加入WhatsApp社群
++              </JoinButton>
++            </div>
++          </CommunityImageContainer>
++        </CommunityContent>
+       </CommunitySection>
+     </HomeContainer>
+   );
+diff --git a/src/pages/Quiz.js b/src/pages/Quiz.js
+index dcaa2f8..7cb2e5e 100644
+--- a/src/pages/Quiz.js
++++ b/src/pages/Quiz.js
+@@ -9,6 +9,15 @@ const QuizContainer = styled.div`
+   padding: 40px 20px;
+   max-width: 800px;
+   margin: 0 auto;
++
++  @media (max-width: 768px) {
++    padding: 20px 15px;
++    max-width: 100%;
++  }
++
++  @media (max-width: 480px) {
++    padding: 15px 10px;
++  }
+ `;
+ 
+ const Title = styled.h1`
+@@ -18,6 +27,16 @@ const Title = styled.h1`
+   text-align: center;
+   margin-bottom: 40px;
+   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
++
++  @media (max-width: 768px) {
++    font-size: 28px;
++    margin-bottom: 30px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 24px;
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const StatsContainer = styled.div`
+@@ -26,6 +45,16 @@ const StatsContainer = styled.div`
+   gap: 20px;
+   margin-bottom: 30px;
+   flex-wrap: wrap;
++
++  @media (max-width: 768px) {
++    gap: 15px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    gap: 10px;
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const StatCard = styled.div`
+@@ -35,18 +64,45 @@ const StatCard = styled.div`
+   text-align: center;
+   backdrop-filter: blur(10px);
+   border: 1px solid rgba(255, 255, 255, 0.2);
++
++  @media (max-width: 768px) {
++    padding: 12px 16px;
++    border-radius: 12px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 10px 14px;
++    border-radius: 10px;
++    min-width: 80px;
++  }
+ `;
+ 
+ const StatValue = styled.div`
+   font-size: 20px;
+   font-weight: 700;
+   color: #667eea;
++
++  @media (max-width: 768px) {
++    font-size: 18px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 16px;
++  }
+ `;
+ 
+ const StatLabel = styled.div`
+   font-size: 12px;
+   color: #666;
+   margin-top: 5px;
++
++  @media (max-width: 768px) {
++    font-size: 11px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 10px;
++  }
+ `;
+ 
+ const QuizSetup = styled.div`
+@@ -55,6 +111,18 @@ const QuizSetup = styled.div`
+   padding: 40px;
+   margin-bottom: 30px;
+   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
++
++  @media (max-width: 768px) {
++    padding: 30px 25px;
++    border-radius: 16px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 25px 20px;
++    border-radius: 14px;
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const SetupTitle = styled.h2`
+@@ -63,10 +131,28 @@ const SetupTitle = styled.h2`
+   color: #333;
+   text-align: center;
+   margin-bottom: 30px;
++
++  @media (max-width: 768px) {
++    font-size: 20px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 18px;
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const OptionGroup = styled.div`
+   margin-bottom: 30px;
++
++  @media (max-width: 768px) {
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const OptionLabel = styled.label`
+@@ -75,12 +161,30 @@ const OptionLabel = styled.label`
+   font-weight: 600;
+   color: #333;
+   margin-bottom: 15px;
++
++  @media (max-width: 768px) {
++    font-size: 15px;
++    margin-bottom: 12px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 14px;
++    margin-bottom: 10px;
++  }
+ `;
+ 
+ const OptionButtons = styled.div`
+   display: flex;
+   gap: 10px;
+   flex-wrap: wrap;
++
++  @media (max-width: 768px) {
++    gap: 8px;
++  }
++
++  @media (max-width: 480px) {
++    gap: 6px;
++  }
+ `;
+ 
+ const OptionButton = styled.button`
+@@ -97,6 +201,20 @@ const OptionButton = styled.button`
+     border-color: #667eea;
+     background: ${props => props.$active ? '#667eea' : 'rgba(102, 126, 234, 0.1)'};
+   }
++
++  @media (max-width: 768px) {
++    padding: 10px 16px;
++    font-size: 14px;
++    border-radius: 20px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 8px 12px;
++    font-size: 13px;
++    border-radius: 18px;
++    flex: 1;
++    min-width: 0;
++  }
+ `;
+ 
+ const StartButton = styled.button`
+@@ -115,6 +233,18 @@ const StartButton = styled.button`
+     transform: translateY(-2px);
+     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+   }
++
++  @media (max-width: 768px) {
++    padding: 14px;
++    font-size: 16px;
++    border-radius: 20px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 12px;
++    font-size: 15px;
++    border-radius: 18px;
++  }
+ `;
+ 
+ const QuizCard = styled(motion.div)`
+@@ -123,12 +253,34 @@ const QuizCard = styled(motion.div)`
+   padding: 40px;
+   margin-bottom: 30px;
+   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
++
++  @media (max-width: 768px) {
++    padding: 30px 25px;
++    border-radius: 16px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 25px 20px;
++    border-radius: 14px;
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const QuestionNumber = styled.div`
+   font-size: 14px;
+   color: #666;
+   margin-bottom: 20px;
++
++  @media (max-width: 768px) {
++    font-size: 13px;
++    margin-bottom: 15px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 12px;
++    margin-bottom: 12px;
++  }
+ `;
+ 
+ const Question = styled.h2`
+@@ -136,12 +288,32 @@ const Question = styled.h2`
+   font-weight: 700;
+   color: #333;
+   margin-bottom: 30px;
++
++  @media (max-width: 768px) {
++    font-size: 26px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 22px;
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const OptionsContainer = styled.div`
+   display: grid;
+   gap: 15px;
+   margin-bottom: 30px;
++
++  @media (max-width: 768px) {
++    gap: 12px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    gap: 10px;
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const AnswerOption = styled.button`
+@@ -178,6 +350,23 @@ const AnswerOption = styled.button`
+   &:disabled {
+     cursor: not-allowed;
+   }
++
++  @media (max-width: 768px) {
++    padding: 14px 16px;
++    font-size: 15px;
++    border-radius: 12px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 12px 14px;
++    font-size: 14px;
++    border-radius: 10px;
++
++    &:hover {
++      transform: translateY(-1px);
++      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
++    }
++  }
+ `;
+ 
+ const AnswerIcon = styled.div`
+@@ -185,6 +374,10 @@ const AnswerIcon = styled.div`
+   right: 16px;
+   top: 50%;
+   transform: translateY(-50%);
++
++  @media (max-width: 480px) {
++    right: 14px;
++  }
+ `;
+ 
+ const ProgressBar = styled.div`
+@@ -194,6 +387,16 @@ const ProgressBar = styled.div`
+   border-radius: 4px;
+   overflow: hidden;
+   margin-bottom: 20px;
++
++  @media (max-width: 768px) {
++    height: 6px;
++    margin-bottom: 15px;
++  }
++
++  @media (max-width: 480px) {
++    height: 5px;
++    margin-bottom: 12px;
++  }
+ `;
+ 
+ const Progress = styled.div`
+@@ -212,6 +415,18 @@ const Timer = styled.div`
+   color: #666;
+   font-size: 16px;
+   margin-bottom: 20px;
++
++  @media (max-width: 768px) {
++    font-size: 15px;
++    margin-bottom: 15px;
++    gap: 8px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 14px;
++    margin-bottom: 12px;
++    gap: 6px;
++  }
+ `;
+ 
+ const Controls = styled.div`
+@@ -226,6 +441,22 @@ const Controls = styled.div`
+   backdrop-filter: blur(10px);
+   border-radius: 15px;
+   margin-top: 20px;
++
++  @media (max-width: 768px) {
++    gap: 15px;
++    padding: 15px 0;
++    border-radius: 12px;
++    margin-top: 15px;
++    bottom: 15px;
++  }
++
++  @media (max-width: 480px) {
++    gap: 10px;
++    padding: 12px 10px;
++    border-radius: 10px;
++    margin-top: 12px;
++    bottom: 10px;
++  }
+ `;
+ 
+ const ControlButton = styled.button`
+@@ -255,6 +486,22 @@ const ControlButton = styled.button`
+     transform: none;
+     background: #ccc;
+   }
++
++  @media (max-width: 768px) {
++    padding: 14px 28px;
++    font-size: 15px;
++    min-width: 100px;
++    border-radius: 20px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 12px 24px;
++    font-size: 14px;
++    min-width: 80px;
++    border-radius: 18px;
++    flex: 1;
++    max-width: 140px;
++  }
+ `;
+ 
+ const ResultCard = styled.div`
+@@ -263,6 +510,16 @@ const ResultCard = styled.div`
+   padding: 40px;
+   text-align: center;
+   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
++
++  @media (max-width: 768px) {
++    padding: 30px 25px;
++    border-radius: 16px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 25px 20px;
++    border-radius: 14px;
++  }
+ `;
+ 
+ const ResultTitle = styled.h2`
+@@ -270,6 +527,16 @@ const ResultTitle = styled.h2`
+   font-weight: 700;
+   color: #333;
+   margin-bottom: 20px;
++
++  @media (max-width: 768px) {
++    font-size: 26px;
++    margin-bottom: 16px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 22px;
++    margin-bottom: 14px;
++  }
+ `;
+ 
+ const ScoreDisplay = styled.div`
+@@ -277,6 +544,16 @@ const ScoreDisplay = styled.div`
+   font-weight: 700;
+   color: #667eea;
+   margin-bottom: 30px;
++
++  @media (max-width: 768px) {
++    font-size: 40px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 32px;
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const ResultStats = styled.div`
+@@ -284,6 +561,18 @@ const ResultStats = styled.div`
+   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+   gap: 20px;
+   margin-bottom: 30px;
++
++  @media (max-width: 768px) {
++    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
++    gap: 15px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    grid-template-columns: 1fr 1fr;
++    gap: 12px;
++    margin-bottom: 20px;
++  }
+ `;
+ 
+ const ResultStat = styled.div`
+@@ -294,12 +583,28 @@ const ResultStatValue = styled.div`
+   font-size: 24px;
+   font-weight: 700;
+   color: #667eea;
++
++  @media (max-width: 768px) {
++    font-size: 20px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 18px;
++  }
+ `;
+ 
+ const ResultStatLabel = styled.div`
+   font-size: 14px;
+   color: #666;
+   margin-top: 5px;
++
++  @media (max-width: 768px) {
++    font-size: 13px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 12px;
++  }
+ `;
+ 
+ function Quiz() {
+@@ -498,6 +803,19 @@ function Quiz() {
+     // 保存测验结果
+     LocalDatabase.saveQuizResult(quizResult);
+     
++    // 处理生词本 - 将答题结果转换为生词本需要的格式
++    const vocabularyBookResults = finalAnswers.map((answer, index) => {
++      const question = questions[index];
++      return {
++        categoryIndex: question.categoryIndex,
++        wordIndex: question.wordIndex,
++        isCorrect: answer.isCorrect
++      };
++    });
++    
++    // 自动管理生词本
++    LocalDatabase.processQuizResultForVocabularyBook(vocabularyBookResults);
++    
+     setQuizState('result');
+   };
+ 
+diff --git a/src/pages/VocabularyBook.js b/src/pages/VocabularyBook.js
+new file mode 100644
+index 0000000..f439f99
+--- /dev/null
++++ b/src/pages/VocabularyBook.js
+@@ -0,0 +1,889 @@
++import React, { useState, useEffect } from 'react';
++import styled from 'styled-components';
++import { motion, AnimatePresence } from 'framer-motion';
++import { BookOpen, TrendingUp, Clock, Target, Play, X, CheckCircle, AlertCircle } from 'lucide-react';
++import LocalDatabase from '../utils/database';
++import { vocabularyData } from '../data/vocabulary';
++
++const VocabularyBookContainer = styled.div`
++  padding: 40px 20px;
++  max-width: 1200px;
++  margin: 0 auto;
++
++  @media (max-width: 768px) {
++    padding: 20px 15px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 15px 10px;
++  }
++`;
++
++const Header = styled.div`
++  text-align: center;
++  margin-bottom: 40px;
++
++  @media (max-width: 768px) {
++    margin-bottom: 30px;
++  }
++
++  @media (max-width: 480px) {
++    margin-bottom: 25px;
++  }
++`;
++
++const Title = styled.h1`
++  font-size: 36px;
++  font-weight: 700;
++  color: white;
++  margin-bottom: 10px;
++  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
++
++  @media (max-width: 768px) {
++    font-size: 28px;
++    margin-bottom: 8px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 24px;
++    margin-bottom: 6px;
++  }
++`;
++
++const Subtitle = styled.p`
++  font-size: 18px;
++  color: rgba(255, 255, 255, 0.8);
++  text-shadow: 0 1px 5px rgba(0,0,0,0.2);
++
++  @media (max-width: 768px) {
++    font-size: 16px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 14px;
++    padding: 0 10px;
++  }
++`;
++
++const StatsGrid = styled.div`
++  display: grid;
++  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
++  gap: 20px;
++  margin-bottom: 40px;
++
++  @media (max-width: 768px) {
++    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
++    gap: 15px;
++    margin-bottom: 30px;
++  }
++
++  @media (max-width: 480px) {
++    grid-template-columns: 1fr 1fr;
++    gap: 12px;
++    margin-bottom: 25px;
++  }
++`;
++
++const StatCard = styled(motion.div)`
++  background: rgba(255, 255, 255, 0.95);
++  border-radius: 15px;
++  padding: 20px;
++  text-align: center;
++  backdrop-filter: blur(10px);
++  border: 1px solid rgba(255, 255, 255, 0.2);
++  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
++
++  @media (max-width: 768px) {
++    padding: 16px;
++    border-radius: 12px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 14px 12px;
++    border-radius: 10px;
++  }
++`;
++
++const StatIcon = styled.div`
++  display: flex;
++  justify-content: center;
++  margin-bottom: 15px;
++  color: #667eea;
++
++  @media (max-width: 768px) {
++    margin-bottom: 12px;
++  }
++
++  @media (max-width: 480px) {
++    margin-bottom: 10px;
++  }
++`;
++
++const StatValue = styled.div`
++  font-size: 28px;
++  font-weight: 700;
++  color: #667eea;
++  margin-bottom: 5px;
++
++  @media (max-width: 768px) {
++    font-size: 24px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 20px;
++  }
++`;
++
++const StatLabel = styled.div`
++  font-size: 14px;
++  color: #666;
++  font-weight: 500;
++
++  @media (max-width: 768px) {
++    font-size: 13px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 12px;
++  }
++`;
++
++const TabContainer = styled.div`
++  display: flex;
++  gap: 10px;
++  margin-bottom: 30px;
++  justify-content: center;
++
++  @media (max-width: 768px) {
++    gap: 8px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    gap: 6px;
++    margin-bottom: 20px;
++    flex-wrap: wrap;
++  }
++`;
++
++const Tab = styled.button`
++  padding: 12px 24px;
++  border: none;
++  border-radius: 25px;
++  background: ${props => props.$active ? '#667eea' : 'rgba(255, 255, 255, 0.8)'};
++  color: ${props => props.$active ? 'white' : '#667eea'};
++  font-weight: 600;
++  cursor: pointer;
++  transition: all 0.3s ease;
++
++  &:hover {
++    background: ${props => props.$active ? '#667eea' : '#667eea'};
++    color: white;
++    transform: translateY(-2px);
++  }
++
++  @media (max-width: 768px) {
++    padding: 10px 20px;
++    font-size: 14px;
++    border-radius: 20px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 8px 16px;
++    font-size: 13px;
++    border-radius: 18px;
++    flex: 1;
++    min-width: 80px;
++  }
++`;
++
++const WordGrid = styled.div`
++  display: grid;
++  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
++  gap: 20px;
++  margin-bottom: 40px;
++
++  @media (max-width: 768px) {
++    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
++    gap: 15px;
++    margin-bottom: 30px;
++  }
++
++  @media (max-width: 480px) {
++    grid-template-columns: 1fr;
++    gap: 12px;
++    margin-bottom: 25px;
++  }
++`;
++
++const WordCard = styled(motion.div)`
++  background: white;
++  border-radius: 15px;
++  padding: 20px;
++  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
++  border: 1px solid rgba(102, 126, 234, 0.1);
++  position: relative;
++  overflow: hidden;
++
++  @media (max-width: 768px) {
++    padding: 16px;
++    border-radius: 12px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 14px;
++    border-radius: 10px;
++  }
++`;
++
++const WordHeader = styled.div`
++  display: flex;
++  justify-content: space-between;
++  align-items: flex-start;
++  margin-bottom: 15px;
++
++  @media (max-width: 768px) {
++    margin-bottom: 12px;
++  }
++
++  @media (max-width: 480px) {
++    margin-bottom: 10px;
++    flex-direction: column;
++    gap: 10px;
++  }
++`;
++
++const WordInfo = styled.div`
++  flex: 1;
++
++  @media (max-width: 480px) {
++    width: 100%;
++  }
++`;
++
++const WordIndonesian = styled.h3`
++  font-size: 20px;
++  font-weight: 700;
++  color: #333;
++  margin-bottom: 5px;
++
++  @media (max-width: 768px) {
++    font-size: 18px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 16px;
++    margin-bottom: 4px;
++  }
++`;
++
++const WordChinese = styled.p`
++  font-size: 16px;
++  color: #666;
++  margin-bottom: 10px;
++
++  @media (max-width: 768px) {
++    font-size: 15px;
++    margin-bottom: 8px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 14px;
++    margin-bottom: 6px;
++  }
++`;
++
++const WordCategory = styled.span`
++  font-size: 12px;
++  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
++  color: white;
++  padding: 4px 8px;
++  border-radius: 10px;
++  font-weight: 500;
++
++  @media (max-width: 768px) {
++    font-size: 11px;
++    padding: 3px 6px;
++    border-radius: 8px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 10px;
++    padding: 2px 5px;
++    border-radius: 6px;
++  }
++`;
++
++const WordStats = styled.div`
++  display: flex;
++  gap: 15px;
++  margin-top: 15px;
++  padding-top: 15px;
++  border-top: 1px solid #f0f0f0;
++
++  @media (max-width: 768px) {
++    gap: 12px;
++    margin-top: 12px;
++    padding-top: 12px;
++  }
++
++  @media (max-width: 480px) {
++    gap: 10px;
++    margin-top: 10px;
++    padding-top: 10px;
++  }
++`;
++
++const WordStat = styled.div`
++  text-align: center;
++  flex: 1;
++`;
++
++const WordStatValue = styled.div`
++  font-size: 18px;
++  font-weight: 700;
++  color: ${props => props.$color || '#667eea'};
++  margin-bottom: 2px;
++
++  @media (max-width: 768px) {
++    font-size: 16px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 14px;
++  }
++`;
++
++const WordStatLabel = styled.div`
++  font-size: 12px;
++  color: #666;
++
++  @media (max-width: 768px) {
++    font-size: 11px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 10px;
++  }
++`;
++
++const ActionButton = styled.button`
++  background: ${props => props.$danger ? '#ff4757' : '#667eea'};
++  color: white;
++  border: none;
++  border-radius: 10px;
++  padding: 8px 12px;
++  cursor: pointer;
++  transition: all 0.3s ease;
++  display: flex;
++  align-items: center;
++  gap: 5px;
++  font-size: 12px;
++
++  &:hover {
++    transform: translateY(-2px);
++    box-shadow: 0 5px 15px ${props => props.$danger ? 'rgba(255, 71, 87, 0.3)' : 'rgba(102, 126, 234, 0.3)'};
++  }
++
++  @media (max-width: 768px) {
++    padding: 6px 10px;
++    font-size: 11px;
++    border-radius: 8px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 5px 8px;
++    font-size: 10px;
++    border-radius: 6px;
++    align-self: flex-start;
++  }
++`;
++
++const EmptyState = styled.div`
++  text-align: center;
++  padding: 60px 20px;
++  background: rgba(255, 255, 255, 0.95);
++  border-radius: 20px;
++  backdrop-filter: blur(10px);
++
++  @media (max-width: 768px) {
++    padding: 40px 16px;
++    border-radius: 16px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 30px 12px;
++    border-radius: 14px;
++  }
++`;
++
++const EmptyIcon = styled.div`
++  font-size: 64px;
++  margin-bottom: 20px;
++  opacity: 0.5;
++
++  @media (max-width: 768px) {
++    font-size: 48px;
++    margin-bottom: 16px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 40px;
++    margin-bottom: 12px;
++  }
++`;
++
++const EmptyTitle = styled.h3`
++  font-size: 24px;
++  color: #333;
++  margin-bottom: 10px;
++
++  @media (max-width: 768px) {
++    font-size: 20px;
++    margin-bottom: 8px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 18px;
++    margin-bottom: 6px;
++  }
++`;
++
++const EmptyDescription = styled.p`
++  font-size: 16px;
++  color: #666;
++  margin-bottom: 30px;
++
++  @media (max-width: 768px) {
++    font-size: 15px;
++    margin-bottom: 25px;
++  }
++
++  @media (max-width: 480px) {
++    font-size: 14px;
++    margin-bottom: 20px;
++    padding: 0 10px;
++  }
++`;
++
++const StartButton = styled.button`
++  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
++  color: white;
++  border: none;
++  border-radius: 25px;
++  padding: 16px 32px;
++  font-size: 16px;
++  font-weight: 600;
++  cursor: pointer;
++  transition: all 0.3s ease;
++
++  &:hover {
++    transform: translateY(-2px);
++    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
++  }
++
++  @media (max-width: 768px) {
++    padding: 14px 28px;
++    font-size: 15px;
++    border-radius: 20px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 12px 24px;
++    font-size: 14px;
++    border-radius: 18px;
++    width: 100%;
++    max-width: 200px;
++  }
++`;
++
++const ReviewModal = styled(motion.div)`
++  position: fixed;
++  top: 0;
++  left: 0;
++  right: 0;
++  bottom: 0;
++  background: rgba(0, 0, 0, 0.8);
++  display: flex;
++  align-items: center;
++  justify-content: center;
++  z-index: 1000;
++  padding: 20px;
++
++  @media (max-width: 480px) {
++    padding: 10px;
++  }
++`;
++
++const ModalContent = styled(motion.div)`
++  background: white;
++  border-radius: 20px;
++  padding: 40px;
++  max-width: 500px;
++  width: 100%;
++  text-align: center;
++  position: relative;
++
++  @media (max-width: 768px) {
++    padding: 30px 25px;
++    border-radius: 16px;
++  }
++
++  @media (max-width: 480px) {
++    padding: 25px 20px;
++    border-radius: 14px;
++    margin: 10px;
++  }
++`;
++
++const CloseButton = styled.button`
++  position: absolute;
++  top: 15px;
++  right: 15px;
++  background: none;
++  border: none;
++  font-size: 24px;
++  cursor: pointer;
++  color: #666;
++  padding: 5px;
++  border-radius: 50%;
++  transition: all 0.3s ease;
++
++  &:hover {
++    background: #f0f0f0;
++    color: #333;
++  }
++
++  @media (max-width: 480px) {
++    top: 12px;
++    right: 12px;
++    font-size: 20px;
++    padding: 4px;
++  }
++`;
++
++function VocabularyBook() {
++  const [activeTab, setActiveTab] = useState('all');
++  const [vocabularyBook, setVocabularyBook] = useState({});
++  const [stats, setStats] = useState({});
++  const [wordsToReview, setWordsToReview] = useState([]);
++  const [isReviewMode, setIsReviewMode] = useState(false);
++  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
++
++  useEffect(() => {
++    loadVocabularyBookData();
++  }, []);
++
++  const loadVocabularyBookData = () => {
++    const bookData = LocalDatabase.getVocabularyBook();
++    const statsData = LocalDatabase.getVocabularyBookStats();
++    const reviewWords = LocalDatabase.getWordsToReview(20);
++    
++    setVocabularyBook(bookData);
++    setStats(statsData);
++    setWordsToReview(reviewWords);
++  };
++
++  const removeFromBook = (categoryIndex, wordIndex) => {
++    LocalDatabase.removeFromVocabularyBook(categoryIndex, wordIndex);
++    loadVocabularyBookData();
++  };
++
++  const startReview = () => {
++    if (wordsToReview.length > 0) {
++      setCurrentReviewIndex(0);
++      setIsReviewMode(true);
++    }
++  };
++
++  const closeReview = () => {
++    setIsReviewMode(false);
++    setCurrentReviewIndex(0);
++    loadVocabularyBookData();
++  };
++
++  const nextReviewWord = () => {
++    if (currentReviewIndex < wordsToReview.length - 1) {
++      setCurrentReviewIndex(currentReviewIndex + 1);
++    } else {
++      closeReview();
++    }
++  };
++
++  const markAsCorrect = () => {
++    const word = wordsToReview[currentReviewIndex];
++    LocalDatabase.updateVocabularyBookWord(word.categoryIndex, word.wordIndex, true);
++    nextReviewWord();
++  };
++
++  const markAsIncorrect = () => {
++    const word = wordsToReview[currentReviewIndex];
++    LocalDatabase.updateVocabularyBookWord(word.categoryIndex, word.wordIndex, false);
++    nextReviewWord();
++  };
++
++  const getWordsToDisplay = () => {
++    const words = [];
++    
++    Object.keys(vocabularyBook).forEach(categoryIndex => {
++      const categoryWords = vocabularyBook[categoryIndex];
++      const category = vocabularyData[parseInt(categoryIndex)];
++      
++      if (!category) return;
++      
++      Object.keys(categoryWords).forEach(wordIndex => {
++        const wordData = categoryWords[wordIndex];
++        const word = category.words[parseInt(wordIndex)];
++        
++        if (!word) return;
++        
++        const shouldShow = activeTab === 'all' || 
++          (activeTab === 'difficult' && wordData.incorrectCount >= 3) ||
++          (activeTab === 'recent' && 
++            new Date() - new Date(wordData.addedDate) <= 7 * 24 * 60 * 60 * 1000);
++        
++        if (shouldShow) {
++          words.push({
++            ...word,
++            categoryIndex: parseInt(categoryIndex),
++            wordIndex: parseInt(wordIndex),
++            categoryName: category.category,
++            ...wordData
++          });
++        }
++      });
++    });
++    
++    return words.sort((a, b) => b.incorrectCount - a.incorrectCount);
++  };
++
++  const getCurrentReviewWord = () => {
++    if (!isReviewMode || currentReviewIndex >= wordsToReview.length) return null;
++    
++    const reviewWord = wordsToReview[currentReviewIndex];
++    const category = vocabularyData[reviewWord.categoryIndex];
++    const word = category?.words[reviewWord.wordIndex];
++    
++    return word ? { ...word, categoryName: category.category } : null;
++  };
++
++  const wordsToDisplay = getWordsToDisplay();
++  const currentWord = getCurrentReviewWord();
++
++  return (
++    <VocabularyBookContainer>
++      <Header>
++        <Title>📚 我的生词本</Title>
++        <Subtitle>复习错误词汇，提升学习效果</Subtitle>
++      </Header>
++
++      <StatsGrid>
++        <StatCard
++          initial={{ opacity: 0, y: 20 }}
++          animate={{ opacity: 1, y: 0 }}
++          transition={{ delay: 0.1 }}
++        >
++          <StatIcon>
++            <BookOpen size={30} />
++          </StatIcon>
++          <StatValue>{stats.totalWords || 0}</StatValue>
++          <StatLabel>生词总数</StatLabel>
++        </StatCard>
++
++        <StatCard
++          initial={{ opacity: 0, y: 20 }}
++          animate={{ opacity: 1, y: 0 }}
++          transition={{ delay: 0.2 }}
++        >
++          <StatIcon>
++            <TrendingUp size={30} />
++          </StatIcon>
++          <StatValue>{stats.totalReviews || 0}</StatValue>
++          <StatLabel>复习次数</StatLabel>
++        </StatCard>
++
++        <StatCard
++          initial={{ opacity: 0, y: 20 }}
++          animate={{ opacity: 1, y: 0 }}
++          transition={{ delay: 0.3 }}
++        >
++          <StatIcon>
++            <Target size={30} />
++          </StatIcon>
++          <StatValue>{stats.averageReviewsPerWord || 0}</StatValue>
++          <StatLabel>平均复习次数</StatLabel>
++        </StatCard>
++
++        <StatCard
++          initial={{ opacity: 0, y: 20 }}
++          animate={{ opacity: 1, y: 0 }}
++          transition={{ delay: 0.4 }}
++        >
++          <StatIcon>
++            <Clock size={30} />
++          </StatIcon>
++          <StatValue>{wordsToReview.length}</StatValue>
++          <StatLabel>需要复习</StatLabel>
++        </StatCard>
++      </StatsGrid>
++
++      {wordsToReview.length > 0 && (
++        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
++          <StartButton onClick={startReview}>
++            <Play size={16} style={{ marginRight: '8px' }} />
++            开始复习 ({wordsToReview.length} 个单词)
++          </StartButton>
++        </div>
++      )}
++
++      <TabContainer>
++        <Tab $active={activeTab === 'all'} onClick={() => setActiveTab('all')}>
++          全部生词
++        </Tab>
++        <Tab $active={activeTab === 'difficult'} onClick={() => setActiveTab('difficult')}>
++          困难词汇
++        </Tab>
++        <Tab $active={activeTab === 'recent'} onClick={() => setActiveTab('recent')}>
++          最近添加
++        </Tab>
++      </TabContainer>
++
++      {wordsToDisplay.length === 0 ? (
++        <EmptyState>
++          <EmptyIcon>🎉</EmptyIcon>
++          <EmptyTitle>
++            {activeTab === 'all' ? '生词本是空的' : 
++             activeTab === 'difficult' ? '没有困难词汇' : '最近没有新增生词'}
++          </EmptyTitle>
++          <EmptyDescription>
++            {activeTab === 'all' ? 
++              '太棒了！你还没有生词，继续保持！去做一些测验来挑战自己吧。' :
++              activeTab === 'difficult' ?
++              '很好！你没有特别困难的词汇，学习效果不错！' :
++              '最近7天内没有新增生词，继续努力学习吧！'
++            }
++          </EmptyDescription>
++          {activeTab === 'all' && (
++            <StartButton as="a" href="/quiz">
++              去做测验
++            </StartButton>
++          )}
++        </EmptyState>
++      ) : (
++        <WordGrid>
++          {wordsToDisplay.map((word, index) => (
++            <WordCard
++              key={`${word.categoryIndex}-${word.wordIndex}`}
++              initial={{ opacity: 0, y: 20 }}
++              animate={{ opacity: 1, y: 0 }}
++              transition={{ delay: index * 0.1 }}
++            >
++              <WordHeader>
++                <WordInfo>
++                  <WordIndonesian>{word.indonesian}</WordIndonesian>
++                  <WordChinese>{word.chinese}</WordChinese>
++                  <WordCategory>{word.categoryName}</WordCategory>
++                </WordInfo>
++                <ActionButton 
++                  $danger 
++                  onClick={() => removeFromBook(word.categoryIndex, word.wordIndex)}
++                >
++                  <X size={12} />
++                  移除
++                </ActionButton>
++              </WordHeader>
++              
++              <WordStats>
++                <WordStat>
++                  <WordStatValue $color="#ff4757">
++                    {word.incorrectCount}
++                  </WordStatValue>
++                  <WordStatLabel>错误次数</WordStatLabel>
++                </WordStat>
++                <WordStat>
++                  <WordStatValue $color="#2ed573">
++                    {word.correctStreakCount}
++                  </WordStatValue>
++                  <WordStatLabel>连续答对</WordStatLabel>
++                </WordStat>
++                <WordStat>
++                  <WordStatValue>
++                    {word.reviewCount}
++                  </WordStatValue>
++                  <WordStatLabel>复习次数</WordStatLabel>
++                </WordStat>
++              </WordStats>
++            </WordCard>
++          ))}
++        </WordGrid>
++      )}
++
++      <AnimatePresence>
++        {isReviewMode && currentWord && (
++          <ReviewModal
++            initial={{ opacity: 0 }}
++            animate={{ opacity: 1 }}
++            exit={{ opacity: 0 }}
++          >
++            <ModalContent
++              initial={{ scale: 0.8, opacity: 0 }}
++              animate={{ scale: 1, opacity: 1 }}
++              exit={{ scale: 0.8, opacity: 0 }}
++            >
++              <CloseButton onClick={closeReview}>
++                <X size={20} />
++              </CloseButton>
++              
++              <div style={{ marginBottom: '30px' }}>
++                <h2 style={{ fontSize: '28px', marginBottom: '10px', color: '#333' }}>
++                  {currentWord.indonesian}
++                </h2>
++                <p style={{ fontSize: '18px', color: '#666', marginBottom: '15px' }}>
++                  {currentWord.chinese}
++                </p>
++                <span style={{ 
++                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
++                  color: 'white',
++                  padding: '6px 12px',
++                  borderRadius: '15px',
++                  fontSize: '14px'
++                }}>
++                  {currentWord.categoryName}
++                </span>
++              </div>
++              
++              <div style={{ marginBottom: '30px' }}>
++                <p style={{ fontSize: '16px', color: '#666', marginBottom: '20px' }}>
++                  第 {currentReviewIndex + 1} / {wordsToReview.length} 个
++                </p>
++                <p style={{ fontSize: '18px', color: '#333' }}>
++                  你记住这个单词了吗？
++                </p>
++              </div>
++              
++              <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
++                <ActionButton 
++                  onClick={markAsIncorrect}
++                  $danger
++                  style={{ padding: '12px 24px', fontSize: '16px' }}
++                >
++                  <AlertCircle size={16} />
++                  还没记住
++                </ActionButton>
++                <ActionButton 
++                  onClick={markAsCorrect}
++                  style={{ padding: '12px 24px', fontSize: '16px' }}
++                >
++                  <CheckCircle size={16} />
++                  已经记住
++                </ActionButton>
++              </div>
++            </ModalContent>
++          </ReviewModal>
++        )}
++      </AnimatePresence>
++    </VocabularyBookContainer>
++  );
++}
++
++export default VocabularyBook; 
+\ No newline at end of file
+diff --git a/src/utils/database.js b/src/utils/database.js
+index dacc81a..9f6d505 100644
+--- a/src/utils/database.js
++++ b/src/utils/database.js
+@@ -287,6 +287,7 @@ class LocalDatabase {
+       const keys = [
+         'user_progress',
+         'vocabulary_mastery',
++        'vocabulary_book',
+         'learning_stats',
+         'quiz_history'
+       ];
+@@ -312,6 +313,7 @@ class LocalDatabase {
+         user: currentUser,
+         progress: this.getUserProgress(),
+         mastery: this.getVocabularyMastery(),
++        vocabularyBook: this.getVocabularyBook(),
+         stats: this.getLearningStats(),
+         quizHistory: this.getQuizHistory(),
+         exportDate: new Date().toISOString(),
+@@ -338,6 +340,10 @@ class LocalDatabase {
+         localStorage.setItem(this.getUserKey('vocabulary_mastery'), JSON.stringify(data.mastery));
+       }
+       
++      if (data.vocabularyBook) {
++        localStorage.setItem(this.getUserKey('vocabulary_book'), JSON.stringify(data.vocabularyBook));
++      }
++      
+       if (data.stats) {
+         localStorage.setItem(this.getUserKey('learning_stats'), JSON.stringify(data.stats));
+       }
+@@ -401,6 +407,260 @@ class LocalDatabase {
+       return false;
+     }
+   }
++
++  // ============= 生词本功能 =============
++
++  // 获取生词本数据
++  static getVocabularyBook() {
++    try {
++      const data = localStorage.getItem(this.getUserKey('vocabulary_book'));
++      return data ? JSON.parse(data) : {};
++    } catch (error) {
++      console.error('Error getting vocabulary book:', error);
++      return {};
++    }
++  }
++
++  // 添加单词到生词本
++  static addToVocabularyBook(categoryIndex, wordIndex, reason = 'incorrect') {
++    try {
++      const vocabularyBook = this.getVocabularyBook();
++      
++      if (!vocabularyBook[categoryIndex]) {
++        vocabularyBook[categoryIndex] = {};
++      }
++      
++      vocabularyBook[categoryIndex][wordIndex] = {
++        addedDate: new Date().toISOString(),
++        reason: reason, // 'incorrect', 'difficult', 'manual'
++        incorrectCount: (vocabularyBook[categoryIndex][wordIndex]?.incorrectCount || 0) + 1,
++        correctStreakCount: 0, // 连续答对次数
++        lastIncorrectDate: new Date().toISOString(),
++        reviewCount: vocabularyBook[categoryIndex][wordIndex]?.reviewCount || 0
++      };
++      
++      localStorage.setItem(this.getUserKey('vocabulary_book'), JSON.stringify(vocabularyBook));
++      
++      // 同步到 PostgreSQL (如果可用)
++      this.syncToPostgres('vocabulary_book', vocabularyBook);
++      
++      return true;
++    } catch (error) {
++      console.error('Error adding word to vocabulary book:', error);
++      return false;
++    }
++  }
++
++  // 从生词本中移除单词（掌握了）
++  static removeFromVocabularyBook(categoryIndex, wordIndex) {
++    try {
++      const vocabularyBook = this.getVocabularyBook();
++      
++      if (vocabularyBook[categoryIndex] && vocabularyBook[categoryIndex][wordIndex]) {
++        delete vocabularyBook[categoryIndex][wordIndex];
++        
++        // 如果该分类下没有生词了，删除分类
++        if (Object.keys(vocabularyBook[categoryIndex]).length === 0) {
++          delete vocabularyBook[categoryIndex];
++        }
++        
++        localStorage.setItem(this.getUserKey('vocabulary_book'), JSON.stringify(vocabularyBook));
++        
++        // 同步到 PostgreSQL (如果可用)
++        this.syncToPostgres('vocabulary_book', vocabularyBook);
++      }
++      
++      return true;
++    } catch (error) {
++      console.error('Error removing word from vocabulary book:', error);
++      return false;
++    }
++  }
++
++  // 更新生词本中单词的学习状态
++  static updateVocabularyBookWord(categoryIndex, wordIndex, isCorrect) {
++    try {
++      const vocabularyBook = this.getVocabularyBook();
++      
++      if (!vocabularyBook[categoryIndex] || !vocabularyBook[categoryIndex][wordIndex]) {
++        return false;
++      }
++      
++      const wordData = vocabularyBook[categoryIndex][wordIndex];
++      wordData.reviewCount = (wordData.reviewCount || 0) + 1;
++      wordData.lastReviewDate = new Date().toISOString();
++      
++      if (isCorrect) {
++        // 答对了，增加连续答对次数
++        wordData.correctStreakCount = (wordData.correctStreakCount || 0) + 1;
++        
++        // 连续答对3次，从生词本中移除
++        if (wordData.correctStreakCount >= 3) {
++          this.removeFromVocabularyBook(categoryIndex, wordIndex);
++          return true;
++        }
++      } else {
++        // 答错了，重置连续答对次数，增加错误次数
++        wordData.correctStreakCount = 0;
++        wordData.incorrectCount = (wordData.incorrectCount || 0) + 1;
++        wordData.lastIncorrectDate = new Date().toISOString();
++      }
++      
++      localStorage.setItem(this.getUserKey('vocabulary_book'), JSON.stringify(vocabularyBook));
++      
++      // 同步到 PostgreSQL (如果可用)
++      this.syncToPostgres('vocabulary_book', vocabularyBook);
++      
++      return true;
++    } catch (error) {
++      console.error('Error updating vocabulary book word:', error);
++      return false;
++    }
++  }
++
++  // 检查单词是否在生词本中
++  static isWordInVocabularyBook(categoryIndex, wordIndex) {
++    try {
++      const vocabularyBook = this.getVocabularyBook();
++      return !!(vocabularyBook[categoryIndex] && vocabularyBook[categoryIndex][wordIndex]);
++    } catch (error) {
++      console.error('Error checking word in vocabulary book:', error);
++      return false;
++    }
++  }
++
++  // 获取生词本统计信息
++  static getVocabularyBookStats() {
++    try {
++      const vocabularyBook = this.getVocabularyBook();
++      
++      let totalWords = 0;
++      let totalReviews = 0;
++      let wordsByCategory = {};
++      let difficultWords = []; // 错误次数最多的词汇
++      
++      Object.keys(vocabularyBook).forEach(categoryIndex => {
++        const categoryWords = vocabularyBook[categoryIndex];
++        const categoryCount = Object.keys(categoryWords).length;
++        totalWords += categoryCount;
++        wordsByCategory[categoryIndex] = categoryCount;
++        
++        Object.keys(categoryWords).forEach(wordIndex => {
++          const wordData = categoryWords[wordIndex];
++          totalReviews += wordData.reviewCount || 0;
++          
++          // 收集困难词汇（错误次数>=3次）
++          if (wordData.incorrectCount >= 3) {
++            difficultWords.push({
++              categoryIndex: parseInt(categoryIndex),
++              wordIndex: parseInt(wordIndex),
++              incorrectCount: wordData.incorrectCount,
++              correctStreakCount: wordData.correctStreakCount || 0
++            });
++          }
++        });
++      });
++      
++      // 按错误次数排序困难词汇
++      difficultWords.sort((a, b) => b.incorrectCount - a.incorrectCount);
++      
++      return {
++        totalWords,
++        totalReviews,
++        wordsByCategory,
++        difficultWords: difficultWords.slice(0, 10), // 只返回前10个最困难的词汇
++        averageReviewsPerWord: totalWords > 0 ? Math.round(totalReviews / totalWords) : 0
++      };
++    } catch (error) {
++      console.error('Error getting vocabulary book stats:', error);
++      return {
++        totalWords: 0,
++        totalReviews: 0,
++        wordsByCategory: {},
++        difficultWords: [],
++        averageReviewsPerWord: 0
++      };
++    }
++  }
++
++  // 根据测验结果自动管理生词本
++  static processQuizResultForVocabularyBook(quizResults) {
++    try {
++      if (!quizResults || !Array.isArray(quizResults)) {
++        return false;
++      }
++      
++      quizResults.forEach(result => {
++        const { categoryIndex, wordIndex, isCorrect } = result;
++        
++        if (typeof categoryIndex !== 'number' || typeof wordIndex !== 'number') {
++          return;
++        }
++        
++        const isInVocabularyBook = this.isWordInVocabularyBook(categoryIndex, wordIndex);
++        
++        if (isCorrect) {
++          // 答对了
++          if (isInVocabularyBook) {
++            // 如果在生词本中，更新状态（可能会移除）
++            this.updateVocabularyBookWord(categoryIndex, wordIndex, true);
++          }
++          // 如果不在生词本中且答对了，不需要做任何操作
++        } else {
++          // 答错了
++          if (isInVocabularyBook) {
++            // 如果已经在生词本中，更新错误状态
++            this.updateVocabularyBookWord(categoryIndex, wordIndex, false);
++          } else {
++            // 如果不在生词本中，添加到生词本
++            this.addToVocabularyBook(categoryIndex, wordIndex, 'incorrect');
++          }
++        }
++      });
++      
++      return true;
++    } catch (error) {
++      console.error('Error processing quiz result for vocabulary book:', error);
++      return false;
++    }
++  }
++
++  // 获取需要复习的生词（按优先级排序）
++  static getWordsToReview(limit = 20) {
++    try {
++      const vocabularyBook = this.getVocabularyBook();
++      const wordsToReview = [];
++      
++      Object.keys(vocabularyBook).forEach(categoryIndex => {
++        const categoryWords = vocabularyBook[categoryIndex];
++        
++        Object.keys(categoryWords).forEach(wordIndex => {
++          const wordData = categoryWords[wordIndex];
++          const lastReviewDate = wordData.lastReviewDate ? new Date(wordData.lastReviewDate) : new Date(wordData.addedDate);
++          const daysSinceLastReview = Math.floor((new Date() - lastReviewDate) / (1000 * 60 * 60 * 24));
++          
++          // 计算复习优先级：错误次数越多，距离上次复习时间越长，优先级越高
++          const priority = (wordData.incorrectCount || 1) * (daysSinceLastReview + 1) / ((wordData.correctStreakCount || 0) + 1);
++          
++          wordsToReview.push({
++            categoryIndex: parseInt(categoryIndex),
++            wordIndex: parseInt(wordIndex),
++            priority: priority,
++            incorrectCount: wordData.incorrectCount || 0,
++            correctStreakCount: wordData.correctStreakCount || 0,
++            daysSinceLastReview: daysSinceLastReview
++          });
++        });
++      });
++      
++      // 按优先级排序，返回前limit个
++      wordsToReview.sort((a, b) => b.priority - a.priority);
++      return wordsToReview.slice(0, limit);
++    } catch (error) {
++      console.error('Error getting words to review:', error);
++      return [];
++    }
++  }
+ }
+ 
+ export default LocalDatabase; 
+\ No newline at end of file
+diff --git a/stop-test.sh b/stop-test.sh
+new file mode 100755
+index 0000000..69c4e82
+--- /dev/null
++++ b/stop-test.sh
+@@ -0,0 +1,21 @@
++#!/bin/bash
++
++echo "🛑 停止 Belajar Bahasa 测试环境..."
++
++# 停止并移除测试容器
++docker-compose -f docker-compose.test.yml down
++
++# 清理测试网络（如果没有其他容器使用）
++echo "🧹 清理测试网络..."
++docker network ls | grep bahasa-test-network && docker network rm bahasa-test-network 2>/dev/null || true
++
++# 清理测试镜像（可选）
++read -p "是否要清理测试镜像? (y/N): " -n 1 -r
++echo
++if [[ $REPLY =~ ^[Yy]$ ]]; then
++    echo "🧹 清理测试镜像..."
++    docker image ls | grep bahasa-beraja-test && docker rmi $(docker images | grep bahasa-beraja-test | awk '{print $3}') 2>/dev/null || true
++    docker image prune -f
++fi
++
++echo "✅ 测试环境已停止" 
+\ No newline at end of file
+diff --git a/use_feedback/feedback_v1 b/use_feedback/feedback_v1
+index d8fc5fd..f32f292 100644
+--- a/use_feedback/feedback_v1
++++ b/use_feedback/feedback_v1
+@@ -3,4 +3,6 @@
+ 词汇学习卡片能增加图片看起来不那么单调，不过感觉这个工程比较大。希望增加入门初级中级之类的选择，等明天你做好再反馈喽
+ 老师语音没声音（安卓无ios有），昨天的问题安卓还是没修复，但是ios没问题，是不适配吗[捂脸R]推送的单词可以多点吗或者学习可以自选难易程度，昨天我学的terima Kasih今天还是[笑哭R]
+ 
+-是不是要写 Belajar Bahasa 呢？  Beraja 我好像没听过是什么意思。我印尼语母语者，欢迎和我聊天学印尼语（闲聊那种不收💰）
+\ No newline at end of file
++是不是要写 Belajar Bahasa 呢？  Beraja 我好像没听过是什么意思。我印尼语母语者，欢迎和我聊天学印尼语（闲聊那种不收💰）
++
++对我个人而言，我最想要的功能，是“我的生词本”，就是说，没记住的生词，就会在里面，当我在测验里答对3次了，就可以说掌握了，但是假如又答错了，说明我这个单词又忘了，我的生词本里又会出现这个词。如果能这样就好了
+\ No newline at end of file
