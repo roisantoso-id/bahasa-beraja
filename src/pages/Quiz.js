@@ -5,6 +5,10 @@ import { CheckCircle, XCircle, Clock, Trophy, RotateCcw, Play } from 'lucide-rea
 import { vocabularyData } from '../data/vocabulary';
 import LocalDatabase from '../utils/database';
 
+const GOLD_GRADIENT = 'linear-gradient(135deg, #f7d774 0%, #fff 100%)';
+const GOLD = '#f7d774';
+const GOLD_DARK = '#b48a4a';
+
 const QuizContainer = styled.div`
   padding: 40px 20px;
   max-width: 800px;
@@ -80,7 +84,7 @@ const StatCard = styled.div`
 const StatValue = styled.div`
   font-size: 20px;
   font-weight: 700;
-  color: #667eea;
+  color: ${GOLD_DARK};
 
   @media (max-width: 768px) {
     font-size: 18px;
@@ -189,17 +193,18 @@ const OptionButtons = styled.div`
 
 const OptionButton = styled.button`
   padding: 12px 20px;
-  border: 2px solid ${props => props.$active ? '#667eea' : '#ddd'};
+  border: 2px solid ${props => props.$active ? GOLD_DARK : '#ddd'};
   border-radius: 25px;
-  background: ${props => props.$active ? '#667eea' : 'white'};
-  color: ${props => props.$active ? 'white' : '#666'};
+  background: ${props => props.$active ? GOLD_GRADIENT : 'white'};
+  color: ${props => props.$active ? 'white' : GOLD_DARK};
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: #667eea;
-    background: ${props => props.$active ? '#667eea' : 'rgba(102, 126, 234, 0.1)'};
+    border-color: ${GOLD_DARK};
+    background: ${props => props.$active ? GOLD_GRADIENT : GOLD};
+    color: #fff;
   }
 
   @media (max-width: 768px) {
@@ -220,8 +225,8 @@ const OptionButton = styled.button`
 const StartButton = styled.button`
   width: 100%;
   padding: 16px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: ${GOLD_GRADIENT};
+  color: ${GOLD_DARK};
   border: none;
   border-radius: 25px;
   font-size: 18px;
@@ -231,7 +236,9 @@ const StartButton = styled.button`
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 20px ${GOLD}44;
+    background: ${GOLD};
+    color: #fff;
   }
 
   @media (max-width: 768px) {
@@ -248,11 +255,11 @@ const StartButton = styled.button`
 `;
 
 const QuizCard = styled(motion.div)`
-  background: white;
+  background: #fff;
   border-radius: 20px;
   padding: 40px;
   margin-bottom: 30px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 40px ${GOLD_DARK}22;
 
   @media (max-width: 768px) {
     padding: 30px 25px;
@@ -324,7 +331,7 @@ const AnswerOption = styled.button`
       if (props.$isSelected && !props.$isCorrect) return '#ef4444';
       return '#ddd';
     }
-    return props.$isSelected ? '#667eea' : '#ddd';
+    return props.$isSelected ? '#b48a4a' : '#ddd';
   }};
   border-radius: 15px;
   background: ${props => {
@@ -333,7 +340,7 @@ const AnswerOption = styled.button`
       if (props.$isSelected && !props.$isCorrect) return '#fee2e2';
       return 'white';
     }
-    return props.$isSelected ? 'rgba(102, 126, 234, 0.1)' : 'white';
+    return props.$isSelected ? 'rgba(180, 138, 74, 0.08)' : 'white';
   }};
   color: #333;
   font-size: 16px;
@@ -401,7 +408,7 @@ const ProgressBar = styled.div`
 
 const Progress = styled.div`
   height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: ${GOLD_GRADIENT};
   border-radius: 4px;
   transition: width 0.3s ease;
   width: ${props => props.$width}%;
@@ -463,8 +470,8 @@ const ControlButton = styled.button`
   padding: 16px 32px;
   border: none;
   border-radius: 25px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: ${GOLD_GRADIENT};
+  color: ${GOLD_DARK};
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -473,11 +480,13 @@ const ControlButton = styled.button`
   align-items: center;
   justify-content: center;
   min-width: 120px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px ${GOLD}44;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 25px ${GOLD}66;
+    background: ${GOLD};
+    color: #fff;
   }
 
   &:disabled {
@@ -542,7 +551,7 @@ const ResultTitle = styled.h2`
 const ScoreDisplay = styled.div`
   font-size: 48px;
   font-weight: 700;
-  color: #667eea;
+  color: #b48a4a;
   margin-bottom: 30px;
 
   @media (max-width: 768px) {
@@ -582,7 +591,7 @@ const ResultStat = styled.div`
 const ResultStatValue = styled.div`
   font-size: 24px;
   font-weight: 700;
-  color: #667eea;
+  color: #b48a4a;
 
   @media (max-width: 768px) {
     font-size: 20px;
@@ -655,13 +664,14 @@ function Quiz() {
     let wordPool = [];
     
     if (category === 'all') {
-      wordPool = vocabularyData.flatMap(cat => 
-        cat.words.map((word, index) => ({ ...word, categoryId: cat.id, wordIndex: index }))
+      wordPool = vocabularyData.flatMap((cat, catIdx) => 
+        cat.words.map((word, index) => ({ ...word, categoryId: cat.id, categoryIndex: catIdx, wordIndex: index }))
       );
     } else {
       const selectedCategory = vocabularyData.find(cat => cat.id === category);
+      const catIdx = vocabularyData.findIndex(cat => cat.id === category);
       wordPool = selectedCategory.words.map((word, index) => 
-        ({ ...word, categoryId: selectedCategory.id, wordIndex: index })
+        ({ ...word, categoryId: selectedCategory.id, categoryIndex: catIdx, wordIndex: index })
       );
     }
 
@@ -806,8 +816,13 @@ function Quiz() {
     // 处理生词本 - 将答题结果转换为生词本需要的格式
     const vocabularyBookResults = finalAnswers.map((answer, index) => {
       const question = questions[index];
+      // categoryIndex 必须为数字下标
+      let categoryIndex = question.categoryIndex;
+      if (typeof categoryIndex !== 'number') {
+        categoryIndex = vocabularyData.findIndex(cat => cat.id === question.categoryId);
+      }
       return {
-        categoryIndex: question.categoryIndex,
+        categoryIndex,
         wordIndex: question.wordIndex,
         isCorrect: answer.isCorrect
       };

@@ -2,6 +2,7 @@ export const vocabularyData = [
   {
     id: 1,
     category: '问候语',
+    scene: 'daily',
     words: [
       {
         indonesian: 'Halo',
@@ -78,6 +79,7 @@ export const vocabularyData = [
   {
     id: 2,
     category: '家庭',
+    scene: 'daily',
     words: [
       {
         indonesian: 'Keluarga',
@@ -154,6 +156,7 @@ export const vocabularyData = [
   {
     id: 3,
     category: '数字',
+    scene: 'daily',
     words: [
       {
         indonesian: 'Satu',
@@ -230,6 +233,7 @@ export const vocabularyData = [
   {
     id: 4,
     category: '食物',
+    scene: 'food',
     words: [
       {
         indonesian: 'Nasi',
@@ -306,6 +310,7 @@ export const vocabularyData = [
   {
     id: 5,
     category: '颜色',
+    scene: 'other',
     words: [
       {
         indonesian: 'Merah',
@@ -382,6 +387,7 @@ export const vocabularyData = [
   {
     id: 6,
     category: '动物',
+    scene: 'other',
     words: [
       {
         indonesian: 'Kucing',
@@ -458,6 +464,7 @@ export const vocabularyData = [
   {
     id: 7,
     category: '身体部位',
+    scene: 'daily',
     words: [
       {
         indonesian: 'Kepala',
@@ -534,6 +541,7 @@ export const vocabularyData = [
   {
     id: 8,
     category: '时间',
+    scene: 'daily',
     words: [
       {
         indonesian: 'Hari',
@@ -610,6 +618,7 @@ export const vocabularyData = [
   {
     id: 9,
     category: '机场',
+    scene: 'travel',
     words: [
       {
         indonesian: 'Bandara',
@@ -756,6 +765,7 @@ export const vocabularyData = [
   {
     id: 10,
     category: '医院',
+    scene: 'daily',
     words: [
       {
         indonesian: 'Rumah sakit',
@@ -902,6 +912,7 @@ export const vocabularyData = [
   {
     id: 11,
     category: '办公室',
+    scene: 'business',
     words: [
       {
         indonesian: 'Kantor',
@@ -1048,6 +1059,7 @@ export const vocabularyData = [
   {
     id: 12,
     category: '餐厅',
+    scene: 'food',
     words: [
       {
         indonesian: 'Restoran',
@@ -1194,6 +1206,7 @@ export const vocabularyData = [
   {
     id: 13,
     category: '银行',
+    scene: 'business',
     words: [
       {
         indonesian: 'Bank',
@@ -1340,6 +1353,7 @@ export const vocabularyData = [
   {
     id: 14,
     category: '酒店',
+    scene: 'travel',
     words: [
       {
         indonesian: 'Hotel',
@@ -1486,6 +1500,7 @@ export const vocabularyData = [
   {
     id: 15,
     category: '购物中心',
+    scene: 'shopping',
     words: [
       {
         indonesian: 'Mall',
@@ -1632,6 +1647,7 @@ export const vocabularyData = [
   {
     id: 16,
     category: '交通工具',
+    scene: 'transport',
     words: [
       {
         indonesian: 'Mobil',
@@ -1778,6 +1794,7 @@ export const vocabularyData = [
   {
     id: 17,
     category: '学校',
+    scene: 'school',
     words: [
       {
         indonesian: 'Sekolah',
@@ -1924,6 +1941,7 @@ export const vocabularyData = [
   {
     id: 18,
     category: '运动',
+    scene: 'sports',
     words: [
       {
         indonesian: 'Olahraga',
@@ -2070,6 +2088,7 @@ export const vocabularyData = [
   {
     id: 19,
     category: '天气',
+    scene: 'weather',
     words: [
       {
         indonesian: 'Cuaca',

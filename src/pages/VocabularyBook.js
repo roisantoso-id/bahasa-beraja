@@ -108,7 +108,7 @@ const StatIcon = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 15px;
-  color: #667eea;
+  color: #b48a4a;
 
   @media (max-width: 768px) {
     margin-bottom: 12px;
@@ -122,7 +122,7 @@ const StatIcon = styled.div`
 const StatValue = styled.div`
   font-size: 28px;
   font-weight: 700;
-  color: #667eea;
+  color: #b48a4a;
   margin-bottom: 5px;
 
   @media (max-width: 768px) {
@@ -170,14 +170,14 @@ const Tab = styled.button`
   padding: 12px 24px;
   border: none;
   border-radius: 25px;
-  background: ${props => props.$active ? '#667eea' : 'rgba(255, 255, 255, 0.8)'};
-  color: ${props => props.$active ? 'white' : '#667eea'};
+  background: ${props => props.$active ? '#b48a4a' : 'rgba(255, 255, 255, 0.8)'};
+  color: ${props => props.$active ? 'white' : '#b48a4a'};
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    background: ${props => props.$active ? '#667eea' : '#667eea'};
+    background: ${props => props.$active ? '#b48a4a' : '#b48a4a'};
     color: white;
     transform: translateY(-2px);
   }
@@ -221,7 +221,7 @@ const WordCard = styled(motion.div)`
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border: 1px solid rgba(102, 126, 234, 0.1);
+  border: 1.5px solid #e7cfa2;
   position: relative;
   overflow: hidden;
 
@@ -295,7 +295,7 @@ const WordChinese = styled.p`
 
 const WordCategory = styled.span`
   font-size: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
   color: white;
   padding: 4px 8px;
   border-radius: 10px;
@@ -342,7 +342,7 @@ const WordStat = styled.div`
 const WordStatValue = styled.div`
   font-size: 18px;
   font-weight: 700;
-  color: ${props => props.$color || '#667eea'};
+  color: ${props => props.$color || '#b48a4a'};
   margin-bottom: 2px;
 
   @media (max-width: 768px) {
@@ -368,7 +368,7 @@ const WordStatLabel = styled.div`
 `;
 
 const ActionButton = styled.button`
-  background: ${props => props.$danger ? '#ff4757' : '#667eea'};
+  background: ${props => props.$danger ? '#ff4757' : '#b48a4a'};
   color: white;
   border: none;
   border-radius: 10px;
@@ -467,7 +467,7 @@ const EmptyDescription = styled.p`
 `;
 
 const StartButton = styled.button`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
   color: white;
   border: none;
   border-radius: 25px;
@@ -842,7 +842,7 @@ function VocabularyBook() {
                   {currentWord.chinese}
                 </p>
                 <span style={{ 
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  background: 'linear-gradient(135deg, #f7d774 0%, #fff 100%)',
                   color: 'white',
                   padding: '6px 12px',
                   borderRadius: '15px',

@@ -9,7 +9,7 @@ import {
 
 const BusinessContainer = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
   padding: 20px;
 
   @media (max-width: 768px) {
@@ -64,7 +64,7 @@ const TabButton = styled.button`
   border: none;
   border-radius: 25px;
   background: ${props => props.active ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.2)'};
-  color: ${props => props.active ? '#667eea' : 'white'};
+  color: ${props => props.active ? '#b48a4a' : 'white'};
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -73,7 +73,7 @@ const TabButton = styled.button`
 
   &:hover {
     background: rgba(255, 255, 255, 0.8);
-    color: #667eea;
+    color: #b48a4a;
     transform: translateY(-2px);
   }
 
@@ -140,7 +140,7 @@ const WordCard = styled(motion.div)`
   padding: 20px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
-  border-left: 5px solid #667eea;
+  border-left: 5px solid #b48a4a;
 
   .word-header {
     display: flex;
@@ -321,7 +321,7 @@ const SentenceItem = styled.div`
 `;
 
 const BackButton = styled.button`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
   color: white;
   border: none;
   padding: 10px 20px;

@@ -7,22 +7,35 @@ import UserManager from '../utils/userManager';
 
 const LoginContainer = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('/assets/batik.jpg') center center/cover no-repeat;
+    opacity: 0.18;
+    z-index: 0;
+    pointer-events: none;
+  }
 `;
 
 const LoginCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 22px;
+  padding: 40px 32px 32px 32px;
+  box-shadow: 0 10px 32px rgba(180,138,74,0.08), 0 2px 8px rgba(0,0,0,0.06);
+  border: 1.5px solid #f0f0f0;
   width: 100%;
   max-width: 400px;
+  position: relative;
+  overflow: hidden;
 `;
 
 const Logo = styled.div`
@@ -36,12 +49,13 @@ const Logo = styled.div`
 const LogoIcon = styled.div`
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #fff;
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #b48a4a;
+  overflow: hidden;
 `;
 
 const LogoText = styled.h1`
@@ -89,8 +103,8 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #ff2e3c;
+    box-shadow: 0 0 0 3px rgba(255,46,60,0.10);
   }
 
   &::placeholder {
@@ -101,22 +115,24 @@ const Input = styled.input`
 const LoginButton = styled.button`
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
+  background: #fff;
+  color: #b48a4a;
+  border: 1.5px solid #e7cfa2;
   border-radius: 15px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(.4,2,.6,1);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    background: #f7f7f7;
+    color: #b48a4a;
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 10px 20px #b48a4a18;
   }
 
   &:disabled {
@@ -129,7 +145,7 @@ const LoginButton = styled.button`
 const ToggleMode = styled.button`
   background: none;
   border: none;
-  color: #667eea;
+  color: #ff2e3c;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -139,7 +155,7 @@ const ToggleMode = styled.button`
   transition: all 0.3s ease;
 
   &:hover {
-    color: #5a67d8;
+    color: #c62828;
   }
 `;
 
@@ -230,6 +246,39 @@ const UserMeta = styled.div`
   color: #666;
 `;
 
+// 印尼国徽 Garuda SVG
+const GarudaSVG = () => (
+  <motion.svg
+    width="54" height="54" viewBox="0 0 64 64" fill="none"
+    style={{marginBottom: 8}}
+    animate={{ y: [0, -8, 0, 8, 0] }}
+    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+  >
+    <g>
+      <path d="M8,32 Q2,18 18,18 Q8,8 24,12 Q18,2 32,8 Q46,2 40,12 Q56,8 46,18 Q62,18 56,32" stroke="#e7cfa2" strokeWidth="2" fill="none"/>
+      <ellipse cx="32" cy="32" rx="10" ry="16" fill="#f7d774" stroke="#b48a4a" strokeWidth="2"/>
+      <circle cx="32" cy="18" r="6" fill="#f7d774" stroke="#b48a4a" strokeWidth="2"/>
+      <path d="M32,18 Q36,20 32,22" stroke="#b48a4a" strokeWidth="2" fill="none"/>
+      <path d="M28,48 Q26,54 30,54" stroke="#b48a4a" strokeWidth="2" fill="none"/>
+      <path d="M36,48 Q38,54 34,54" stroke="#b48a4a" strokeWidth="2" fill="none"/>
+    </g>
+  </motion.svg>
+);
+
+// 印尼 batik 波浪 SVG
+const BatikWaveSVG = ({ style }) => (
+  <svg width="100%" height="32" viewBox="0 0 360 32" fill="none" style={style} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <pattern id="batikPatternLogin" patternUnits="userSpaceOnUse" width="60" height="32">
+        <path d="M0,16 Q15,0 30,16 T60,16" stroke="#e7cfa2" strokeWidth="2" fill="none"/>
+        <circle cx="15" cy="16" r="2.5" fill="#f7d774" opacity="0.7"/>
+        <circle cx="45" cy="16" r="2.5" fill="#f7d774" opacity="0.7"/>
+      </pattern>
+    </defs>
+    <rect width="360" height="32" fill="url(#batikPatternLogin)" />
+  </svg>
+);
+
 function Login() {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
@@ -278,7 +327,7 @@ function Login() {
       if (result.success) {
         showMessage(
           result.user.loginCount === 1 
-            ? `欢迎加入 Belajar Bahasa，${result.user.displayName}！` 
+            ? `欢迎加入 Bahasa Beraja，${result.user.displayName}！` 
             : `欢迎回来，${result.user.displayName}！`,
           'success'
         );
@@ -314,17 +363,41 @@ function Login() {
 
   return (
     <LoginContainer>
+      {/* 印尼人偶背景图 */}
+      <img
+        src={'/assets/indo.jpg'}
+        alt="Indonesian Wayang"
+        style={{
+          position: 'absolute',
+          right: 0,
+          bottom: 0,
+          width: '60%',
+          maxWidth: 600,
+          minWidth: 320,
+          opacity: 0.18,
+          zIndex: 1,
+          pointerEvents: 'none',
+          userSelect: 'none',
+        }}
+      />
       <LoginCard
         initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        animate={{ opacity: 1, y: [50, 40, 50] }}
+        transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+        style={{ zIndex: 1 }}
       >
-        <Logo>
-          <LogoIcon>
-            <Book size={24} />
-          </LogoIcon>
-          <LogoText>Belajar Bahasa</LogoText>
-        </Logo>
+        <div style={{ width: '100%', margin: '-32px -32px 12px -32px' }}>
+          <BatikWaveSVG />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 8 }}>
+          <GarudaSVG />
+          <Logo>
+            <LogoText>Bahasa Beraja</LogoText>
+          </Logo>
+          <div style={{ fontSize: 16, color: '#b48a4a', fontWeight: 600, marginBottom: 8, textAlign: 'center' }}>
+            Selamat datang di platform belajar bahasa Indonesia!
+          </div>
+        </div>
 
         <Title>{isLogin ? '登录账户' : '创建账户'}</Title>
 
@@ -414,6 +487,9 @@ function Login() {
             </UsersList>
           </RecentUsers>
         )}
+        <div style={{ width: '100%', margin: '24px -32px -32px -32px' }}>
+          <BatikWaveSVG style={{ transform: 'rotate(180deg)' }} />
+        </div>
       </LoginCard>
     </LoginContainer>
   );

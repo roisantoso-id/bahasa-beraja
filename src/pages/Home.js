@@ -5,15 +5,30 @@ import { BookOpen, Brain, Trophy, TrendingUp, Calendar, Target } from 'lucide-re
 import { Link } from 'react-router-dom';
 import LocalDatabase from '../utils/database';
 
+const GOLD_GRADIENT = 'linear-gradient(135deg, #f7d774 0%, #fff 100%)';
+const GOLD = '#f7d774';
+const GOLD_DARK = '#b48a4a';
+
 const HomeContainer = styled.div`
   padding: 40px 20px;
   max-width: 1200px;
   margin: 0 auto;
-
+  background: url('/assets/batik.jpg') center center/cover no-repeat, linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(247,215,116,0.85) 100%);
+  min-height: 100vh;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    background: none;
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  > * { position: relative; z-index: 1; }
   @media (max-width: 768px) {
     padding: 20px 15px;
   }
-
   @media (max-width: 480px) {
     padding: 15px 10px;
   }
@@ -22,6 +37,7 @@ const HomeContainer = styled.div`
 const Hero = styled.div`
   text-align: center;
   margin-bottom: 60px;
+  position: relative;
 
   @media (max-width: 768px) {
     margin-bottom: 40px;
@@ -54,12 +70,12 @@ const HeroLogo = styled(motion.div)`
 const LogoIcon = styled.div`
   width: 100px;
   height: 100px;
-  border-radius: 20px;
+  border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px #b48a4a33;
+  border: 3px solid ${GOLD_DARK};
   overflow: hidden;
   background: white;
 
@@ -82,19 +98,17 @@ const LogoImage = styled.img`
   height: 100%;
   object-fit: contain;
   border-radius: 17px;
-
   @media (max-width: 768px) {
     border-radius: 14px;
   }
-
   @media (max-width: 480px) {
     border-radius: 12px;
   }
 `;
 
 const LogoText = styled.div`
-  color: white;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  color: ${GOLD_DARK};
+  text-shadow: 0 2px 10px #f7d77499;
 
   @media (max-width: 480px) {
     text-align: center;
@@ -106,6 +120,7 @@ const LogoTitle = styled.h1`
   font-weight: 700;
   margin: 0;
   margin-bottom: 5px;
+  color: ${GOLD_DARK};
 
   @media (max-width: 768px) {
     font-size: 32px;
@@ -136,9 +151,9 @@ const LogoSubtitle = styled.div`
 const Title = styled.h1`
   font-size: 48px;
   font-weight: 700;
-  color: white;
+  color: ${GOLD_DARK};
   margin-bottom: 20px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 10px #f7d77499;
 
   @media (max-width: 768px) {
     font-size: 36px;
@@ -153,9 +168,9 @@ const Title = styled.h1`
 
 const Subtitle = styled.p`
   font-size: 24px;
-  color: rgba(255, 255, 255, 0.9);
+  color: #b48a4a;
   margin-bottom: 40px;
-  text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 5px #f7d77466;
 
   @media (max-width: 768px) {
     font-size: 20px;
@@ -212,7 +227,7 @@ const StatIcon = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  color: #667eea;
+  color: #b48a4a;
 
   @media (max-width: 768px) {
     margin-bottom: 15px;
@@ -226,7 +241,7 @@ const StatIcon = styled.div`
 const StatValue = styled.div`
   font-size: 32px;
   font-weight: 700;
-  color: #667eea;
+  color: #b48a4a;
   margin-bottom: 10px;
 
   @media (max-width: 768px) {
@@ -278,7 +293,7 @@ const FeatureCard = styled(motion.div)`
   border-radius: 20px;
   padding: 40px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  border: 1px solid rgba(102, 126, 234, 0.1);
+  border: 1.5px solid #e7cfa2;
   transition: all 0.3s ease;
 
   &:hover {
@@ -310,7 +325,7 @@ const FeatureCard = styled(motion.div)`
 const FeatureIcon = styled.div`
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -371,16 +386,19 @@ const FeatureButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #ff2e3c 0%, #fff 100%);
   color: white;
   text-decoration: none;
-  border-radius: 25px;
+  border-radius: 30px;
   font-weight: 600;
   transition: all 0.3s ease;
+  border: 2px solid #ff2e3c;
 
   &:hover {
+    background: #ff2e3c;
+    color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 20px rgba(255, 46, 60, 0.18);
   }
 
   @media (max-width: 768px) {
@@ -467,7 +485,7 @@ const ProgressBar = styled.div`
 
 const ProgressFill = styled.div`
   height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
   border-radius: 4px;
   transition: width 0.3s ease;
   width: ${props => props.$width}%;
@@ -511,7 +529,7 @@ const ProgressLabel = styled.h4`
 const ProgressValue = styled.div`
   font-size: 24px;
   font-weight: 700;
-  color: #667eea;
+  color: #b48a4a;
   margin-bottom: 5px;
 
   @media (max-width: 768px) {
@@ -550,39 +568,32 @@ const QuickActionButton = styled(Link)`
   gap: 10px;
   padding: 16px 32px;
   background: rgba(255, 255, 255, 0.95);
-  color: #667eea;
+  color: #b48a4a;
   text-decoration: none;
   border-radius: 25px;
   font-weight: 600;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(102, 126, 234, 0.2);
+  border: 2px solid #e7cfa2;
   transition: all 0.3s ease;
 
   &:hover {
-    background: #667eea;
+    background: #b48a4a;
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 20px rgba(180,138,74,0.10);
   }
 `;
 
-const CommunitySection = styled.div`
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 40px;
-  text-align: center;
+const CommunitySection = styled(motion.div)`
+  background: rgba(255,255,255,0.97);
+  border-radius: 32px;
+  padding: 48px;
+  margin: 60px auto 40px;
+  max-width: 900px;
   backdrop-filter: blur(10px);
-  border: 2px solid #25D366;
-
-  @media (max-width: 768px) {
-    padding: 30px 25px;
-    border-radius: 16px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 25px 20px;
-    border-radius: 14px;
-  }
+  border: 2px solid #ff2e3c;
+  box-shadow: 0 20px 40px rgba(255,46,60,0.08);
+  text-align: center;
 `;
 
 const CommunityContent = styled.div`
@@ -767,6 +778,70 @@ const BenefitItem = styled.div`
   }
 `;
 
+// 印尼国徽 Garuda SVG
+const GarudaIcon = () => (
+  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style={{marginRight: 12, verticalAlign: 'middle'}}>
+    <g>
+      <path d="M8,32 Q2,18 18,18 Q8,8 24,12 Q18,2 32,8 Q46,2 40,12 Q56,8 46,18 Q62,18 56,32" stroke="#b48a4a" strokeWidth="2" fill="none"/>
+      <ellipse cx="32" cy="32" rx="10" ry="16" fill="#b48a4a" stroke="#7c5a1a" strokeWidth="2"/>
+      <circle cx="32" cy="18" r="6" fill="#b48a4a" stroke="#7c5a1a" strokeWidth="2"/>
+      <path d="M32,18 Q36,20 32,22" stroke="#7c5a1a" strokeWidth="2" fill="none"/>
+      <path d="M28,48 Q26,54 30,54" stroke="#7c5a1a" strokeWidth="2" fill="none"/>
+      <path d="M36,48 Q38,54 34,54" stroke="#7c5a1a" strokeWidth="2" fill="none"/>
+      <rect x="28" y="30" width="8" height="10" rx="2" fill="#fff" stroke="#7c5a1a" strokeWidth="1.5"/>
+      <rect x="30" y="32" width="4" height="6" rx="1" fill="#ff2e3c"/>
+    </g>
+  </svg>
+);
+
+// Batik 波浪 SVG（主色金色）
+const BatikWaveSVG = ({ style }) => (
+  <svg width="100%" height="32" viewBox="0 0 360 32" fill="none" style={style} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <pattern id="batikPatternHome" patternUnits="userSpaceOnUse" width="60" height="32">
+        <path d="M0,16 Q15,0 30,16 T60,16" stroke="#e7cfa2" strokeWidth="2" fill="none"/>
+        <circle cx="15" cy="16" r="2.5" fill="#f7d774" opacity="0.7"/>
+        <circle cx="45" cy="16" r="2.5" fill="#f7d774" opacity="0.7"/>
+      </pattern>
+    </defs>
+    <rect width="360" height="32" fill="url(#batikPatternHome)" />
+  </svg>
+);
+
+// 主要按钮和高亮色用金色
+const MainButton = styled.button`
+  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
+  color: #b48a4a;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 28px;
+  box-shadow: 0 4px 16px rgba(180,138,74,0.10);
+  transition: all 0.3s cubic-bezier(.4,2,.6,1);
+  cursor: pointer;
+  &:hover {
+    background: #f7d774;
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(247,215,116,0.18);
+  }
+  &:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px rgba(180,138,74,0.18);
+  }
+`;
+
+// 卡片、社群区等边框和阴影用淡金色
+const Card = styled.div`
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 10px 32px rgba(180,138,74,0.10), 0 2px 8px rgba(247,215,116,0.06);
+  border: 1.5px solid #e7cfa2;
+  padding: 32px;
+  margin-bottom: 32px;
+`;
+
 function Home() {
   const [stats, setStats] = useState({
     wordsLearned: 0,
@@ -838,22 +913,31 @@ function Home() {
 
   return (
     <HomeContainer>
+      {/* 顶部 Batik 波浪装饰 */}
+      <BatikWaveSVG style={{ position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 2 }} />
       <Hero>
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 48, marginBottom: 10}}>
+          <GarudaIcon />
+          <span style={{fontSize: 32, color: '#ff2e3c', fontWeight: 700, marginLeft: 8}}>Garuda Belajar Bahasa</span>
+        </div>
         <HeroLogo
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.5 }}
         >
           <LogoIcon>
-            <LogoImage src="/company-logo.jpeg" alt="Belajar Bahasa Logo" />
+            <LogoImage src="/assets/pclog.jpeg" alt="Company Logo" />
           </LogoIcon>
           <LogoText>
-            <LogoTitle>Belajar Bahasa</LogoTitle>
-            <LogoSubtitle>INDONESIAN LEARNING</LogoSubtitle>
+            <LogoTitle>Bahasa Beraja</LogoTitle>
+            <LogoSubtitle>Master Indonesian with Confidence</LogoSubtitle>
           </LogoText>
         </HeroLogo>
         <Title>智能印尼语学习平台</Title>
-        <Subtitle>掌握印尼语，开启东南亚之旅</Subtitle>
+        <Subtitle>
+          Selamat datang di platform belajar bahasa Indonesia!<br/>
+          掌握印尼语，开启东南亚之旅
+        </Subtitle>
       </Hero>
 
       <StatsGrid>
@@ -999,7 +1083,7 @@ function Home() {
           </CommunityTitle>
           <CommunitySubtitle>
             与全球印尼语学习者交流经验，分享学习资源，获取最新学习动态<br/>
-            <em style={{ color: '#667eea', fontSize: '16px' }}>
+            <em style={{ color: '#b48a4a', fontSize: '16px' }}>
               Bergabunglah dengan pelajar bahasa Indonesia dari seluruh dunia, berbagi pengalaman dan sumber belajar
             </em>
           </CommunitySubtitle>
@@ -1018,6 +1102,8 @@ function Home() {
           </CommunityImageContainer>
         </CommunityContent>
       </CommunitySection>
+      {/* 底部 Batik 波浪装饰 */}
+      <BatikWaveSVG style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', zIndex: 2, transform: 'rotate(180deg)' }} />
     </HomeContainer>
   );
 }
