@@ -40,7 +40,7 @@ const StatCard = styled.div`
 const StatValue = styled.div`
   font-size: 24px;
   font-weight: 700;
-  color: #667eea;
+  color: #b48a4a;
 `;
 
 const StatLabel = styled.div`
@@ -62,7 +62,7 @@ const CategoryTab = styled.button`
   border: none;
   border-radius: 25px;
   background: ${props => props.$active ? 'white' : 'rgba(255, 255, 255, 0.2)'};
-  color: ${props => props.$active ? '#667eea' : 'white'};
+  color: ${props => props.$active ? '#b48a4a' : 'white'};
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -88,7 +88,7 @@ const CategoryProgress = styled.div`
 
 const CategoryProgressBar = styled.div`
   height: 100%;
-  background: #667eea;
+  background: #b48a4a;
   width: ${props => props.$width}%;
   transition: width 0.3s ease;
 `;
@@ -126,8 +126,8 @@ const CardFace = styled.div`
 `;
 
 const CardFront = styled(CardFace)`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
+  color: #333;
 `;
 
 const CardBack = styled(CardFace)`
@@ -140,6 +140,7 @@ const Word = styled.h2`
   font-size: 48px;
   font-weight: 700;
   margin-bottom: 20px;
+  color: #333;
 `;
 
 const Pronunciation = styled.div`
@@ -147,19 +148,21 @@ const Pronunciation = styled.div`
   opacity: 0.9;
   margin-bottom: 20px;
   font-style: italic;
+  color: #333;
 `;
 
 const Chinese = styled.h3`
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 30px;
-  color: #667eea;
+  color: #333;
 `;
 
 const Example = styled.div`
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 10px;
+  color: #333;
 `;
 
 const ExampleChinese = styled.div`
@@ -196,7 +199,7 @@ const ControlButton = styled.button`
   border: none;
   border-radius: 50%;
   background: white;
-  color: #667eea;
+  color: #b48a4a;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -204,7 +207,7 @@ const ControlButton = styled.button`
   justify-content: center;
 
   &:hover {
-    background: #667eea;
+    background: #b48a4a;
     color: white;
     transform: scale(1.1);
   }
@@ -225,17 +228,17 @@ const MasteryButtons = styled.div`
 
 const MasteryButton = styled.button`
   padding: 8px 16px;
-  border: 2px solid ${props => props.$selected ? '#667eea' : '#ddd'};
+  border: 2px solid ${props => props.$selected ? '#b48a4a' : '#ddd'};
   border-radius: 20px;
-  background: ${props => props.$selected ? '#667eea' : 'white'};
+  background: ${props => props.$selected ? '#b48a4a' : 'white'};
   color: ${props => props.$selected ? 'white' : '#666'};
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: #667eea;
-    background: ${props => props.$selected ? '#667eea' : 'rgba(102, 126, 234, 0.1)'};
+    border-color: #b48a4a;
+    background: ${props => props.$selected ? '#b48a4a' : 'rgba(180, 138, 74, 0.08)'};
   }
 `;
 
@@ -272,17 +275,17 @@ const SmartModeToggle = styled.div`
 
 const SmartModeButton = styled.button`
   padding: 8px 16px;
-  border: 2px solid ${props => props.$active ? '#667eea' : '#ddd'};
+  border: 2px solid ${props => props.$active ? '#b48a4a' : '#ddd'};
   border-radius: 20px;
-  background: ${props => props.$active ? '#667eea' : 'white'};
+  background: ${props => props.$active ? '#b48a4a' : 'white'};
   color: ${props => props.$active ? 'white' : '#666'};
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: #667eea;
-    background: ${props => props.$active ? '#667eea' : 'rgba(102, 126, 234, 0.1)'};
+    border-color: #b48a4a;
+    background: ${props => props.$active ? '#b48a4a' : 'rgba(180, 138, 74, 0.08)'};
   }
 `;
 
@@ -302,23 +305,39 @@ const WordImage = styled.div`
   justify-content: center;
   font-size: 48px;
   border: 2px solid rgba(255,255,255,0.3);
+  color: #333;
 `;
 
 const WordImageBack = styled.div`
   width: 100px;
   height: 100px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
   border-radius: 15px;
   margin: 0 auto 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 36px;
-  color: white;
-  border: 2px solid rgba(102, 126, 234, 0.3);
+  color: #333;
+  border: 2px solid rgba(180, 138, 74, 0.3);
 `;
 
+const SCENES = [
+  { key: 'all', label: '全部' },
+  { key: 'daily', label: '日常' },
+  { key: 'business', label: '商务' },
+  { key: 'travel', label: '旅游' },
+  { key: 'food', label: '餐饮' },
+  { key: 'school', label: '校园' },
+  { key: 'shopping', label: '购物' },
+  { key: 'transport', label: '交通' },
+  { key: 'sports', label: '运动' },
+  { key: 'weather', label: '天气' },
+  { key: 'other', label: '其它' },
+];
+
 function Vocabulary() {
+  const [selectedScene, setSelectedScene] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -327,7 +346,12 @@ function Vocabulary() {
   const [studyStartTime, setStudyStartTime] = useState(Date.now());
   const [smartMode, setSmartMode] = useState(true); // 智能学习模式
 
-  const currentCategory = vocabularyData[selectedCategory];
+  // 分类过滤
+  const filteredCategories = selectedScene === 'all'
+    ? vocabularyData
+    : vocabularyData.filter(cat => cat.scene === selectedScene);
+  // 当前分类索引在 filteredCategories 中的下标
+  const currentCategory = filteredCategories[selectedCategory] || filteredCategories[0];
   
   // 智能学习模式：过滤已掌握的词汇
   const getFilteredWords = () => {
@@ -616,6 +640,55 @@ function Vocabulary() {
 
   return (
     <VocabularyContainer>
+      <div style={{ display: 'flex', gap: 10, marginBottom: 24, overflowX: 'auto' }}>
+        {SCENES.map(scene => (
+          <button
+            key={scene.key}
+            style={{
+              padding: '10px 22px',
+              borderRadius: 20,
+              border: 'none',
+              background: selectedScene === scene.key ? '#fff' : 'rgba(180,138,74,0.08)',
+              color: selectedScene === scene.key ? '#b48a4a' : '#888',
+              fontWeight: 600,
+              fontSize: 16,
+              cursor: 'pointer',
+              boxShadow: selectedScene === scene.key ? '0 2px 8px #b48a4a22' : 'none',
+              transition: 'all 0.2s',
+              minWidth: 70
+            }}
+            onClick={() => {
+              setSelectedScene(scene.key);
+              setSelectedCategory(0);
+            }}
+          >
+            {scene.label}
+          </button>
+        ))}
+      </div>
+      <div style={{ display: 'flex', gap: 10, marginBottom: 24, overflowX: 'auto' }}>
+        {filteredCategories.map((cat, idx) => (
+          <button
+            key={cat.id}
+            style={{
+              padding: '10px 18px',
+              borderRadius: 18,
+              border: 'none',
+              background: selectedCategory === idx ? '#b48a4a' : '#f7f7f7',
+              color: selectedCategory === idx ? '#fff' : '#b48a4a',
+              fontWeight: 600,
+              fontSize: 15,
+              cursor: 'pointer',
+              boxShadow: selectedCategory === idx ? '0 2px 8px #b48a4a22' : 'none',
+              transition: 'all 0.2s',
+              minWidth: 60
+            }}
+            onClick={() => setSelectedCategory(idx)}
+          >
+            {cat.category}
+          </button>
+        ))}
+      </div>
       <Title>词汇学习</Title>
       
       <StatsContainer>
@@ -633,21 +706,6 @@ function Vocabulary() {
         </StatCard>
       </StatsContainer>
       
-      <CategoryTabs>
-        {vocabularyData.map((category, index) => (
-          <CategoryTab
-            key={category.id}
-            $active={selectedCategory === index}
-            onClick={() => handleCategoryChange(index)}
-          >
-            {category.category}
-            <CategoryProgress>
-              <CategoryProgressBar $width={getCategoryProgress(index)} />
-            </CategoryProgress>
-          </CategoryTab>
-        ))}
-      </CategoryTabs>
-
       <WordCount>
         第 {currentWordIndex + 1} 个，共 {smartMode ? filteredWords.length : currentCategory.words.length} 个词汇
         {smartMode && filteredWords.length < currentCategory.words.length && (

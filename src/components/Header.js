@@ -6,6 +6,10 @@ import { Book, User, LogOut, Settings, BarChart, Menu, X } from 'lucide-react';
 import UserManager from '../utils/userManager';
 import UpdateManager from '../utils/updateManager';
 
+const GOLD_GRADIENT = 'linear-gradient(135deg, #f7d774 0%, #fff 100%)';
+const GOLD = '#f7d774';
+const GOLD_DARK = '#b48a4a';
+
 const HeaderContainer = styled.header`
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -47,22 +51,6 @@ const Logo = styled(Link)`
   }
 `;
 
-const LogoIcon = styled.div`
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-
-  @media (max-width: 768px) {
-    width: 36px;
-    height: 36px;
-  }
-`;
-
 const LogoText = styled.h1`
   font-size: 24px;
   font-weight: 700;
@@ -97,7 +85,7 @@ const MobileMenuButton = styled.button`
   transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(180, 138, 74, 0.08);
   }
 
   @media (max-width: 768px) {
@@ -157,7 +145,7 @@ const MobileMenuClose = styled.button`
   transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(180, 138, 74, 0.08);
   }
 `;
 
@@ -179,12 +167,13 @@ const NavLink = styled(Link)`
   display: block;
 
   &:hover {
-    color: #667eea;
-    background: rgba(102, 126, 234, 0.1);
+    color: ${GOLD_DARK};
+    background: rgba(180, 138, 74, 0.08);
   }
 
   ${props => props.$active && `
-    color: #667eea;
+    color: ${GOLD_DARK};
+    background: rgba(180, 138, 74, 0.08);
     background: rgba(102, 126, 234, 0.1);
     font-weight: 600;
   `}
@@ -238,7 +227,7 @@ const UserAvatar = styled.div`
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: ${props => props.$color || '#667eea'};
+  background: ${props => props.$color || GOLD_DARK};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -337,7 +326,7 @@ const DropdownItem = styled.button`
 `;
 
 const DevDropdownItem = styled(DropdownItem)`
-  color: #667eea;
+  color: ${GOLD_DARK};
   font-size: 12px;
   opacity: 0.7;
   
@@ -390,7 +379,7 @@ const StatValue = styled.span`
 `;
 
 const LoginButton = styled(Link)`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: ${GOLD_GRADIENT};
   color: white;
   text-decoration: none;
   padding: 10px 20px;
@@ -478,10 +467,7 @@ function Header() {
     <HeaderContainer>
       <HeaderContent>
         <Logo to="/">
-          <LogoIcon>
-            <Book size={20} />
-          </LogoIcon>
-          <LogoText>Belajar Bahasa</LogoText>
+          <LogoText>Bahasa Beraja</LogoText>
         </Logo>
 
         {currentUser && (
@@ -558,7 +544,7 @@ function Header() {
               </UserInfo>
               
               <MobileMenuButton onClick={() => setShowMobileMenu(true)}>
-                <Menu size={24} color="#667eea" />
+                <Menu size={24} color={GOLD_DARK} />
               </MobileMenuButton>
             </>
           ) : (
@@ -587,13 +573,10 @@ function Header() {
               >
                 <MobileMenuHeader>
                   <Logo to="/" onClick={closeMobileMenu}>
-                    <LogoIcon>
-                      <Book size={16} />
-                    </LogoIcon>
-                    <span style={{ fontSize: '18px', fontWeight: '700' }}>Belajar Bahasa</span>
+                    <span style={{ fontSize: '18px', fontWeight: '700' }}>Bahasa Beraja</span>
                   </Logo>
                   <MobileMenuClose onClick={closeMobileMenu}>
-                    <X size={24} color="#667eea" />
+                    <X size={24} color={GOLD_DARK} />
                   </MobileMenuClose>
                 </MobileMenuHeader>
 

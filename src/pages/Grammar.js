@@ -30,7 +30,7 @@ const LessonCard = styled(motion.div)`
 const LessonTitle = styled.h2`
   font-size: 28px;
   font-weight: 600;
-  color: #667eea;
+  color: #b48a4a;
   margin-bottom: 15px;
 `;
 
@@ -50,7 +50,7 @@ const RuleItem = styled.div`
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 20px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #b48a4a;
 `;
 
 const RuleTitle = styled.h4`
@@ -70,7 +70,7 @@ const Example = styled.div`
 const IndonesianText = styled.div`
   font-size: 18px;
   font-weight: 600;
-  color: #667eea;
+  color: #b48a4a;
   margin-bottom: 5px;
 `;
 
@@ -93,7 +93,7 @@ const ExerciseSection = styled.div`
 const ExerciseTitle = styled.h3`
   font-size: 24px;
   font-weight: 600;
-  color: #667eea;
+  color: #b48a4a;
   margin-bottom: 20px;
 `;
 
@@ -142,8 +142,8 @@ const OptionButton = styled.button`
   font-size: 16px;
 
   &:hover {
-    border-color: #667eea;
-    background: rgba(102, 126, 234, 0.1);
+    border-color: #b48a4a;
+    background: rgba(180, 138, 74, 0.1);
   }
 
   &:disabled {
@@ -176,7 +176,7 @@ const ControlButton = styled.button`
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
-  background: #667eea;
+  background: #b48a4a;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -186,7 +186,7 @@ const ControlButton = styled.button`
   gap: 8px;
 
   &:hover {
-    background: #5a67d8;
+    background: #a47a3a;
     transform: translateY(-2px);
   }
 
@@ -288,7 +288,7 @@ function Grammar() {
           <LessonDescription>{currentLesson.description}</LessonDescription>
 
           <RuleSection>
-            <h3 style={{ color: '#667eea', marginBottom: '20px' }}>语法规则</h3>
+            <h3 style={{ color: '#b48a4a', marginBottom: '20px' }}>语法规则</h3>
             {currentLesson.rules.map((rule, index) => (
               <RuleItem key={index}>
                 <RuleTitle>{rule.rule}</RuleTitle>

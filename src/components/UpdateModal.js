@@ -4,6 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Globe } from 'lucide-react';
 import UpdateManager from '../utils/updateManager';
 
+const GOLD_GRADIENT = 'linear-gradient(135deg, #f7d774 0%, #fff 100%)';
+const GOLD = '#f7d774';
+const GOLD_DARK = '#b48a4a';
+
 const ModalOverlay = styled(motion.div)`
   position: fixed;
   top: 0;
@@ -30,7 +34,7 @@ const ModalContainer = styled(motion.div)`
 `;
 
 const ModalHeader = styled.div`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: ${GOLD_GRADIENT};
   padding: 30px;
   color: white;
   text-align: center;
@@ -123,7 +127,7 @@ const UpdateItem = styled(motion.div)`
   padding: 20px;
   background: #f8fafc;
   border-radius: 15px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid ${GOLD};
   transition: all 0.3s ease;
 
   &:hover {
@@ -152,7 +156,7 @@ const UpdateContent = styled.div`
 const UpdateTitle = styled.h3`
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: ${GOLD_DARK};
   margin: 0 0 8px 0;
 `;
 
@@ -218,13 +222,13 @@ const QRLabel = styled.div`
 
 const FooterText = styled.p`
   font-size: 16px;
-  color: #667eea;
+  color: ${GOLD};
   font-weight: 600;
   margin: 0 0 20px 0;
 `;
 
 const ActionButton = styled.button`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: ${GOLD_GRADIENT};
   color: white;
   border: none;
   border-radius: 25px;
@@ -236,7 +240,7 @@ const ActionButton = styled.button`
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 20px rgba(180, 138, 74, 0.18);
   }
 `;
 

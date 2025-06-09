@@ -175,10 +175,10 @@ class UserManager {
 
   // 生成用户头像（基于用户名的颜色）
   static getUserAvatarColor(username) {
-    if (!username) return '#667eea';
+    if (!username) return '#b48a4a';
     
     const colors = [
-      '#667eea', '#764ba2', '#f093fb', '#f5576c',
+      '#b48a4a', '#f7d774', '#f093fb', '#f5576c',
       '#4facfe', '#00f2fe', '#43e97b', '#38f9d7',
       '#ffecd2', '#fcb69f', '#a8edea', '#fed6e3'
     ];
