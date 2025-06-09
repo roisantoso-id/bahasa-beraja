@@ -10,22 +10,32 @@ const GOLD = '#f7d774';
 const GOLD_DARK = '#b48a4a';
 
 const HomeContainer = styled.div`
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: url('/assets/batik.jpg') center center/cover no-repeat, linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(247,215,116,0.85) 100%);
   min-height: 100vh;
+  width: 100%;
   position: relative;
-  &::before {
+  padding: 20px;
+  background-color: #fff;
+  
+  &::after {
     content: '';
-    position: absolute;
-    left: 0; right: 0; top: 0; bottom: 0;
-    background: none;
-    opacity: 0;
-    z-index: 0;
-    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/batikbg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    z-index: -1;
   }
-  > * { position: relative; z-index: 1; }
+
+  > * { 
+    position: relative; 
+    z-index: 1; 
+  }
+
   @media (max-width: 768px) {
     padding: 20px 15px;
   }
