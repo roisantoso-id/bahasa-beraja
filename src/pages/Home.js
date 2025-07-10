@@ -58,7 +58,7 @@ const LogoIcon = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   overflow: hidden;
   background: white;
 
@@ -66,7 +66,7 @@ const LogoIcon = styled.div`
     width: 80px;
     height: 80px;
     border-radius: 16px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
   @media (max-width: 480px) {
@@ -93,7 +93,7 @@ const LogoImage = styled.img`
 
 const LogoText = styled.div`
   color: white;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  text-shadow: none;
 
   @media (max-width: 480px) {
     text-align: center;
@@ -137,7 +137,7 @@ const Title = styled.h1`
   font-weight: 700;
   color: white;
   margin-bottom: 20px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  text-shadow: none;
 
   @media (max-width: 768px) {
     font-size: 36px;
@@ -152,9 +152,9 @@ const Title = styled.h1`
 
 const Subtitle = styled.p`
   font-size: 24px;
-  color: rgba(255, 255, 255, 0.9);
+  color: white;
   margin-bottom: 40px;
-  text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+  text-shadow: none;
 
   @media (max-width: 768px) {
     font-size: 20px;
@@ -188,13 +188,12 @@ const StatsGrid = styled.div`
 `;
 
 const StatCard = styled.div`
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   border-radius: 20px;
   padding: 30px;
   text-align: center;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 1px solid #e1e5e9;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 
   @media (max-width: 768px) {
     padding: 25px 20px;
@@ -281,7 +280,7 @@ const FeatureCard = styled.div`
   transition: all 0.3s ease;
 
   &:hover {
-    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   }
 
   @media (max-width: 768px) {
@@ -289,7 +288,7 @@ const FeatureCard = styled.div`
     border-radius: 16px;
 
     &:hover {
-      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
     }
   }
 
@@ -298,7 +297,7 @@ const FeatureCard = styled.div`
     border-radius: 14px;
 
     &:hover {
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
   }
 `;
@@ -394,11 +393,11 @@ const FeatureButton = styled(Link)`
 `;
 
 const ProgressSection = styled.div`
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   border-radius: 20px;
   padding: 40px;
   margin-bottom: 60px;
-  backdrop-filter: blur(10px);
+  border: 1px solid #e1e5e9;
 
   @media (max-width: 768px) {
     padding: 30px 25px;
@@ -544,28 +543,26 @@ const QuickActionButton = styled(Link)`
   align-items: center;
   gap: 10px;
   padding: 16px 32px;
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   color: #667eea;
   text-decoration: none;
   border-radius: 25px;
   font-weight: 600;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(102, 126, 234, 0.2);
+  border: 2px solid #667eea;
   transition: all 0.3s ease;
 
   &:hover {
     background: #667eea;
     color: white;
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
   }
 `;
 
 const CommunitySection = styled.div`
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   border-radius: 20px;
   padding: 40px;
   text-align: center;
-  backdrop-filter: blur(10px);
   border: 2px solid #25D366;
 
   @media (max-width: 768px) {
