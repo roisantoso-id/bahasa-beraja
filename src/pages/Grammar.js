@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, CheckCircle, XCircle, RotateCcw } from 'lucide-react';
 import { grammarData } from '../data/grammar';
+import { colors, gradients } from '../utils/theme';
 
 const GrammarContainer = styled.div`
   padding: 40px 20px;
@@ -30,7 +31,7 @@ const LessonCard = styled(motion.div)`
 const LessonTitle = styled.h2`
   font-size: 28px;
   font-weight: 600;
-  color: #b48a4a;
+  color: ${colors.primaryDark};
   margin-bottom: 15px;
 `;
 
@@ -50,7 +51,7 @@ const RuleItem = styled.div`
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 20px;
-  border-left: 4px solid #b48a4a;
+  border-left: 4px solid ${colors.primaryDark};
 `;
 
 const RuleTitle = styled.h4`
@@ -70,7 +71,7 @@ const Example = styled.div`
 const IndonesianText = styled.div`
   font-size: 18px;
   font-weight: 600;
-  color: #b48a4a;
+  color: ${colors.primaryDark};
   margin-bottom: 5px;
 `;
 
@@ -93,7 +94,7 @@ const ExerciseSection = styled.div`
 const ExerciseTitle = styled.h3`
   font-size: 24px;
   font-weight: 600;
-  color: #b48a4a;
+  color: ${colors.primaryDark};
   margin-bottom: 20px;
 `;
 
@@ -142,8 +143,8 @@ const OptionButton = styled.button`
   font-size: 16px;
 
   &:hover {
-    border-color: #b48a4a;
-    background: rgba(180, 138, 74, 0.1);
+    border-color: ${colors.primaryDark};
+    background: rgba(99, 102, 241, 0.1);
   }
 
   &:disabled {
@@ -176,7 +177,7 @@ const ControlButton = styled.button`
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
-  background: #b48a4a;
+  background: ${colors.primaryDark};
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -186,7 +187,7 @@ const ControlButton = styled.button`
   gap: 8px;
 
   &:hover {
-    background: #a47a3a;
+    background: ${colors.primary};
     transform: translateY(-2px);
   }
 

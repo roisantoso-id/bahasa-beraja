@@ -6,9 +6,11 @@ import { Book, User, LogOut, Settings, BarChart, Menu, X } from 'lucide-react';
 import UserManager from '../utils/userManager';
 import UpdateManager from '../utils/updateManager';
 
-const GOLD_GRADIENT = 'linear-gradient(135deg, #f7d774 0%, #fff 100%)';
-const GOLD = '#f7d774';
-const GOLD_DARK = '#b48a4a';
+import { gradients, colors } from '../utils/theme';
+
+const PRIMARY_GRADIENT = gradients.primary;
+const PRIMARY = colors.primary;
+const PRIMARY_DARK = colors.primaryDark;
 
 const HeaderContainer = styled.header`
   background: rgba(255, 255, 255, 0.95);
@@ -167,14 +169,13 @@ const NavLink = styled(Link)`
   display: block;
 
   &:hover {
-    color: ${GOLD_DARK};
-    background: rgba(180, 138, 74, 0.08);
+    color: ${PRIMARY_DARK};
+    background: rgba(99, 102, 241, 0.08);
   }
 
   ${props => props.$active && `
-    color: ${GOLD_DARK};
-    background: rgba(180, 138, 74, 0.08);
-    background: rgba(102, 126, 234, 0.1);
+    color: ${PRIMARY_DARK};
+    background: rgba(99, 102, 241, 0.1);
     font-weight: 600;
   `}
 
@@ -227,7 +228,7 @@ const UserAvatar = styled.div`
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: ${props => props.$color || GOLD_DARK};
+  background: ${props => props.$color || PRIMARY_DARK};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -326,13 +327,13 @@ const DropdownItem = styled.button`
 `;
 
 const DevDropdownItem = styled(DropdownItem)`
-  color: ${GOLD_DARK};
+  color: ${PRIMARY_DARK};
   font-size: 12px;
   opacity: 0.7;
   
   &:hover {
     opacity: 1;
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(99, 102, 241, 0.1);
   }
 
   @media (max-width: 768px) {
@@ -379,7 +380,7 @@ const StatValue = styled.span`
 `;
 
 const LoginButton = styled(Link)`
-  background: ${GOLD_GRADIENT};
+  background: ${PRIMARY_GRADIENT};
   color: white;
   text-decoration: none;
   padding: 10px 20px;
@@ -392,7 +393,7 @@ const LoginButton = styled(Link)`
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
   }
 
   @media (max-width: 768px) {
@@ -544,7 +545,7 @@ function Header() {
               </UserInfo>
               
               <MobileMenuButton onClick={() => setShowMobileMenu(true)}>
-                <Menu size={24} color={GOLD_DARK} />
+                <Menu size={24} color={PRIMARY_DARK} />
               </MobileMenuButton>
             </>
           ) : (
@@ -576,7 +577,7 @@ function Header() {
                     <span style={{ fontSize: '18px', fontWeight: '700' }}>Bahasa Beraja</span>
                   </Logo>
                   <MobileMenuClose onClick={closeMobileMenu}>
-                    <X size={24} color={GOLD_DARK} />
+                    <X size={24} color={PRIMARY_DARK} />
                   </MobileMenuClose>
                 </MobileMenuHeader>
 

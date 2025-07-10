@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Volume2, RotateCcw, Star } from 'lucide-react';
 import { vocabularyData } from '../data/vocabulary';
 import LocalDatabase from '../utils/database';
+import { colors, gradients } from '../utils/theme';
 
 const VocabularyContainer = styled.div`
   padding: 40px 20px;
@@ -40,7 +41,7 @@ const StatCard = styled.div`
 const StatValue = styled.div`
   font-size: 24px;
   font-weight: 700;
-  color: #b48a4a;
+  color: ${colors.primaryDark};
 `;
 
 const StatLabel = styled.div`
@@ -62,7 +63,7 @@ const CategoryTab = styled.button`
   border: none;
   border-radius: 25px;
   background: ${props => props.$active ? 'white' : 'rgba(255, 255, 255, 0.2)'};
-  color: ${props => props.$active ? '#b48a4a' : 'white'};
+  color: ${props => props.$active ? colors.primaryDark : 'white'};
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -88,7 +89,7 @@ const CategoryProgress = styled.div`
 
 const CategoryProgressBar = styled.div`
   height: 100%;
-  background: #b48a4a;
+  background: ${colors.primaryDark};
   width: ${props => props.$width}%;
   transition: width 0.3s ease;
 `;
@@ -126,7 +127,7 @@ const CardFace = styled.div`
 `;
 
 const CardFront = styled(CardFace)`
-  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
+  background: ${gradients.primary};
   color: #333;
 `;
 

@@ -13,10 +13,12 @@ import UpdateModal from './components/UpdateModal';
 import UserManager from './utils/userManager';
 import UpdateManager from './utils/updateManager';
 
+import { gradients } from './utils/theme';
+
 // 全局样式容器
 const AppContainer = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
+  background: ${gradients.background};
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 `;
 

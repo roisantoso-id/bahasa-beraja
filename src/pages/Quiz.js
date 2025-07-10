@@ -5,9 +5,11 @@ import { CheckCircle, XCircle, Clock, Trophy, RotateCcw, Play } from 'lucide-rea
 import { vocabularyData } from '../data/vocabulary';
 import LocalDatabase from '../utils/database';
 
-const GOLD_GRADIENT = 'linear-gradient(135deg, #f7d774 0%, #fff 100%)';
-const GOLD = '#f7d774';
-const GOLD_DARK = '#b48a4a';
+import { gradients, colors } from '../utils/theme';
+
+const PRIMARY_GRADIENT = gradients.primary;
+const PRIMARY = colors.primary;
+const PRIMARY_DARK = colors.primaryDark;
 
 const QuizContainer = styled.div`
   padding: 40px 20px;
@@ -84,7 +86,7 @@ const StatCard = styled.div`
 const StatValue = styled.div`
   font-size: 20px;
   font-weight: 700;
-  color: ${GOLD_DARK};
+  color: ${PRIMARY_DARK};
 
   @media (max-width: 768px) {
     font-size: 18px;
@@ -193,17 +195,17 @@ const OptionButtons = styled.div`
 
 const OptionButton = styled.button`
   padding: 12px 20px;
-  border: 2px solid ${props => props.$active ? GOLD_DARK : '#ddd'};
+  border: 2px solid ${props => props.$active ? PRIMARY_DARK : '#ddd'};
   border-radius: 25px;
-  background: ${props => props.$active ? GOLD_GRADIENT : 'white'};
-  color: ${props => props.$active ? 'white' : GOLD_DARK};
+  background: ${props => props.$active ? PRIMARY_GRADIENT : 'white'};
+  color: ${props => props.$active ? 'white' : PRIMARY_DARK};
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: ${GOLD_DARK};
-    background: ${props => props.$active ? GOLD_GRADIENT : GOLD};
+    border-color: ${PRIMARY_DARK};
+          background: ${props => props.$active ? PRIMARY_GRADIENT : PRIMARY};
     color: #fff;
   }
 
@@ -225,8 +227,8 @@ const OptionButton = styled.button`
 const StartButton = styled.button`
   width: 100%;
   padding: 16px;
-  background: ${GOLD_GRADIENT};
-  color: ${GOLD_DARK};
+  background: ${PRIMARY_GRADIENT};
+  color: ${PRIMARY_DARK};
   border: none;
   border-radius: 25px;
   font-size: 18px;
@@ -236,8 +238,8 @@ const StartButton = styled.button`
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px ${GOLD}44;
-    background: ${GOLD};
+    box-shadow: 0 10px 20px ${PRIMARY}44;
+    background: ${PRIMARY};
     color: #fff;
   }
 
@@ -259,7 +261,7 @@ const QuizCard = styled(motion.div)`
   border-radius: 20px;
   padding: 40px;
   margin-bottom: 30px;
-  box-shadow: 0 20px 40px ${GOLD_DARK}22;
+  box-shadow: 0 20px 40px ${PRIMARY_DARK}22;
 
   @media (max-width: 768px) {
     padding: 30px 25px;
@@ -331,7 +333,7 @@ const AnswerOption = styled.button`
       if (props.$isSelected && !props.$isCorrect) return '#ef4444';
       return '#ddd';
     }
-    return props.$isSelected ? '#b48a4a' : '#ddd';
+    return props.$isSelected ? PRIMARY_DARK : '#ddd';
   }};
   border-radius: 15px;
   background: ${props => {
@@ -340,7 +342,7 @@ const AnswerOption = styled.button`
       if (props.$isSelected && !props.$isCorrect) return '#fee2e2';
       return 'white';
     }
-    return props.$isSelected ? 'rgba(180, 138, 74, 0.08)' : 'white';
+    return props.$isSelected ? 'rgba(99, 102, 241, 0.08)' : 'white';
   }};
   color: #333;
   font-size: 16px;
@@ -408,7 +410,7 @@ const ProgressBar = styled.div`
 
 const Progress = styled.div`
   height: 100%;
-  background: ${GOLD_GRADIENT};
+  background: ${PRIMARY_GRADIENT};
   border-radius: 4px;
   transition: width 0.3s ease;
   width: ${props => props.$width}%;
@@ -470,8 +472,8 @@ const ControlButton = styled.button`
   padding: 16px 32px;
   border: none;
   border-radius: 25px;
-  background: ${GOLD_GRADIENT};
-  color: ${GOLD_DARK};
+  background: ${PRIMARY_GRADIENT};
+  color: ${PRIMARY_DARK};
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -480,12 +482,12 @@ const ControlButton = styled.button`
   align-items: center;
   justify-content: center;
   min-width: 120px;
-  box-shadow: 0 4px 15px ${GOLD}44;
+  box-shadow: 0 4px 15px ${PRIMARY}44;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px ${GOLD}66;
-    background: ${GOLD};
+    box-shadow: 0 8px 25px ${PRIMARY}66;
+    background: ${PRIMARY};
     color: #fff;
   }
 
@@ -551,7 +553,7 @@ const ResultTitle = styled.h2`
 const ScoreDisplay = styled.div`
   font-size: 48px;
   font-weight: 700;
-  color: #b48a4a;
+  color: ${PRIMARY_DARK};
   margin-bottom: 30px;
 
   @media (max-width: 768px) {
@@ -591,7 +593,7 @@ const ResultStat = styled.div`
 const ResultStatValue = styled.div`
   font-size: 24px;
   font-weight: 700;
-  color: #b48a4a;
+  color: ${PRIMARY_DARK};
 
   @media (max-width: 768px) {
     font-size: 20px;

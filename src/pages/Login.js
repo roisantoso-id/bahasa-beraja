@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { User, LogIn, UserPlus, Book } from 'lucide-react';
 import UserManager from '../utils/userManager';
+import { colors, gradients } from '../utils/theme';
 
 const LoginContainer = styled.div`
   min-height: 100vh;
@@ -54,7 +55,7 @@ const LogoIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #b48a4a;
+  color: ${colors.primaryDark};
   overflow: hidden;
 `;
 
