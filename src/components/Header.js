@@ -468,7 +468,7 @@ function Header() {
     <HeaderContainer>
       <HeaderContent>
         <Logo to="/">
-          <LogoText>Bahasa Beraja</LogoText>
+          <LogoText>PIMI Bahasa</LogoText>
         </Logo>
 
         {currentUser && (
@@ -574,7 +574,7 @@ function Header() {
               >
                 <MobileMenuHeader>
                   <Logo to="/" onClick={closeMobileMenu}>
-                    <span style={{ fontSize: '18px', fontWeight: '700' }}>Bahasa Beraja</span>
+                    <span style={{ fontSize: '18px', fontWeight: '700' }}>PIMI Bahasa</span>
                   </Logo>
                   <MobileMenuClose onClick={closeMobileMenu}>
                     <X size={24} color={PRIMARY_DARK} />

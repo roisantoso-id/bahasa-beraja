@@ -6,10 +6,11 @@ import {
   businessScenariosData, 
   businessSentencesData 
 } from '../data/business-vocabulary';
+import { colors, gradients } from '../utils/theme';
 
 const BusinessContainer = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
+  background: ${gradients.primary};
   padding: 20px;
 
   @media (max-width: 768px) {
@@ -64,7 +65,7 @@ const TabButton = styled.button`
   border: none;
   border-radius: 25px;
   background: ${props => props.active ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.2)'};
-  color: ${props => props.active ? '#b48a4a' : 'white'};
+  color: ${props => props.active ? colors.primaryDark : 'white'};
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -73,7 +74,7 @@ const TabButton = styled.button`
 
   &:hover {
     background: rgba(255, 255, 255, 0.8);
-    color: #b48a4a;
+    color: ${colors.primaryDark};
     transform: translateY(-2px);
   }
 
@@ -140,7 +141,7 @@ const WordCard = styled(motion.div)`
   padding: 20px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
-  border-left: 5px solid #b48a4a;
+  border-left: 5px solid ${colors.primaryDark};
 
   .word-header {
     display: flex;
@@ -321,7 +322,7 @@ const SentenceItem = styled.div`
 `;
 
 const BackButton = styled.button`
-  background: linear-gradient(135deg, #f7d774 0%, #fff 100%);
+  background: ${gradients.primary};
   color: white;
   border: none;
   padding: 10px 20px;

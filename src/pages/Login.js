@@ -117,8 +117,8 @@ const LoginButton = styled.button`
   width: 100%;
   padding: 15px;
   background: #fff;
-  color: #b48a4a;
-  border: 1.5px solid #e7cfa2;
+  color: ${colors.primaryDark};
+  border: 1.5px solid ${colors.primaryLight};
   border-radius: 15px;
   font-size: 16px;
   font-weight: 600;
@@ -131,9 +131,9 @@ const LoginButton = styled.button`
 
   &:hover {
     background: #f7f7f7;
-    color: #b48a4a;
+    color: ${colors.primaryDark};
     transform: scale(1.04) translateY(-2px);
-    box-shadow: 0 10px 20px #b48a4a18;
+    box-shadow: 0 10px 20px ${colors.primaryDark}18;
   }
 
   &:disabled {
@@ -256,12 +256,12 @@ const GarudaSVG = () => (
     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
   >
     <g>
-      <path d="M8,32 Q2,18 18,18 Q8,8 24,12 Q18,2 32,8 Q46,2 40,12 Q56,8 46,18 Q62,18 56,32" stroke="#e7cfa2" strokeWidth="2" fill="none"/>
-      <ellipse cx="32" cy="32" rx="10" ry="16" fill="#f7d774" stroke="#b48a4a" strokeWidth="2"/>
-      <circle cx="32" cy="18" r="6" fill="#f7d774" stroke="#b48a4a" strokeWidth="2"/>
-      <path d="M32,18 Q36,20 32,22" stroke="#b48a4a" strokeWidth="2" fill="none"/>
-      <path d="M28,48 Q26,54 30,54" stroke="#b48a4a" strokeWidth="2" fill="none"/>
-      <path d="M36,48 Q38,54 34,54" stroke="#b48a4a" strokeWidth="2" fill="none"/>
+      <path d="M8,32 Q2,18 18,18 Q8,8 24,12 Q18,2 32,8 Q46,2 40,12 Q56,8 46,18 Q62,18 56,32" stroke="${colors.primaryLight}" strokeWidth="2" fill="none"/>
+      <ellipse cx="32" cy="32" rx="10" ry="16" fill="${colors.primary}" stroke="${colors.primaryDark}" strokeWidth="2"/>
+      <circle cx="32" cy="18" r="6" fill="${colors.primary}" stroke="${colors.primaryDark}" strokeWidth="2"/>
+      <path d="M32,18 Q36,20 32,22" stroke="${colors.primaryDark}" strokeWidth="2" fill="none"/>
+      <path d="M28,48 Q26,54 30,54" stroke="${colors.primaryDark}" strokeWidth="2" fill="none"/>
+      <path d="M36,48 Q38,54 34,54" stroke="${colors.primaryDark}" strokeWidth="2" fill="none"/>
     </g>
   </motion.svg>
 );
@@ -271,9 +271,9 @@ const BatikWaveSVG = ({ style }) => (
   <svg width="100%" height="32" viewBox="0 0 360 32" fill="none" style={style} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <defs>
       <pattern id="batikPatternLogin" patternUnits="userSpaceOnUse" width="60" height="32">
-        <path d="M0,16 Q15,0 30,16 T60,16" stroke="#e7cfa2" strokeWidth="2" fill="none"/>
-        <circle cx="15" cy="16" r="2.5" fill="#f7d774" opacity="0.7"/>
-        <circle cx="45" cy="16" r="2.5" fill="#f7d774" opacity="0.7"/>
+        <path d="M0,16 Q15,0 30,16 T60,16" stroke="${colors.primaryLight}" strokeWidth="2" fill="none"/>
+        <circle cx="15" cy="16" r="2.5" fill="${colors.primary}" opacity="0.7"/>
+        <circle cx="45" cy="16" r="2.5" fill="${colors.primary}" opacity="0.7"/>
       </pattern>
     </defs>
     <rect width="360" height="32" fill="url(#batikPatternLogin)" />
@@ -328,7 +328,7 @@ function Login() {
       if (result.success) {
         showMessage(
           result.user.loginCount === 1 
-            ? `欢迎加入 Bahasa Beraja，${result.user.displayName}！` 
+            ? `欢迎加入 PIMI Bahasa，${result.user.displayName}！` 
             : `欢迎回来，${result.user.displayName}！`,
           'success'
         );
@@ -393,7 +393,7 @@ function Login() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 8 }}>
           <GarudaSVG />
           <Logo>
-            <LogoText>Bahasa Beraja</LogoText>
+            <LogoText>PIMI Bahasa</LogoText>
           </Logo>
           <div style={{ fontSize: 16, color: '#b48a4a', fontWeight: 600, marginBottom: 8, textAlign: 'center' }}>
             Selamat datang di platform belajar bahasa Indonesia!

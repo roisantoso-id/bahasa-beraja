@@ -1,4 +1,4 @@
-# Bahasa Beraja - 印尼语学习平台
+# PIMI Bahasa - 印尼语学习平台
 
 一个现代化的印尼语学习应用，提供互动词汇学习、语法课程和智能测验功能。
 
@@ -54,7 +54,7 @@
 1. **克隆项目**
 ```bash
 git clone <repository-url>
-cd bahasa-beraja
+cd pimi-bahasa
 ```
 
 2. **启动服务**
@@ -122,7 +122,7 @@ DATABASE_URL=postgresql://bahasa_user:bahasa_pass@postgres:5432/bahasa_beraja
 ```
 
 ### Docker 服务
-- **bahasa-beraja**: 主应用服务 (端口 3000)
+- **pimi-bahasa**: 主应用服务 (端口 3000)
 - **postgres**: PostgreSQL 数据库 (端口 5432)
 - **pgadmin**: 数据库管理工具 (端口 5050)
 

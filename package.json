@@ -1,7 +1,7 @@
 {
-  "name": "bahasa-beraja",
+  "name": "pimi-bahasa",
   "version": "1.0.0",
-  "description": "印尼语学习应用 - Indonesian Language Learning App",
+  "description": "PIMI Bahasa - 印尼语学习应用",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",

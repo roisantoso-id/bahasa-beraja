@@ -39,8 +39,8 @@ class UpdateManager {
     return {
       version: this.CURRENT_VERSION,
       title: {
-        chinese: '🚀 Bahasa Beraja 2.0 功能大升级！',
-        indonesian: '🚀 Upgrade Fitur Besar Bahasa Beraja 2.0!'
+        chinese: '🚀 PIMI Bahasa 2.0 功能大升级！',
+        indonesian: '🚀 Upgrade Fitur Besar PIMI Bahasa 2.0!'
       },
       subtitle: {
         chinese: '全新功能上线，让印尼语学习更智能、更高效、更有趣！',
