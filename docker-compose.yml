@@ -1,17 +1,56 @@
 services:
   bahasa-beraja:
-    build: .
+    image: node:18-alpine
+    container_name: bahasa-beraja-app-dev
+    working_dir: /app
+    command: npm start
     ports:
-      - "80:80"
-    container_name: bahasa-beraja-app
-    restart: unless-stopped
+      - "3000:3000"
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - HOST=0.0.0.0
+      - DANGEROUSLY_DISABLE_HOST_CHECK=true
+      - DATABASE_URL=postgresql://bahasa_user:bahasa_pass_2024@postgres:5432/bahasa_beraja
     networks:
-      - tools_network
+      - app_network
+      - bahasa_db_network
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /home/pimi/bahasa-beraja:/app
+      - /home/pimi/bahasa-beraja/node_modules:/app/node_modules
+    depends_on:
+      - api
+
+  api:
+    image: node:18-alpine
+    container_name: bahasa-beraja-api-dev
+    working_dir: /app
+    command: npm run dev
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=bahasa_beraja
+      - DB_USER=bahasa_user
+      - DB_PASSWORD=bahasa_pass_2024
+      - JWT_SECRET=bahasa-beraja-super-secret-jwt-key-2024-indonesian-learning
+      - JWT_EXPIRES_IN=7d
+      - FRONTEND_URL=http://localhost:3000
+      - BCRYPT_ROUNDS=12
+    networks:
+      - app_network
+      - bahasa_db_network
+    volumes:
+      - /home/pimi/bahasa-beraja/backend:/app
+      - /home/pimi/bahasa-beraja/backend/node_modules:/app/node_modules
 
 networks:
-  tools_network:
+  app_network:
+    name: bahasa_app_network
+    driver: bridge
+  bahasa_db_network:
+    name: bahasa_db_network
     external: true 

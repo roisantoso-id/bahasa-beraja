@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: bahasa-beraja-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=bahasa_beraja
+      - POSTGRES_USER=bahasa_user
+      - POSTGRES_PASSWORD=bahasa_pass_2024
+      - POSTGRES_HOST_AUTH_METHOD=md5
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/data/bahasa-beraja-postgres:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+      - ./upgrade-db.sql:/docker-entrypoint-initdb.d/upgrade-db.sql:ro
+    networks:
+      - bahasa_db_network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: bahasa-beraja-admin
+    restart: unless-stopped
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@bahasa.local
+      - PGADMIN_DEFAULT_PASSWORD=admin123456
+      - PGADMIN_CONFIG_SERVER_MODE=False
+    ports:
+      - "5050:80"
+    volumes:
+      - /home/data/bahasa-beraja-pgadmin:/var/lib/pgadmin
+    networks:
+      - bahasa_db_network
+    depends_on:
+      - postgres
+
+networks:
+  bahasa_db_network:
+    name: bahasa_db_network
+    driver: bridge 
