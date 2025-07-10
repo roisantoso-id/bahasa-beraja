@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import { BookOpen, Brain, Trophy, TrendingUp, Calendar, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LocalDatabase from '../utils/database';
@@ -32,7 +31,7 @@ const Hero = styled.div`
   }
 `;
 
-const HeroLogo = styled(motion.div)`
+const HeroLogo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -188,7 +187,7 @@ const StatsGrid = styled.div`
   }
 `;
 
-const StatCard = styled(motion.div)`
+const StatCard = styled.div`
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   padding: 30px;
@@ -273,7 +272,7 @@ const FeaturesGrid = styled.div`
   }
 `;
 
-const FeatureCard = styled(motion.div)`
+const FeatureCard = styled.div`
   background: white;
   border-radius: 20px;
   padding: 40px;
@@ -282,7 +281,6 @@ const FeatureCard = styled(motion.div)`
   transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-10px);
     box-shadow: 0 30px 60px rgba(0,0,0,0.15);
   }
 
@@ -291,7 +289,6 @@ const FeatureCard = styled(motion.div)`
     border-radius: 16px;
 
     &:hover {
-      transform: translateY(-5px);
       box-shadow: 0 20px 40px rgba(0,0,0,0.12);
     }
   }
@@ -301,7 +298,6 @@ const FeatureCard = styled(motion.div)`
     border-radius: 14px;
 
     &:hover {
-      transform: translateY(-3px);
       box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
   }
@@ -379,7 +375,6 @@ const FeatureButton = styled(Link)`
   transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
   }
 
@@ -561,7 +556,6 @@ const QuickActionButton = styled(Link)`
   &:hover {
     background: #667eea;
     color: white;
-    transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
   }
 `;
@@ -683,7 +677,6 @@ const JoinButton = styled.a`
 
   &:hover {
     background: #128C7E;
-    transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
   }
 
@@ -871,19 +864,12 @@ function Home() {
     setCategoryProgress(progress);
   }, []);
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 }
-  };
+
 
   return (
     <HomeContainer>
       <Hero>
-        <HeroLogo
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
+        <HeroLogo>
           <LogoIcon>
             <LogoImage src="/company-logo.jpeg" alt="Belajar Bahasa Logo" />
           </LogoIcon>
@@ -897,12 +883,7 @@ function Home() {
       </Hero>
 
       <StatsGrid>
-        <StatCard
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.1 }}
-        >
+        <StatCard>
           <StatIcon>
             <BookOpen size={40} />
           </StatIcon>
@@ -910,12 +891,7 @@ function Home() {
           <StatLabel>已学词汇</StatLabel>
         </StatCard>
 
-        <StatCard
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.2 }}
-        >
+        <StatCard>
           <StatIcon>
             <Target size={40} />
           </StatIcon>
@@ -923,12 +899,7 @@ function Home() {
           <StatLabel>已掌握词汇</StatLabel>
         </StatCard>
 
-        <StatCard
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.3 }}
-        >
+        <StatCard>
           <StatIcon>
             <Calendar size={40} />
           </StatIcon>
@@ -936,12 +907,7 @@ function Home() {
           <StatLabel>连续学习天数</StatLabel>
         </StatCard>
 
-        <StatCard
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.4 }}
-        >
+        <StatCard>
           <StatIcon>
             <Trophy size={40} />
           </StatIcon>
@@ -968,12 +934,7 @@ function Home() {
       )}
 
       <FeaturesGrid>
-        <FeatureCard
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.5 }}
-        >
+        <FeatureCard>
           <FeatureIcon>
             <BookOpen size={30} />
           </FeatureIcon>
@@ -984,12 +945,7 @@ function Home() {
           <FeatureButton to="/vocabulary">开始学习</FeatureButton>
         </FeatureCard>
 
-        <FeatureCard
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.6 }}
-        >
+        <FeatureCard>
           <FeatureIcon>
             <Brain size={30} />
           </FeatureIcon>
@@ -1000,12 +956,7 @@ function Home() {
           <FeatureButton to="/grammar">语法学习</FeatureButton>
         </FeatureCard>
 
-        <FeatureCard
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.7 }}
-        >
+        <FeatureCard>
           <FeatureIcon>
             <Trophy size={30} />
           </FeatureIcon>
