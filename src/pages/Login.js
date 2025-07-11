@@ -1,77 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { User, LogIn, UserPlus, Book } from 'lucide-react';
+import { Eye, EyeOff, User, Lock } from 'lucide-react';
 import UserManager from '../utils/userManager';
-import { colors, gradients } from '../utils/theme';
 
 const LoginContainer = styled.div`
   min-height: 100vh;
-  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #6366f1;
   padding: 20px;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: url('/assets/batik.jpg') center center/cover no-repeat;
-    opacity: 0.18;
-    z-index: 0;
-    pointer-events: none;
-  }
 `;
 
-const LoginCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.98);
-  border-radius: 22px;
-  padding: 40px 32px 32px 32px;
-  box-shadow: 0 10px 32px rgba(180,138,74,0.08), 0 2px 8px rgba(0,0,0,0.06);
-  border: 1.5px solid #f0f0f0;
+const LoginCard = styled.div`
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
   width: 100%;
   max-width: 400px;
-  position: relative;
-  overflow: hidden;
+  border: 1px solid #e1e5e9;
 `;
 
-const Logo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
+const LogoSection = styled.div`
+  text-align: center;
   margin-bottom: 30px;
 `;
 
 const LogoIcon = styled.div`
-  width: 50px;
-  height: 50px;
-  background: #fff;
-  border-radius: 15px;
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  background: #6366f1;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${colors.primaryDark};
-  overflow: hidden;
+  margin: 0 auto 20px;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
 `;
 
-const LogoText = styled.h1`
+const LogoTitle = styled.h1`
   font-size: 28px;
   font-weight: 700;
   color: #333;
   margin: 0;
+  margin-bottom: 8px;
 `;
 
-const Title = styled.h2`
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  text-align: center;
-  margin-bottom: 30px;
+const LogoSubtitle = styled.div`
+  font-size: 16px;
+  color: #666;
+  font-weight: 500;
 `;
 
 const Form = styled.form`
@@ -84,28 +64,19 @@ const InputGroup = styled.div`
   position: relative;
 `;
 
-const InputLabel = styled.label`
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 8px;
-`;
-
 const Input = styled.input`
   width: 100%;
-  padding: 15px 20px;
+  padding: 16px 20px;
+  padding-left: 50px;
   border: 2px solid #e1e5e9;
-  border-radius: 15px;
+  border-radius: 12px;
   font-size: 16px;
   background: white;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
+  color: #333;
+  outline: none;
 
   &:focus {
-    outline: none;
-    border-color: #ff2e3c;
-    box-shadow: 0 0 0 3px rgba(255,46,60,0.10);
+    border-color: #6366f1;
   }
 
   &::placeholder {
@@ -113,78 +84,69 @@ const Input = styled.input`
   }
 `;
 
+const InputIcon = styled.div`
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  display: flex;
+  align-items: center;
+`;
+
+const PasswordToggle = styled.button`
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+`;
+
 const LoginButton = styled.button`
   width: 100%;
-  padding: 15px;
-  background: #fff;
-  color: ${colors.primaryDark};
-  border: 1.5px solid ${colors.primaryLight};
-  border-radius: 15px;
+  padding: 16px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(.4,2,.6,1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  &:hover {
-    background: #f7f7f7;
-    color: ${colors.primaryDark};
-    transform: scale(1.04) translateY(-2px);
-    box-shadow: 0 10px 20px ${colors.primaryDark}18;
-  }
+  margin-top: 10px;
 
   &:disabled {
-    opacity: 0.7;
+    background: #ccc;
     cursor: not-allowed;
-    transform: none;
-  }
-`;
-
-const ToggleMode = styled.button`
-  background: none;
-  border: none;
-  color: #ff2e3c;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  width: 100%;
-  padding: 10px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    color: #c62828;
   }
 `;
 
 const ErrorMessage = styled.div`
-  background: #fee2e2;
-  color: #991b1b;
-  padding: 12px 16px;
-  border-radius: 10px;
+  color: #ef4444;
   font-size: 14px;
-  border-left: 4px solid #ef4444;
+  text-align: center;
+  margin-top: 10px;
 `;
 
 const SuccessMessage = styled.div`
-  background: #dcfce7;
-  color: #065f46;
-  padding: 12px 16px;
-  border-radius: 10px;
+  color: #10b981;
   font-size: 14px;
-  border-left: 4px solid #10b981;
+  text-align: center;
+  margin-top: 10px;
 `;
 
-const RecentUsers = styled.div`
-  margin-top: 20px;
+const DemoSection = styled.div`
+  margin-top: 30px;
   padding-top: 20px;
   border-top: 1px solid #e1e5e9;
 `;
 
-const RecentUsersTitle = styled.h3`
+const DemoTitle = styled.h3`
   font-size: 16px;
   font-weight: 600;
   color: #333;
@@ -192,305 +154,155 @@ const RecentUsersTitle = styled.h3`
   text-align: center;
 `;
 
-const UsersList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-height: 120px;
-  overflow-y: auto;
-`;
-
-const UserItem = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 15px;
-  background: #f8fafc;
-  border: 1px solid #e1e5e9;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+const DemoButton = styled.button`
   width: 100%;
-  text-align: left;
-
-  &:hover {
-    background: #f1f5f9;
-    border-color: #667eea;
-  }
-`;
-
-const UserAvatar = styled.div`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: ${props => props.$color};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 600;
-  font-size: 14px;
-`;
-
-const UserInfo = styled.div`
-  flex: 1;
-`;
-
-const UserName = styled.div`
+  padding: 12px;
+  background: #f8f9fa;
+  color: #6366f1;
+  border: 2px solid #6366f1;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: 600;
-  color: #333;
+  cursor: pointer;
+  margin-bottom: 10px;
 `;
 
-const UserMeta = styled.div`
+const DemoInfo = styled.div`
   font-size: 12px;
   color: #666;
+  text-align: center;
+  line-height: 1.4;
 `;
 
-// 印尼国徽 Garuda SVG
-const GarudaSVG = () => (
-  <motion.svg
-    width="54" height="54" viewBox="0 0 64 64" fill="none"
-    style={{marginBottom: 8}}
-    animate={{ y: [0, -8, 0, 8, 0] }}
-    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-  >
-    <g>
-      <path d="M8,32 Q2,18 18,18 Q8,8 24,12 Q18,2 32,8 Q46,2 40,12 Q56,8 46,18 Q62,18 56,32" stroke="${colors.primaryLight}" strokeWidth="2" fill="none"/>
-      <ellipse cx="32" cy="32" rx="10" ry="16" fill="${colors.primary}" stroke="${colors.primaryDark}" strokeWidth="2"/>
-      <circle cx="32" cy="18" r="6" fill="${colors.primary}" stroke="${colors.primaryDark}" strokeWidth="2"/>
-      <path d="M32,18 Q36,20 32,22" stroke="${colors.primaryDark}" strokeWidth="2" fill="none"/>
-      <path d="M28,48 Q26,54 30,54" stroke="${colors.primaryDark}" strokeWidth="2" fill="none"/>
-      <path d="M36,48 Q38,54 34,54" stroke="${colors.primaryDark}" strokeWidth="2" fill="none"/>
-    </g>
-  </motion.svg>
-);
-
-// 印尼 batik 波浪 SVG
-const BatikWaveSVG = ({ style }) => (
-  <svg width="100%" height="32" viewBox="0 0 360 32" fill="none" style={style} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <defs>
-      <pattern id="batikPatternLogin" patternUnits="userSpaceOnUse" width="60" height="32">
-        <path d="M0,16 Q15,0 30,16 T60,16" stroke="${colors.primaryLight}" strokeWidth="2" fill="none"/>
-        <circle cx="15" cy="16" r="2.5" fill="${colors.primary}" opacity="0.7"/>
-        <circle cx="45" cy="16" r="2.5" fill="${colors.primary}" opacity="0.7"/>
-      </pattern>
-    </defs>
-    <rect width="360" height="32" fill="url(#batikPatternLogin)" />
-  </svg>
-);
-
 function Login() {
-  const [isLogin, setIsLogin] = useState(true);
-  const [username, setUsername] = useState('');
-  const [displayName, setDisplayName] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
-  const [messageType, setMessageType] = useState('');
-  const [recentUsers, setRecentUsers] = useState([]);
+  const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // 检查是否已登录
-    if (UserManager.isLoggedIn()) {
-      navigate('/');
-      return;
-    }
-
-    // 加载最近的用户
-    const users = UserManager.getAllUsers();
-    const usersList = Object.values(users)
-      .sort((a, b) => new Date(b.lastLoginAt) - new Date(a.lastLoginAt))
-      .slice(0, 3);
-    setRecentUsers(usersList);
-  }, [navigate]);
-
-  const showMessage = (msg, type = 'error') => {
-    setMessage(msg);
-    setMessageType(type);
-    setTimeout(() => setMessage(''), 3000);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    setError('');
+    setSuccess('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!username.trim()) {
-      showMessage('请输入用户名');
-      return;
-    }
-
-    setLoading(true);
+    setIsLoading(true);
+    setError('');
+    setSuccess('');
 
     try {
-      const result = UserManager.login(username.trim(), displayName.trim());
-      
+      const result = await UserManager.login(formData.username, formData.password);
       if (result.success) {
-        showMessage(
-          result.user.loginCount === 1 
-            ? `欢迎加入 PIMI Bahasa，${result.user.displayName}！` 
-            : `欢迎回来，${result.user.displayName}！`,
-          'success'
-        );
-        
+        setSuccess('登录成功！正在跳转...');
         setTimeout(() => {
-          navigate('/');
-        }, 1500);
+          window.location.href = '/';
+        }, 1000);
       } else {
-        showMessage(result.message);
+        setError(result.message || '登录失败，请检查用户名和密码');
       }
-    } catch (error) {
-      showMessage('登录过程中发生错误，请重试');
+    } catch (err) {
+      setError('登录过程中发生错误，请重试');
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  const handleQuickLogin = (user) => {
-    setLoading(true);
-    
-    const result = UserManager.login(user.username, user.displayName);
-    
-    if (result.success) {
-      showMessage(`欢迎回来，${result.user.displayName}！`, 'success');
-      setTimeout(() => {
-        navigate('/');
-      }, 1000);
-    } else {
-      showMessage(result.message);
-      setLoading(false);
+  const handleDemoLogin = async () => {
+    setIsLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      const result = await UserManager.login('demo', 'demo123');
+      if (result.success) {
+        setSuccess('演示账号登录成功！正在跳转...');
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1000);
+      } else {
+        setError('演示账号登录失败');
+      }
+    } catch (err) {
+      setError('演示账号登录过程中发生错误');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <LoginContainer>
-      {/* 印尼人偶背景图 */}
-      <img
-        src={'/assets/indo.jpg'}
-        alt="Indonesian Wayang"
-        style={{
-          position: 'absolute',
-          right: 0,
-          bottom: 0,
-          width: '60%',
-          maxWidth: 600,
-          minWidth: 320,
-          opacity: 0.18,
-          zIndex: 1,
-          pointerEvents: 'none',
-          userSelect: 'none',
-        }}
-      />
-      <LoginCard
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: [50, 40, 50] }}
-        transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-        style={{ zIndex: 1 }}
-      >
-        <div style={{ width: '100%', margin: '-32px -32px 12px -32px' }}>
-          <BatikWaveSVG />
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 8 }}>
-          <GarudaSVG />
-          <Logo>
-            <LogoText>PIMI Bahasa</LogoText>
-          </Logo>
-          <div style={{ fontSize: 16, color: '#b48a4a', fontWeight: 600, marginBottom: 8, textAlign: 'center' }}>
-            Selamat datang di platform belajar bahasa Indonesia!
-          </div>
-        </div>
-
-        <Title>{isLogin ? '登录账户' : '创建账户'}</Title>
-
-        {message && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-          >
-            {messageType === 'success' ? (
-              <SuccessMessage>{message}</SuccessMessage>
-            ) : (
-              <ErrorMessage>{message}</ErrorMessage>
-            )}
-          </motion.div>
-        )}
+      <LoginCard>
+        <LogoSection>
+          <LogoIcon>P</LogoIcon>
+          <LogoTitle>PIMI Bahasa</LogoTitle>
+          <LogoSubtitle>Indonesian Language Learning Platform</LogoSubtitle>
+        </LogoSection>
 
         <Form onSubmit={handleSubmit}>
           <InputGroup>
-            <InputLabel>用户名</InputLabel>
+            <InputIcon>
+              <User size={20} />
+            </InputIcon>
             <Input
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="请输入用户名"
-              disabled={loading}
-              autoFocus
+              name="username"
+              placeholder="用户名 / Username"
+              value={formData.username}
+              onChange={handleInputChange}
+              required
             />
           </InputGroup>
 
-          {!isLogin && (
-            <InputGroup>
-              <InputLabel>显示名称（可选）</InputLabel>
-              <Input
-                type="text"
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                placeholder="请输入显示名称"
-                disabled={loading}
-              />
-            </InputGroup>
-          )}
+          <InputGroup>
+            <InputIcon>
+              <Lock size={20} />
+            </InputIcon>
+            <Input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="密码 / Password"
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+            />
+            <PasswordToggle
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </PasswordToggle>
+          </InputGroup>
 
-          <LoginButton type="submit" disabled={loading}>
-            {loading ? (
-              '处理中...'
-            ) : isLogin ? (
-              <>
-                <LogIn size={20} />
-                登录
-              </>
-            ) : (
-              <>
-                <UserPlus size={20} />
-                注册
-              </>
-            )}
+          <LoginButton type="submit" disabled={isLoading}>
+            {isLoading ? '登录中...' : '登录 / Login'}
           </LoginButton>
+
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+          {success && <SuccessMessage>{success}</SuccessMessage>}
         </Form>
 
-        <ToggleMode onClick={() => setIsLogin(!isLogin)}>
-          {isLogin ? '还没有账户？点击注册' : '已有账户？点击登录'}
-        </ToggleMode>
-
-        {recentUsers.length > 0 && (
-          <RecentUsers>
-            <RecentUsersTitle>快速登录</RecentUsersTitle>
-            <UsersList>
-              {recentUsers.map((user) => (
-                <UserItem
-                  key={user.id}
-                  onClick={() => handleQuickLogin(user)}
-                  disabled={loading}
-                >
-                  <UserAvatar $color={UserManager.getUserAvatarColor(user.username)}>
-                    {UserManager.getUserAvatarLetter(user.username)}
-                  </UserAvatar>
-                  <UserInfo>
-                    <UserName>{user.displayName}</UserName>
-                    <UserMeta>
-                      登录 {user.loginCount} 次 • 
-                      {new Date(user.lastLoginAt).toLocaleDateString()}
-                    </UserMeta>
-                  </UserInfo>
-                </UserItem>
-              ))}
-            </UsersList>
-          </RecentUsers>
-        )}
-        <div style={{ width: '100%', margin: '24px -32px -32px -32px' }}>
-          <BatikWaveSVG style={{ transform: 'rotate(180deg)' }} />
-        </div>
+        <DemoSection>
+          <DemoTitle>演示账号 / Demo Account</DemoTitle>
+          <DemoButton onClick={handleDemoLogin} disabled={isLoading}>
+            使用演示账号登录 / Login with Demo Account
+          </DemoButton>
+          <DemoInfo>
+            用户名: demo<br/>
+            密码: demo123<br/>
+            Username: demo<br/>
+            Password: demo123
+          </DemoInfo>
+        </DemoSection>
       </LoginCard>
     </LoginContainer>
   );
