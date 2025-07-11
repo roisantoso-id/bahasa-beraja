@@ -33,7 +33,7 @@ const MainContent = styled.main`
   }
 `;
 
-// 路由保护组件
+// 路由保护组件 - 只保护需要登录的页面
 function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
   
@@ -135,55 +135,29 @@ function App() {
               } 
             />
               
-              {/* 受保护的路由 */}
-              <Route 
-                path="/" 
-                element={
-                  <ProtectedRoute>
-                    <Home />
-                  </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="/vocabulary" 
-                element={
-                  <ProtectedRoute>
-                    <Vocabulary />
-                  </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="/vocabulary-book" 
-                element={
-                  <ProtectedRoute>
-                    <VocabularyBook />
-                  </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="/grammar" 
-                element={
-                  <ProtectedRoute>
-                    <Grammar />
-                  </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="/quiz" 
-                element={
-                  <ProtectedRoute>
-                    <Quiz />
-                  </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="/business" 
-                element={
-                  <ProtectedRoute>
-                    <BusinessIndonesian />
-                  </ProtectedRoute>
-                } 
-              />
+                          {/* 公开访问的路由 */}
+            <Route path="/" element={<Home />} />
+            <Route path="/vocabulary" element={<Vocabulary />} />
+            <Route path="/grammar" element={<Grammar />} />
+            <Route path="/business" element={<BusinessIndonesian />} />
+            
+            {/* 需要登录的路由 */}
+            <Route 
+              path="/vocabulary-book" 
+              element={
+                <ProtectedRoute>
+                  <VocabularyBook />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/quiz" 
+              element={
+                <ProtectedRoute>
+                  <Quiz />
+                </ProtectedRoute>
+              } 
+            />
               
               {/* 404 重定向 */}
               <Route path="*" element={<Navigate to="/" replace />} />

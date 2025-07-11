@@ -450,19 +450,17 @@ function Header() {
           <ArtisticLogo />
         </Logo>
 
-        {currentUser && (
-          <DesktopNav>
-            {navItems.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                $active={location.pathname === item.path}
-              >
-                {item.label}
-              </NavLink>
-            ))}
-          </DesktopNav>
-        )}
+        <DesktopNav>
+          {navItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              $active={location.pathname === item.path}
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </DesktopNav>
 
         <UserSection>
           {currentUser ? (
@@ -542,59 +540,57 @@ function Header() {
                 </MobileMenuClose>
               </MobileMenuHeader>
 
+              <MobileNav>
+                {navItems.map((item) => (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    $active={location.pathname === item.path}
+                    onClick={closeMobileMenu}
+                  >
+                    {item.label}
+                  </NavLink>
+                ))}
+              </MobileNav>
+
               {currentUser && (
-                <>
-                  <MobileNav>
-                    {navItems.map((item) => (
-                      <NavLink
-                        key={item.path}
-                        to={item.path}
-                        $active={location.pathname === item.path}
-                        onClick={closeMobileMenu}
-                      >
-                        {item.label}
-                      </NavLink>
-                    ))}
-                  </MobileNav>
+                <UserDropdown>
+                  <UserStats>
+                    <StatRow>
+                      <StatLabel>用户名</StatLabel>
+                      <StatValue>{currentUser.username}</StatValue>
+                    </StatRow>
+                    <StatRow>
+                      <StatLabel>注册时间</StatLabel>
+                      <StatValue>
+                        {new Date(currentUser.createdAt).toLocaleDateString()}
+                      </StatValue>
+                    </StatRow>
+                    <StatRow>
+                      <StatLabel>登录次数</StatLabel>
+                      <StatValue>{currentUser.loginCount || 0}</StatValue>
+                    </StatRow>
+                  </UserStats>
 
-                  <UserDropdown>
-                    <UserStats>
-                      <StatRow>
-                        <StatLabel>用户名</StatLabel>
-                        <StatValue>{currentUser.username}</StatValue>
-                      </StatRow>
-                      <StatRow>
-                        <StatLabel>注册时间</StatLabel>
-                        <StatValue>
-                          {new Date(currentUser.createdAt).toLocaleDateString()}
-                        </StatValue>
-                      </StatRow>
-                      <StatRow>
-                        <StatLabel>登录次数</StatLabel>
-                        <StatValue>{currentUser.loginCount || 0}</StatValue>
-                      </StatRow>
-                    </UserStats>
-
-                    <DropdownItem onClick={closeMobileMenu}>
-                      <Settings size={16} />
-                      设置
-                    </DropdownItem>
-                    
-                    <DropdownItem onClick={closeMobileMenu}>
-                      <BarChart size={16} />
-                      学习统计
-                    </DropdownItem>
-                    
-                    <DevDropdownItem onClick={handleResetUpdate}>
-                      🔄 重置更新状态 (Dev)
-                    </DevDropdownItem>
-                    
-                    <DropdownItem onClick={handleLogout}>
-                      <LogOut size={16} />
-                      退出登录
-                    </DropdownItem>
-                  </UserDropdown>
-                </>
+                  <DropdownItem onClick={closeMobileMenu}>
+                    <Settings size={16} />
+                    设置
+                  </DropdownItem>
+                  
+                  <DropdownItem onClick={closeMobileMenu}>
+                    <BarChart size={16} />
+                    学习统计
+                  </DropdownItem>
+                  
+                  <DevDropdownItem onClick={handleResetUpdate}>
+                    🔄 重置更新状态 (Dev)
+                  </DevDropdownItem>
+                  
+                  <DropdownItem onClick={handleLogout}>
+                    <LogOut size={16} />
+                    退出登录
+                  </DropdownItem>
+                </UserDropdown>
               )}
             </MobileMenuContent>
           </>

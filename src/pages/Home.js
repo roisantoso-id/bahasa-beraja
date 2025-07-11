@@ -4,6 +4,9 @@ import { BookOpen, Brain, Trophy, TrendingUp, Calendar, Target } from 'lucide-re
 import { Link } from 'react-router-dom';
 import LocalDatabase from '../utils/database';
 import ArtisticLogo from '../components/ArtisticLogo';
+import { useAuth } from '../contexts/AuthContext';
+import LoginPrompt from '../components/LoginPrompt';
+import { getTempData } from '../utils/tempStorage';
 
 const HomeContainer = styled.div`
   padding: 40px 20px;
@@ -772,6 +775,7 @@ const QRLabel = styled.div`
 `;
 
 function Home() {
+  const { isAuthenticated } = useAuth();
   const [stats, setStats] = useState({
     wordsLearned: 0,
     streak: 0,
@@ -784,11 +788,20 @@ function Home() {
   const [categoryProgress, setCategoryProgress] = useState([]);
 
   useEffect(() => {
-    // 加载学习统计
-    const learningStats = LocalDatabase.getLearningStats();
-    const userProgress = LocalDatabase.getUserProgress();
-    const vocabularyMastery = LocalDatabase.getVocabularyMastery();
-    const quizHistory = LocalDatabase.getQuizHistory();
+    let learningStats, vocabularyMastery, quizHistory;
+    
+    if (isAuthenticated) {
+      // 登录用户：从本地数据库加载
+      learningStats = LocalDatabase.getLearningStats();
+      const userProgress = LocalDatabase.getUserProgress();
+      vocabularyMastery = LocalDatabase.getVocabularyMastery();
+      quizHistory = LocalDatabase.getQuizHistory();
+    } else {
+      // 未登录用户：从临时存储加载
+      learningStats = getTempData('learningStats') || {};
+      vocabularyMastery = getTempData('vocabularyMastery') || {};
+      quizHistory = getTempData('quizHistory') || [];
+    }
 
     // 计算掌握的词汇数量
     const masteredWords = Object.values(vocabularyMastery).reduce((total, category) => {
@@ -806,7 +819,7 @@ function Home() {
       : 0;
 
     // 计算连续天数
-    const streak = LocalDatabase.calculateStreak();
+    const streak = isAuthenticated ? LocalDatabase.calculateStreak() : 0;
 
     setStats({
       wordsLearned: totalWordsLearned,
@@ -814,7 +827,7 @@ function Home() {
       quizzesTaken: quizHistory.length,
       averageScore: avgScore,
       masteredWords: masteredWords,
-      totalStudyTime: Math.floor(learningStats.totalStudyTime / 60) // 转换为分钟
+      totalStudyTime: Math.floor((learningStats.totalStudyTime || 0) / 60) // 转换为分钟
     });
 
     // 计算各分类进度
@@ -833,7 +846,7 @@ function Home() {
     }).filter(category => category.learned < 100); // 过滤掉已完全掌握的类别
 
     setCategoryProgress(progress);
-  }, []);
+  }, [isAuthenticated]);
 
 
 
@@ -880,6 +893,14 @@ function Home() {
           <StatLabel>平均测验分数</StatLabel>
         </StatCard>
       </StatsGrid>
+      
+      {!isAuthenticated && (
+        <LoginPrompt 
+          title="登录后查看完整学习统计"
+          description="登录后可以查看详细的学习进度、连续学习天数和测验成绩，让学习更有动力"
+          showBenefits={true}
+        />
+      )}
 
       {categoryProgress.length > 0 && (
         <ProgressSection>

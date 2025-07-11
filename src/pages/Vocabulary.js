@@ -4,6 +4,9 @@ import { ChevronLeft, ChevronRight, Volume2, RotateCcw } from 'lucide-react';
 import { vocabularyData } from '../data/vocabulary';
 import LocalDatabase from '../utils/database';
 import { colors, gradients } from '../utils/theme';
+import { useAuth } from '../contexts/AuthContext';
+import LoginPrompt from '../components/LoginPrompt';
+import { setTempData, getTempData } from '../utils/tempStorage';
 
 const VocabularyContainer = styled.div`
   padding: 40px 20px;
@@ -295,6 +298,7 @@ const SCENES = [
 ];
 
 function Vocabulary() {
+  const { isAuthenticated } = useAuth();
   const [selectedScene, setSelectedScene] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -338,30 +342,54 @@ function Vocabulary() {
 
   // 加载数据
   useEffect(() => {
-    const mastery = LocalDatabase.getVocabularyMastery();
-    const stats = LocalDatabase.getLearningStats();
-    const userProgress = LocalDatabase.getUserProgress();
-    
-    setVocabularyMastery(mastery);
-    setLearningStats(stats);
-    
-    // 恢复用户上次的学习位置
-    if (userProgress.currentCategory !== undefined) {
-      setSelectedCategory(userProgress.currentCategory);
-      setCurrentWordIndex(userProgress.currentWord || 0);
+    if (isAuthenticated) {
+      // 登录用户：从本地数据库加载
+      const mastery = LocalDatabase.getVocabularyMastery();
+      const stats = LocalDatabase.getLearningStats();
+      const userProgress = LocalDatabase.getUserProgress();
+      
+      setVocabularyMastery(mastery);
+      setLearningStats(stats);
+      
+      // 恢复用户上次的学习位置
+      if (userProgress.currentCategory !== undefined) {
+        setSelectedCategory(userProgress.currentCategory);
+        setCurrentWordIndex(userProgress.currentWord || 0);
+      }
+      
+      // 更新连续学习天数
+      LocalDatabase.updateStreak();
+    } else {
+      // 未登录用户：从临时存储加载
+      const tempMastery = getTempData('vocabularyMastery') || {};
+      const tempStats = getTempData('learningStats') || {};
+      const tempProgress = getTempData('userProgress') || {};
+      
+      setVocabularyMastery(tempMastery);
+      setLearningStats(tempStats);
+      
+      if (tempProgress.currentCategory !== undefined) {
+        setSelectedCategory(tempProgress.currentCategory);
+        setCurrentWordIndex(tempProgress.currentWord || 0);
+      }
     }
-    
-    // 更新连续学习天数
-    LocalDatabase.updateStreak();
-  }, []);
+  }, [isAuthenticated]);
 
   // 保存学习进度
   useEffect(() => {
-    LocalDatabase.saveUserProgress({
-      currentCategory: selectedCategory,
-      currentWord: currentWordIndex
-    });
-  }, [selectedCategory, currentWordIndex]);
+    if (isAuthenticated) {
+      LocalDatabase.saveUserProgress({
+        currentCategory: selectedCategory,
+        currentWord: currentWordIndex
+      });
+    } else {
+      // 未登录用户：保存到临时存储
+      setTempData('userProgress', {
+        currentCategory: selectedCategory,
+        currentWord: currentWordIndex
+      });
+    }
+  }, [selectedCategory, currentWordIndex, isAuthenticated]);
 
   // 在切换词汇时重置翻转状态
   useEffect(() => {
@@ -405,7 +433,10 @@ function Vocabulary() {
 
   const handleMasteryChange = (level) => {
     const originalIndex = getCurrentWordOriginalIndex();
-    LocalDatabase.updateWordMastery(selectedCategory, originalIndex, level);
+    
+    if (isAuthenticated) {
+      LocalDatabase.updateWordMastery(selectedCategory, originalIndex, level);
+    }
     
     // 更新本地状态
     const newMastery = { ...vocabularyMastery };
@@ -419,14 +450,22 @@ function Vocabulary() {
     };
     setVocabularyMastery(newMastery);
     
-    // 更新学习统计
-    const newWordsLearned = Object.values(newMastery).reduce((total, category) => {
-      return total + Object.values(category).filter(word => word.level >= 1).length;
-    }, 0);
-    
-    LocalDatabase.updateLearningStats({
-      wordsLearned: newWordsLearned
-    });
+    // 保存到相应的存储
+    if (isAuthenticated) {
+      LocalDatabase.updateLearningStats({
+        wordsLearned: Object.values(newMastery).reduce((total, category) => {
+          return total + Object.values(category).filter(word => word.level >= 1).length;
+        }, 0)
+      });
+    } else {
+      // 未登录用户：保存到临时存储
+      setTempData('vocabularyMastery', newMastery);
+      setTempData('learningStats', {
+        wordsLearned: Object.values(newMastery).reduce((total, category) => {
+          return total + Object.values(category).filter(word => word.level >= 1).length;
+        }, 0)
+      });
+    }
     
     // 如果在智能模式下标记为已掌握，自动跳到下一个词汇
     if (smartMode && level >= 3) {
@@ -642,6 +681,14 @@ function Vocabulary() {
           <StatLabel>连续天数</StatLabel>
         </StatCard>
       </StatsContainer>
+      
+      {!isAuthenticated && (
+        <LoginPrompt 
+          title="登录后保存学习进度"
+          description="登录后可以永久保存您的学习进度、生词本和学习统计，随时随地继续学习"
+          showBenefits={true}
+        />
+      )}
       
       <WordCount>
         第 {currentWordIndex + 1} 个，共 {smartMode ? filteredWords.length : currentCategory.words.length} 个词汇
