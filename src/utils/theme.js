@@ -5,8 +5,8 @@ export const theme = {
     main: '#6366f1',      // 主蓝紫色
     light: '#818cf8',     // 浅蓝紫色
     dark: '#4f46e5',      // 深蓝紫色
-    gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)', // 主渐变
-    gradientLight: 'linear-gradient(135deg, #818cf8 0%, #a78bfa 100%)', // 浅渐变
+    gradient: '#6366f1', // 主色（移除渐变）
+    gradientLight: '#818cf8', // 浅色（移除渐变）
   },
   
   // 辅助色
@@ -18,8 +18,8 @@ export const theme = {
   
   // 背景色
   background: {
-    main: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)', // 主背景渐变
-    light: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', // 浅背景渐变
+    main: '#6366f1', // 主背景色（移除渐变）
+    light: '#f8fafc', // 浅背景色（移除渐变）
     card: 'rgba(255, 255, 255, 0.95)', // 卡片背景
     overlay: 'rgba(255, 255, 255, 0.1)', // 覆盖层背景
   },
@@ -58,9 +58,9 @@ export const theme = {
   // 按钮样式
   button: {
     primary: {
-      background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+      background: '#6366f1',
       color: '#ffffff',
-      hover: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+      hover: '#4f46e5',
     },
     secondary: {
       background: 'rgba(255, 255, 255, 0.9)',
@@ -108,7 +108,7 @@ export const colors = {
   info: theme.status.info,
 };
 
-// 导出渐变
+// 导出渐变（现在都是纯色）
 export const gradients = {
   primary: theme.primary.gradient,
   primaryLight: theme.primary.gradientLight,

@@ -11,7 +11,6 @@ services:
       - tools_network
     volumes:
       - ./:/app
-      - /app/node_modules
     command: npm start
 
 networks:

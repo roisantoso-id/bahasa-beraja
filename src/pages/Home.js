@@ -57,7 +57,6 @@ const LogoIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
   border: 2px solid rgba(255, 255, 255, 0.3);
   overflow: hidden;
   background: white;
@@ -93,7 +92,6 @@ const LogoImage = styled.img`
 
 const LogoText = styled.div`
   color: white;
-  text-shadow: none;
 
   @media (max-width: 480px) {
     text-align: center;
@@ -137,7 +135,6 @@ const Title = styled.h1`
   font-weight: 700;
   color: white;
   margin-bottom: 20px;
-  text-shadow: none;
 
   @media (max-width: 768px) {
     font-size: 36px;
@@ -154,7 +151,6 @@ const Subtitle = styled.p`
   font-size: 24px;
   color: white;
   margin-bottom: 40px;
-  text-shadow: none;
 
   @media (max-width: 768px) {
     font-size: 20px;
@@ -193,7 +189,6 @@ const StatCard = styled.div`
   padding: 30px;
   text-align: center;
   border: 1px solid #e1e5e9;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 
   @media (max-width: 768px) {
     padding: 25px 20px;
@@ -275,37 +270,23 @@ const FeatureCard = styled.div`
   background: white;
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   border: 1px solid rgba(102, 126, 234, 0.1);
-  transition: all 0.3s ease;
-
-  &:hover {
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  }
 
   @media (max-width: 768px) {
     padding: 30px 25px;
     border-radius: 16px;
-
-    &:hover {
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-    }
   }
 
   @media (max-width: 480px) {
     padding: 25px 20px;
     border-radius: 14px;
-
-    &:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
   }
 `;
 
 const FeatureIcon = styled.div`
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #667eea;
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -366,16 +347,11 @@ const FeatureButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #667eea;
   color: white;
   text-decoration: none;
   border-radius: 25px;
   font-weight: 600;
-  transition: all 0.3s ease;
-
-  &:hover {
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-  }
 
   @media (max-width: 768px) {
     padding: 10px 20px;
@@ -461,9 +437,8 @@ const ProgressBar = styled.div`
 
 const ProgressFill = styled.div`
   height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #667eea;
   border-radius: 4px;
-  transition: width 0.3s ease;
   width: ${props => props.$width}%;
 `;
 
@@ -549,13 +524,6 @@ const QuickActionButton = styled(Link)`
   border-radius: 25px;
   font-weight: 600;
   border: 2px solid #667eea;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: #667eea;
-    color: white;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
-  }
 `;
 
 const CommunitySection = styled.div`
@@ -669,13 +637,6 @@ const JoinButton = styled.a`
   font-size: 18px;
   font-weight: 600;
   gap: 12px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-
-  &:hover {
-    background: #128C7E;
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-  }
 
   @media (max-width: 768px) {
     padding: 14px 28px;
@@ -776,7 +737,6 @@ const WeChatQR = styled.img`
   width: 160px;
   height: 160px;
   border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
   margin-bottom: 8px;
   background: #fff;
 `;
@@ -785,7 +745,6 @@ const WhatsAppQR = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   margin-bottom: 8px;
   background: #fff;
 `;
