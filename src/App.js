@@ -54,6 +54,7 @@ function LoginRoute({ children }) {
 
 function App() {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const location = window.location.pathname;
 
   useEffect(() => {
     // 应用启动时的初始化
@@ -81,7 +82,7 @@ function App() {
   return (
     <Router>
       <AppContainer>
-        <Header />
+        {location !== '/login' && <Header />}
         <MainContent>
           <Routes>
             {/* 登录路由 */}
@@ -150,10 +151,7 @@ function App() {
         </MainContent>
 
         {/* 更新弹窗 */}
-        <UpdateModal 
-          isOpen={showUpdateModal} 
-          onClose={handleCloseUpdateModal} 
-        />
+        {showUpdateModal && <UpdateModal onClose={handleCloseUpdateModal} />}
       </AppContainer>
     </Router>
   );

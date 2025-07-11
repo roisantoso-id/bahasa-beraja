@@ -20,12 +20,13 @@ const LogoImage = styled.img`
 `;
 
 const Subtitle = styled.div`
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-top: 6px;
+  font-family: 'Inter', 'Arial', sans-serif;
   color: #222;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-top: 4px;
-  font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+  text-transform: uppercase;
 `;
 
 function ArtisticLogo({ size = '72px', showSubtitle = true }) {
