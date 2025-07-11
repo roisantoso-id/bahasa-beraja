@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { BookOpen, Brain, Trophy, TrendingUp, Calendar, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LocalDatabase from '../utils/database';
+import ArtisticLogo from '../components/ArtisticLogo';
 
 const HomeContainer = styled.div`
   padding: 40px 20px;
@@ -524,6 +525,20 @@ const QuickActionButton = styled(Link)`
   border-radius: 25px;
   font-weight: 600;
   border: 2px solid #667eea;
+
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 18px;
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 const CommunitySection = styled.div`
@@ -826,13 +841,7 @@ function Home() {
     <HomeContainer>
       <Hero>
         <HeroLogo>
-          <LogoIcon>
-            <LogoImage src="/company-logo.jpeg" alt="Belajar Bahasa Logo" />
-          </LogoIcon>
-          <LogoText>
-            <LogoTitle>Belajar Bahasa</LogoTitle>
-            <LogoSubtitle>INDONESIAN LEARNING</LogoSubtitle>
-          </LogoText>
+          <ArtisticLogo size="48px" showSubtitle={false} />
         </HeroLogo>
         <Title>智能印尼语学习平台</Title>
         <Subtitle>掌握印尼语，开启东南亚之旅</Subtitle>

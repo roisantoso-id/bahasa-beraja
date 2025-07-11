@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Eye, EyeOff, User, Lock } from 'lucide-react';
 import UserManager from '../utils/userManager';
+import ArtisticLogo from '../components/ArtisticLogo';
 
 const LoginContainer = styled.div`
   min-height: 100vh;
@@ -26,32 +27,11 @@ const LogoSection = styled.div`
   margin-bottom: 30px;
 `;
 
-const LogoIcon = styled.div`
-  width: 80px;
-  height: 80px;
-  border-radius: 16px;
-  background: #6366f1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px;
-  color: white;
-  font-size: 32px;
-  font-weight: bold;
-`;
-
-const LogoTitle = styled.h1`
-  font-size: 28px;
-  font-weight: 700;
-  color: #333;
-  margin: 0;
-  margin-bottom: 8px;
-`;
-
 const LogoSubtitle = styled.div`
   font-size: 16px;
   color: #666;
   font-weight: 500;
+  margin-top: 10px;
 `;
 
 const Form = styled.form`
@@ -243,8 +223,7 @@ function Login() {
     <LoginContainer>
       <LoginCard>
         <LogoSection>
-          <LogoIcon>P</LogoIcon>
-          <LogoTitle>PIMI Bahasa</LogoTitle>
+          <ArtisticLogo />
           <LogoSubtitle>Indonesian Language Learning Platform</LogoSubtitle>
         </LogoSection>
 

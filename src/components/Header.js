@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Book, User, LogOut, Settings, BarChart, Menu, X } from 'lucide-react';
 import UserManager from '../utils/userManager';
 import UpdateManager from '../utils/updateManager';
+import ArtisticLogo from './ArtisticLogo';
 
 import { gradients, colors } from '../utils/theme';
 
@@ -53,20 +53,6 @@ const Logo = styled(Link)`
   }
 `;
 
-const LogoText = styled.h1`
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0;
-
-  @media (max-width: 768px) {
-    font-size: 20px;
-  }
-
-  @media (max-width: 480px) {
-    display: none;
-  }
-`;
-
 const DesktopNav = styled.nav`
   display: flex;
   align-items: center;
@@ -84,7 +70,6 @@ const MobileMenuButton = styled.button`
   cursor: pointer;
   padding: 8px;
   border-radius: 8px;
-  transition: all 0.3s ease;
 
   &:hover {
     background: rgba(180, 138, 74, 0.08);
@@ -97,7 +82,7 @@ const MobileMenuButton = styled.button`
   }
 `;
 
-const MobileMenuOverlay = styled(motion.div)`
+const MobileMenuOverlay = styled.div`
   display: none;
   position: fixed;
   top: 0;
@@ -112,7 +97,7 @@ const MobileMenuOverlay = styled(motion.div)`
   }
 `;
 
-const MobileMenuContent = styled(motion.div)`
+const MobileMenuContent = styled.div`
   position: fixed;
   top: 0;
   right: 0;
@@ -144,7 +129,6 @@ const MobileMenuClose = styled.button`
   cursor: pointer;
   padding: 8px;
   border-radius: 8px;
-  transition: all 0.3s ease;
 
   &:hover {
     background: rgba(180, 138, 74, 0.08);
@@ -164,7 +148,6 @@ const NavLink = styled(Link)`
   font-weight: 500;
   padding: 12px 16px;
   border-radius: 12px;
-  transition: all 0.3s ease;
   position: relative;
   display: block;
 
@@ -256,7 +239,7 @@ const UserName = styled.span`
   }
 `;
 
-const UserDropdown = styled(motion.div)`
+const UserDropdown = styled.div`
   position: absolute;
   top: 100%;
   right: 0;
@@ -468,7 +451,7 @@ function Header() {
     <HeaderContainer>
       <HeaderContent>
         <Logo to="/">
-          <LogoText>PIMI Bahasa</LogoText>
+          <ArtisticLogo />
         </Logo>
 
         {currentUser && (
@@ -496,52 +479,45 @@ function Header() {
                   <UserName>{currentUser.displayName}</UserName>
                 </UserButton>
 
-                <AnimatePresence>
-                  {showDropdown && (
-                    <UserDropdown
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <UserStats>
-                        <StatRow>
-                          <StatLabel>用户名</StatLabel>
-                          <StatValue>{currentUser.username}</StatValue>
-                        </StatRow>
-                        <StatRow>
-                          <StatLabel>注册时间</StatLabel>
-                          <StatValue>
-                            {new Date(currentUser.createdAt).toLocaleDateString()}
-                          </StatValue>
-                        </StatRow>
-                        <StatRow>
-                          <StatLabel>登录次数</StatLabel>
-                          <StatValue>{currentUser.loginCount || 0}</StatValue>
-                        </StatRow>
-                      </UserStats>
+                {showDropdown && (
+                  <UserDropdown>
+                    <UserStats>
+                      <StatRow>
+                        <StatLabel>用户名</StatLabel>
+                        <StatValue>{currentUser.username}</StatValue>
+                      </StatRow>
+                      <StatRow>
+                        <StatLabel>注册时间</StatLabel>
+                        <StatValue>
+                          {new Date(currentUser.createdAt).toLocaleDateString()}
+                        </StatValue>
+                      </StatRow>
+                      <StatRow>
+                        <StatLabel>登录次数</StatLabel>
+                        <StatValue>{currentUser.loginCount || 0}</StatValue>
+                      </StatRow>
+                    </UserStats>
 
-                      <DropdownItem onClick={() => setShowDropdown(false)}>
-                        <Settings size={16} />
-                        设置
-                      </DropdownItem>
-                      
-                      <DropdownItem onClick={() => setShowDropdown(false)}>
-                        <BarChart size={16} />
-                        学习统计
-                      </DropdownItem>
-                      
-                      <DevDropdownItem onClick={handleResetUpdate}>
-                        🔄 重置更新状态 (Dev)
-                      </DevDropdownItem>
-                      
-                      <DropdownItem onClick={handleLogout}>
-                        <LogOut size={16} />
-                        退出登录
-                      </DropdownItem>
-                    </UserDropdown>
-                  )}
-                </AnimatePresence>
+                    <DropdownItem onClick={() => setShowDropdown(false)}>
+                      <Settings size={16} />
+                      设置
+                    </DropdownItem>
+                    
+                    <DropdownItem onClick={() => setShowDropdown(false)}>
+                      <BarChart size={16} />
+                      学习统计
+                    </DropdownItem>
+                    
+                    <DevDropdownItem onClick={handleResetUpdate}>
+                      🔄 重置更新状态 (Dev)
+                    </DevDropdownItem>
+                    
+                    <DropdownItem onClick={handleLogout}>
+                      <LogOut size={16} />
+                      退出登录
+                    </DropdownItem>
+                  </UserDropdown>
+                )}
               </UserInfo>
               
               <MobileMenuButton onClick={() => setShowMobileMenu(true)}>
@@ -557,88 +533,76 @@ function Header() {
         </UserSection>
 
         {/* 移动端菜单 */}
-        <AnimatePresence>
-          {showMobileMenu && (
-            <>
-              <MobileMenuOverlay
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={closeMobileMenu}
-              />
-              <MobileMenuContent
-                initial={{ x: '100%' }}
-                animate={{ x: 0 }}
-                exit={{ x: '100%' }}
-                transition={{ type: 'tween', duration: 0.3 }}
-              >
-                <MobileMenuHeader>
-                  <Logo to="/" onClick={closeMobileMenu}>
-                    <span style={{ fontSize: '18px', fontWeight: '700' }}>PIMI Bahasa</span>
-                  </Logo>
-                  <MobileMenuClose onClick={closeMobileMenu}>
-                    <X size={24} color={PRIMARY_DARK} />
-                  </MobileMenuClose>
-                </MobileMenuHeader>
+        {showMobileMenu && (
+          <>
+            <MobileMenuOverlay onClick={closeMobileMenu} />
+            <MobileMenuContent>
+              <MobileMenuHeader>
+                <Logo to="/" onClick={closeMobileMenu}>
+                  <ArtisticLogo />
+                </Logo>
+                <MobileMenuClose onClick={closeMobileMenu}>
+                  <X size={24} color={PRIMARY_DARK} />
+                </MobileMenuClose>
+              </MobileMenuHeader>
 
-                {currentUser && (
-                  <>
-                    <MobileNav>
-                      {navItems.map((item) => (
-                        <NavLink
-                          key={item.path}
-                          to={item.path}
-                          $active={location.pathname === item.path}
-                          onClick={closeMobileMenu}
-                        >
-                          {item.label}
-                        </NavLink>
-                      ))}
-                    </MobileNav>
+              {currentUser && (
+                <>
+                  <MobileNav>
+                    {navItems.map((item) => (
+                      <NavLink
+                        key={item.path}
+                        to={item.path}
+                        $active={location.pathname === item.path}
+                        onClick={closeMobileMenu}
+                      >
+                        {item.label}
+                      </NavLink>
+                    ))}
+                  </MobileNav>
 
-                    <UserDropdown>
-                      <UserStats>
-                        <StatRow>
-                          <StatLabel>用户名</StatLabel>
-                          <StatValue>{currentUser.username}</StatValue>
-                        </StatRow>
-                        <StatRow>
-                          <StatLabel>注册时间</StatLabel>
-                          <StatValue>
-                            {new Date(currentUser.createdAt).toLocaleDateString()}
-                          </StatValue>
-                        </StatRow>
-                        <StatRow>
-                          <StatLabel>登录次数</StatLabel>
-                          <StatValue>{currentUser.loginCount || 0}</StatValue>
-                        </StatRow>
-                      </UserStats>
+                  <UserDropdown>
+                    <UserStats>
+                      <StatRow>
+                        <StatLabel>用户名</StatLabel>
+                        <StatValue>{currentUser.username}</StatValue>
+                      </StatRow>
+                      <StatRow>
+                        <StatLabel>注册时间</StatLabel>
+                        <StatValue>
+                          {new Date(currentUser.createdAt).toLocaleDateString()}
+                        </StatValue>
+                      </StatRow>
+                      <StatRow>
+                        <StatLabel>登录次数</StatLabel>
+                        <StatValue>{currentUser.loginCount || 0}</StatValue>
+                      </StatRow>
+                    </UserStats>
 
-                      <DropdownItem onClick={closeMobileMenu}>
-                        <Settings size={16} />
-                        设置
-                      </DropdownItem>
-                      
-                      <DropdownItem onClick={closeMobileMenu}>
-                        <BarChart size={16} />
-                        学习统计
-                      </DropdownItem>
-                      
-                      <DevDropdownItem onClick={handleResetUpdate}>
-                        🔄 重置更新状态 (Dev)
-                      </DevDropdownItem>
-                      
-                      <DropdownItem onClick={handleLogout}>
-                        <LogOut size={16} />
-                        退出登录
-                      </DropdownItem>
-                    </UserDropdown>
-                  </>
-                )}
-              </MobileMenuContent>
-            </>
-          )}
-        </AnimatePresence>
+                    <DropdownItem onClick={closeMobileMenu}>
+                      <Settings size={16} />
+                      设置
+                    </DropdownItem>
+                    
+                    <DropdownItem onClick={closeMobileMenu}>
+                      <BarChart size={16} />
+                      学习统计
+                    </DropdownItem>
+                    
+                    <DevDropdownItem onClick={handleResetUpdate}>
+                      🔄 重置更新状态 (Dev)
+                    </DevDropdownItem>
+                    
+                    <DropdownItem onClick={handleLogout}>
+                      <LogOut size={16} />
+                      退出登录
+                    </DropdownItem>
+                  </UserDropdown>
+                </>
+              )}
+            </MobileMenuContent>
+          </>
+        )}
       </HeaderContent>
     </HeaderContainer>
   );
