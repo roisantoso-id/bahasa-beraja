@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # 后端API服务
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: pimi-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=pimi_user
+      - DB_PASSWORD=pimi_pass_2024
+      - DB_NAME=pimi_bahasa
+      - JWT_SECRET=pimi-jwt-secret-key-2024
+      - JWT_EXPIRES_IN=15m
+      - JWT_REFRESH_EXPIRES_IN=7d
+      - CORS_ORIGIN=http://localhost:3000
+    volumes:
+      - ./src:/app/src
+      - ./logs:/app/logs
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    networks:
+      - pimi-network
+
+  # MySQL数据库
+  mysql:
+    image: mysql:8.0
+    container_name: pimi-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password_2024
+      - MYSQL_DATABASE=pimi_bahasa
+      - MYSQL_USER=pimi_user
+      - MYSQL_PASSWORD=pimi_pass_2024
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+    networks:
+      - pimi-network
+
+  # phpMyAdmin (可选，用于数据库管理)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pimi-phpmyadmin
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - PMA_USER=pimi_user
+      - PMA_PASSWORD=pimi_pass_2024
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    networks:
+      - pimi-network
+
+volumes:
+  mysql_data:
+
+networks:
+  pimi-network:
+    driver: bridge 
