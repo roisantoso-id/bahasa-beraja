@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Volume2, RotateCcw, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Volume2, RotateCcw } from 'lucide-react';
 import { vocabularyData } from '../data/vocabulary';
 import LocalDatabase from '../utils/database';
 import { colors, gradients } from '../utils/theme';
@@ -50,49 +49,7 @@ const StatLabel = styled.div`
   margin-top: 5px;
 `;
 
-const CategoryTabs = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-bottom: 40px;
-  overflow-x: auto;
-  padding: 0 10px;
-`;
 
-const CategoryTab = styled.button`
-  padding: 12px 24px;
-  border: none;
-  border-radius: 25px;
-  background: ${props => props.$active ? 'white' : 'rgba(255, 255, 255, 0.2)'};
-  color: ${props => props.$active ? colors.primaryDark : 'white'};
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  position: relative;
-
-  &:hover {
-    background: ${props => props.$active ? 'white' : 'rgba(255, 255, 255, 0.3)'};
-  }
-`;
-
-const CategoryProgress = styled.div`
-  position: absolute;
-  bottom: -3px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 3px;
-  background: rgba(102, 126, 234, 0.3);
-  border-radius: 2px;
-  overflow: hidden;
-`;
-
-const CategoryProgressBar = styled.div`
-  height: 100%;
-  background: ${colors.primaryDark};
-  width: ${props => props.$width}%;
-  transition: width 0.3s ease;
-`;
 
 const CardContainer = styled.div`
   position: relative;
@@ -415,27 +372,6 @@ function Vocabulary() {
   const getCurrentWordMastery = () => {
     const originalIndex = getCurrentWordOriginalIndex();
     return vocabularyMastery[selectedCategory]?.[originalIndex]?.level || 0;
-  };
-
-  // 计算分类完成度
-  const getCategoryProgress = (categoryIndex) => {
-    const categoryMastery = vocabularyMastery[categoryIndex] || {};
-    const totalWords = vocabularyData[categoryIndex].words.length;
-    const masteredWords = Object.values(categoryMastery).filter(word => word.level >= 2).length;
-    return (masteredWords / totalWords) * 100;
-  };
-
-  const handleCategoryChange = (categoryIndex) => {
-    // 保存学习时间
-    const studyTime = Math.floor((Date.now() - studyStartTime) / 1000);
-    LocalDatabase.updateLearningStats({
-      totalStudyTime: learningStats.totalStudyTime + studyTime
-    });
-    
-    setSelectedCategory(categoryIndex);
-    setCurrentWordIndex(0);
-    setIsFlipped(false);
-    setStudyStartTime(Date.now());
   };
 
   const handleNextWord = () => {
