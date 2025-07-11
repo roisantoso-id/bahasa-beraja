@@ -1,0 +1,26 @@
+services:
+  business-bahasa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: business-bahasa-app
+    ports:
+      - "8082:8081"
+    environment:
+      - NODE_ENV=production
+      - PORT=8081
+      - HOSTNAME=0.0.0.0
+    restart: unless-stopped
+    networks:
+      - business-network
+    volumes:
+      # 可选：如果需要持久化数据
+      - business_data:/app/data
+
+networks:
+  business-network:
+    driver: bridge
+
+volumes:
+  business_data:
+    driver: local 

@@ -440,7 +440,8 @@ function Header() {
     { path: '/vocabulary-book', label: '我的生词本' },
     { path: '/grammar', label: '语法学习' },
     { path: '/quiz', label: '练习测验' },
-    { path: '/business', label: '商务印尼语' }
+    { path: '/business', label: '商务印尼语' },
+    { path: '/test', label: '组件测试' }
   ];
 
   return (

@@ -9,6 +9,8 @@ import Grammar from './pages/Grammar';
 import Quiz from './pages/Quiz';
 import Login from './pages/Login';
 import BusinessIndonesian from './pages/BusinessIndonesian';
+import ComponentTest from './pages/ComponentTest';
+import SimpleTest from './pages/SimpleTest';
 import UpdateModal from './components/UpdateModal';
 import UserManager from './utils/userManager';
 import UpdateManager from './utils/updateManager';
@@ -140,6 +142,8 @@ function App() {
             <Route path="/vocabulary" element={<Vocabulary />} />
             <Route path="/grammar" element={<Grammar />} />
             <Route path="/business" element={<BusinessIndonesian />} />
+            <Route path="/test" element={<ComponentTest />} />
+            <Route path="/simple-test" element={<SimpleTest />} />
             
             {/* 需要登录的路由 */}
             <Route 

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件测试 - PiMi Bahasa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'indonesian-primary': '#D97706',
+                        'indonesian-secondary': '#EA580C',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .button-base {
+            @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+        }
+        .button-default {
+            @apply bg-blue-600 text-white hover:bg-blue-700;
+        }
+        .button-secondary {
+            @apply bg-gray-200 text-gray-900 hover:bg-gray-300;
+        }
+        .button-outline {
+            @apply border border-gray-300 bg-white hover:bg-gray-50;
+        }
+        .button-indonesian {
+            @apply bg-gradient-to-r from-indonesian-primary to-indonesian-secondary text-white hover:from-indonesian-primary/90 hover:to-indonesian-secondary/90 shadow-lg;
+        }
+        .button-size-default {
+            @apply h-10 px-4 py-2;
+        }
+        .button-size-sm {
+            @apply h-9 rounded-md px-3;
+        }
+        .button-size-lg {
+            @apply h-11 rounded-md px-8;
+        }
+        .badge-base {
+            @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+        }
+        .badge-default {
+            @apply bg-blue-600 text-white hover:bg-blue-700;
+        }
+        .badge-secondary {
+            @apply bg-gray-200 text-gray-900 hover:bg-gray-300;
+        }
+        .badge-outline {
+            @apply border border-gray-300 bg-white text-gray-700 hover:bg-gray-50;
+        }
+        .badge-indonesian {
+            @apply bg-gradient-to-r from-indonesian-primary to-indonesian-secondary text-white;
+        }
+        .card-base {
+            @apply rounded-lg border bg-white text-gray-950 shadow-sm;
+        }
+        .card-header {
+            @apply flex flex-col space-y-1.5 p-6;
+        }
+        .card-title {
+            @apply text-2xl font-semibold leading-none tracking-tight;
+        }
+        .card-description {
+            @apply text-sm text-gray-500;
+        }
+        .card-content {
+            @apply p-6 pt-0;
+        }
+        .card-footer {
+            @apply flex items-center p-6 pt-0;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- 页面标题 -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-amber-700 via-orange-700 to-red-700 bg-clip-text text-transparent">
+                组件测试页面
+            </h1>
+            <p class="text-gray-600 text-lg">
+                测试新的现代化UI组件和印尼风格设计
+            </p>
+        </div>
+
+        <!-- Button 组件测试 -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Button 组件测试</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-base">
+                    <div class="card-header">
+                        <h3 class="card-title">按钮变体</h3>
+                        <p class="card-description">测试不同的按钮样式</p>
+                    </div>
+                    <div class="card-content space-y-4">
+                        <div class="flex flex-wrap gap-2">
+                            <button class="button-base button-default button-size-default">默认按钮</button>
+                            <button class="button-base button-secondary button-size-default">次要按钮</button>
+                            <button class="button-base button-outline button-size-default">轮廓按钮</button>
+                            <button class="button-base button-indonesian button-size-default">印尼风格</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-base">
+                    <div class="card-header">
+                        <h3 class="card-title">按钮尺寸</h3>
+                        <p class="card-description">测试不同的按钮尺寸</p>
+                    </div>
+                    <div class="card-content space-y-4">
+                        <div class="flex flex-wrap gap-2 items-center">
+                            <button class="button-base button-default button-size-sm">小按钮</button>
+                            <button class="button-base button-default button-size-default">默认尺寸</button>
+                            <button class="button-base button-default button-size-lg">大按钮</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-base">
+                    <div class="card-header">
+                        <h3 class="card-title">带图标的按钮</h3>
+                        <p class="card-description">测试带图标的按钮</p>
+                    </div>
+                    <div class="card-content space-y-4">
+                        <div class="flex flex-wrap gap-2">
+                            <button class="button-base button-indonesian button-size-default">
+                                📚 开始学习
+                            </button>
+                            <button class="button-base button-outline button-size-default">
+                                🏆 查看成绩
+                            </button>
+                            <button class="button-base button-secondary button-size-default">
+                                👥 社区
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 组件测试 -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Card 组件测试</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-base">
+                    <div class="card-header">
+                        <h3 class="card-title">基础卡片</h3>
+                        <p class="card-description">这是一个基础的卡片组件</p>
+                    </div>
+                    <div class="card-content">
+                        <p class="text-gray-600">
+                            这是卡片的内容区域，可以包含任何内容。
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="button-base button-outline button-size-default w-full">了解更多</button>
+                    </div>
+                </div>
+
+                <div class="card-base border-indonesian-primary/20 bg-gradient-to-br from-amber-50 to-orange-50">
+                    <div class="card-header">
+                        <div class="flex items-center gap-2">
+                            <div class="p-2 bg-gradient-to-r from-indonesian-primary to-indonesian-secondary rounded-lg">
+                                🌏
+                            </div>
+                            <div>
+                                <h3 class="card-title">印尼风格卡片</h3>
+                                <p class="card-description">融入印尼文化元素的卡片设计</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="text-gray-700">
+                            这个卡片使用了印尼传统的色彩搭配，体现了文化特色。
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="button-base button-indonesian button-size-default w-full">
+                            ✨ 探索印尼文化
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-base">
+                    <div class="card-header">
+                        <h3 class="card-title">学习进度</h3>
+                        <p class="card-description">显示学习统计信息</p>
+                    </div>
+                    <div class="card-content space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">词汇掌握</span>
+                            <span class="text-lg font-semibold text-indonesian-primary">85%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-indonesian-primary to-indonesian-secondary h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <span>已学: 425 个</span>
+                            <span>总计: 500 个</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Badge 组件测试 -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Badge 组件测试</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card-base">
+                    <div class="card-header">
+                        <h3 class="card-title">徽章变体</h3>
+                        <p class="card-description">测试不同的徽章样式</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="badge-base badge-default">默认</span>
+                            <span class="badge-base badge-secondary">次要</span>
+                            <span class="badge-base badge-outline">轮廓</span>
+                            <span class="badge-base badge-indonesian">印尼风格</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-base">
+                    <div class="card-header">
+                        <h3 class="card-title">学习标签</h3>
+                        <p class="card-description">使用徽章显示学习状态</p>
+                    </div>
+                    <div class="card-content space-y-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm text-gray-600">课程状态:</span>
+                            <span class="badge-base badge-indonesian">进行中</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm text-gray-600">难度等级:</span>
+                            <span class="badge-base badge-secondary">中级</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm text-gray-600">完成度:</span>
+                            <span class="badge-base badge-default">75%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 综合展示 -->
+        <div>
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">综合展示</h2>
+            <div class="card-base bg-gradient-to-br from-white to-amber-50 border-2 border-indonesian-primary/20">
+                <div class="card-header">
+                    <div class="flex items-center gap-3">
+                        <div class="p-3 bg-gradient-to-r from-indonesian-primary to-indonesian-secondary rounded-xl">
+                            🏆
+                        </div>
+                        <div>
+                            <h3 class="card-title">PiMi Bahasa</h3>
+                            <p class="card-description text-base">
+                                现代化印尼语学习平台
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content space-y-6">
+                    <p class="text-gray-700 leading-relaxed">
+                        这是一个使用现代化设计系统的印尼语学习平台。我们采用了 shadcn/ui 组件库，
+                        结合印尼传统文化元素，为用户提供优雅、专业的学习体验。
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge-base badge-indonesian">React</span>
+                        <span class="badge-base badge-secondary">Tailwind CSS</span>
+                        <span class="badge-base badge-outline">shadcn/ui</span>
+                        <span class="badge-base badge-default">现代化设计</span>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <button class="button-base button-indonesian button-size-lg">
+                            📚 开始学习
+                        </button>
+                        <button class="button-base button-outline button-size-lg">
+                            👥 加入社区
+                        </button>
+                        <button class="button-base button-secondary button-size-lg">
+                            🌏 了解更多
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
