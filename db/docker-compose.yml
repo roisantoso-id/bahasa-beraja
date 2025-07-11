@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: pimi_bahasa_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: pimi_root_2024
+      MYSQL_DATABASE: pimi_bahasa
+      MYSQL_USER: pimi_user
+      MYSQL_PASSWORD: pimi_pass_2024
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      # 数据持久化
+      - /home/data/pimi_bahasa_mysql:/var/lib/mysql
+      # 初始化脚本
+      - ./init:/docker-entrypoint-initdb.d
+      # 配置文件
+      - ./mysql.cnf:/etc/mysql/conf.d/custom.cnf
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - pimi_network
+
+  # MySQL管理工具（可选）
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: pimi_bahasa_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: pimi_user
+      PMA_PASSWORD: pimi_pass_2024
+      MYSQL_ROOT_PASSWORD: pimi_root_2024
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+    networks:
+      - pimi_network
+
+networks:
+  pimi_network:
+    driver: bridge 
