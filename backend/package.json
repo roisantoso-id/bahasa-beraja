@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
-    "dev:simple": "nodemon src/simple-app.js",
+    "dev:simple": "nodemon src/simple-app-with-logs.js",
     "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",

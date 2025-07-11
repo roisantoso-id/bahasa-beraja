@@ -12,6 +12,9 @@ import BusinessIndonesian from './pages/BusinessIndonesian';
 import UpdateModal from './components/UpdateModal';
 import UserManager from './utils/userManager';
 import UpdateManager from './utils/updateManager';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
 
 import { gradients } from './utils/theme';
 
@@ -32,9 +35,22 @@ const MainContent = styled.main`
 
 // 路由保护组件
 function ProtectedRoute({ children }) {
-  const isLoggedIn = UserManager.isLoggedIn();
+  const { isAuthenticated, loading } = useAuth();
   
-  if (!isLoggedIn) {
+  if (loading) {
+    return <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      height: '100vh',
+      fontSize: '1.2rem',
+      color: '#666'
+    }}>
+      加载中...
+    </div>;
+  }
+  
+  if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
   
@@ -43,9 +59,22 @@ function ProtectedRoute({ children }) {
 
 // 登录路由保护（已登录用户访问登录页面时重定向到首页）
 function LoginRoute({ children }) {
-  const isLoggedIn = UserManager.isLoggedIn();
+  const { isAuthenticated, loading } = useAuth();
   
-  if (isLoggedIn) {
+  if (loading) {
+    return <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      height: '100vh',
+      fontSize: '1.2rem',
+      color: '#666'
+    }}>
+      加载中...
+    </div>;
+  }
+  
+  if (isAuthenticated) {
     return <Navigate to="/" replace />;
   }
   
@@ -80,80 +109,92 @@ function App() {
   };
 
   return (
-    <Router>
-      <AppContainer>
-        {location !== '/login' && <Header />}
-        <MainContent>
-          <Routes>
-            {/* 登录路由 */}
+    <AuthProvider>
+      <Router>
+        <AppContainer>
+          {location !== '/login' && <Header />}
+          <MainContent>
+            <Routes>
+                          {/* 登录路由 */}
             <Route 
               path="/login" 
               element={
                 <LoginRoute>
-                  <Login />
+                  <LoginForm />
                 </LoginRoute>
               } 
             />
             
-            {/* 受保护的路由 */}
+            {/* 注册路由 */}
             <Route 
-              path="/" 
+              path="/register" 
               element={
-                <ProtectedRoute>
-                  <Home />
-                </ProtectedRoute>
+                <LoginRoute>
+                  <RegisterForm />
+                </LoginRoute>
               } 
             />
-            <Route 
-              path="/vocabulary" 
-              element={
-                <ProtectedRoute>
-                  <Vocabulary />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/vocabulary-book" 
-              element={
-                <ProtectedRoute>
-                  <VocabularyBook />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/grammar" 
-              element={
-                <ProtectedRoute>
-                  <Grammar />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/quiz" 
-              element={
-                <ProtectedRoute>
-                  <Quiz />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/business" 
-              element={
-                <ProtectedRoute>
-                  <BusinessIndonesian />
-                </ProtectedRoute>
-              } 
-            />
-            
-            {/* 404 重定向 */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </MainContent>
+              
+              {/* 受保护的路由 */}
+              <Route 
+                path="/" 
+                element={
+                  <ProtectedRoute>
+                    <Home />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/vocabulary" 
+                element={
+                  <ProtectedRoute>
+                    <Vocabulary />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/vocabulary-book" 
+                element={
+                  <ProtectedRoute>
+                    <VocabularyBook />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/grammar" 
+                element={
+                  <ProtectedRoute>
+                    <Grammar />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/quiz" 
+                element={
+                  <ProtectedRoute>
+                    <Quiz />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/business" 
+                element={
+                  <ProtectedRoute>
+                    <BusinessIndonesian />
+                  </ProtectedRoute>
+                } 
+              />
+              
+              {/* 404 重定向 */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </MainContent>
 
-        {/* 更新弹窗 */}
-        {showUpdateModal && <UpdateModal onClose={handleCloseUpdateModal} />}
-      </AppContainer>
-    </Router>
+          {/* 更新弹窗 */}
+          {showUpdateModal && <UpdateModal onClose={handleCloseUpdateModal} />}
+        </AppContainer>
+      </Router>
+    </AuthProvider>
   );
 }
 

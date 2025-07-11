@@ -5,6 +5,7 @@ import { Book, User, LogOut, Settings, BarChart, Menu, X } from 'lucide-react';
 import UserManager from '../utils/userManager';
 import UpdateManager from '../utils/updateManager';
 import ArtisticLogo from './ArtisticLogo';
+import { useAuth } from '../contexts/AuthContext';
 
 import { gradients, colors } from '../utils/theme';
 
@@ -388,22 +389,18 @@ const LoginButton = styled(Link)`
 function Header() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useState(null);
+  const { user: currentUser, logout } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [userStats, setUserStats] = useState(null);
 
   useEffect(() => {
-    // 检查用户登录状态
-    const user = UserManager.getCurrentUser();
-    setCurrentUser(user);
-    
-    if (user) {
-      // 获取用户统计数据
+    // 获取用户统计数据（如果用户已登录）
+    if (currentUser) {
       const stats = UserManager.getUserStats();
       setUserStats(stats);
     }
-  }, [location]);
+  }, [currentUser]);
 
   // 关闭移动端菜单
   useEffect(() => {
@@ -419,8 +416,7 @@ function Header() {
   }, [showMobileMenu]);
 
   const handleLogout = () => {
-    UserManager.logout();
-    setCurrentUser(null);
+    logout();
     setShowDropdown(false);
     setShowMobileMenu(false);
     navigate('/login');
